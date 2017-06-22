@@ -49,7 +49,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<ul>
 					<li><a href="registered.html"> Create Account </a></li>
 					<li><a href="login.html">Login</a></li>
-					<li><a href="contact.html">Help</a></li>
+					
 					
 				</ul>
 			</div>
@@ -103,10 +103,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<span class="icon-bar"></span>
 									<span class="icon-bar"></span>
 								</button>
-							</div> 
+							</div>
 							<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 								<ul class="nav navbar-nav">
-									<li class="active"><a href="index.php" class="act">Home</a></li>	
+									<li class="active"><a href="index.php" class="act">Home</a></li>
 									<!-- Mega Menu -->
 									<li class="dropdown">
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown">Category1<b class="caret"></b></a>
@@ -119,10 +119,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 														<li><a href="gourmet.php">Category 3</a></li>
 														<li><a href="gourmet.php">Category 4</a></li>
 														<li><a href="gourmet.php">Category 5</a></li>
-														<li><a href="gourmet.php">Category 6</a></li>				
+														<li><a href="gourmet.php">Category 6</a></li>
 													</ul>
-												</div>	
-												
+												</div>
+
 											</div>
 										</ul>
 									</li>
@@ -130,14 +130,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<li><a href="gourmet.php">Category 8</a></li>
 									<li><a href="gourmet.php">Category 9</a></li>
 									<li><a href="gourmet.php">Category 10</a></li>
-									<li><a href="offers.php">Offers</a></li>
+									<li><a href="gourmet.php">Category 11</a></li>
+                                    <li><a href="gourmet.php">Category 12</a></li>
 									<li><a href="contact.php">Contact</a></li>
 								</ul>
 							</div>
 							</nav>
 			</div>
 		</div>
-		
+
 <!-- //navigation -->
 <!-- breadcrumbs -->
 	<div class="breadcrumbs">
