@@ -44,9 +44,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- header -->
 	<div class="agileits_header">
 		<div class="container">
-			<div class="w3l_offers">
-				<p>SALE UP TO 70% OFF. USE CODE "SALE70%" . <a href="products.html">SHOP NOW</a></p>
-			</div>
+			
 			<div class="agile-login">
 				<ul>
 					<li><a href="registered.html"> Create Account </a></li>
@@ -69,10 +67,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="logo_products">
 		<div class="container">
 		<div class="w3ls_logo_products_left1">
+<!--
 				<ul class="phone_email">
 					<li><i class="fa fa-phone" aria-hidden="true"></i>Order online or call us : (+0123) 234 567</li>
 					
 				</ul>
+-->
 			</div>
 			<div class="w3ls_logo_products_left">
 				<h1><a href="index.html">super Market</a></h1>
@@ -228,45 +228,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--- gourmet --->
 	<div class="products">
 		<div class="container">
-			<div class="col-md-4 products-left">
-				<div class="categories">
-					<h2>Categories</h2>
-					<ul class="cate">
-						<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Fruits And Vegetables</a></li>
-							<ul>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Cuts & Sprouts</a></li>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Flowers</a></li>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Fresh Herbs & Seasonings</a></li>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Fresh Vegetables</a> </li>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>International Vegetables</a> </li>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Organic Fruits & Vegetables</a></li>
-							</ul>
-						<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Grocery & Staples</a></li>
-							<ul>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Dals & Pulses</a> </li>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Dry Fruits</a> </li>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Edible Oils & Ghee</a> </li>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Flours & Sooji</a> </li>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Masalas & Spices</a> </li>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Organic Staples</a> </li>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Rice & Rice Products</a> </li>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Salt, Sugar & Jaggery</a></li>
-							</ul>
-						<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>PersonalCare</a></li>
-							<ul>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Baby Care</a> </li>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Cosmetics</a> </li>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Deos & Perfumes</a> </li>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Skin Care</a> </li>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Sanitary Needs</a> </li>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Oral Care</a> </li>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Personal Hygiene</a> </li>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Shaving Needs</a></li>
-							</ul>
-					</ul>
-				</div>																																												
-			</div>
-			<div class="col-md-8 products-right">
+			
+			<div class="col-md-12 products-right">
 				<div class="products-right-grid">
 					<div class="products-right-grids">
 						<div class="sorting">
@@ -289,7 +252,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 				</div>
 				<div class="agile_top_brands_grids">
-					<div class="col-md-4 top_brand_left">
+					<div class="col-md-3 top_brand_left">
 						<div class="hover14 column">
 							<div class="agile_top_brand_left_grid">
 								<div class="agile_top_brand_left_grid_pos">
@@ -325,7 +288,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 						</div>
 					</div>
-					<div class="col-md-4 top_brand_left">
+					<div class="col-md-3 top_brand_left">
 						<div class="hover14 column">
 							<div class="agile_top_brand_left_grid">
 								<div class="agile_top_brand_left_grid_pos">
@@ -339,6 +302,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<p>Gourmet</p>
 												<h4>$30.99 <span>$45.00</span></h4>
 											</div>
+											<div class="snipcart-details top_brand_home_details">
 											<div class="snipcart-details top_brand_home_details">
 												<form action="#" method="post">
 													<fieldset>
@@ -361,7 +325,44 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 						</div>
 					</div>
-					<div class="col-md-4 top_brand_left">
+                        <div class="col-md-3 top_brand_left">
+						<div class="hover14 column">
+							<div class="agile_top_brand_left_grid">
+								<div class="agile_top_brand_left_grid_pos">
+									<img src="images/offer.png" alt=" " class="img-responsive">
+								</div>
+								<div class="agile_top_brand_left_grid1">
+									<figure>
+										<div class="snipcart-item block">
+											<div class="snipcart-thumb">
+												<a href="single.html"><img title=" " alt=" " src="images/gu2.png"></a>		
+												<p>Gourmet</p>
+												<h4>$30.99 <span>$45.00</span></h4>
+											</div>
+											<div class="snipcart-details top_brand_home_details">
+											<div class="snipcart-details top_brand_home_details">
+												<form action="#" method="post">
+													<fieldset>
+														<input type="hidden" name="cmd" value="_cart">
+														<input type="hidden" name="add" value="1">
+														<input type="hidden" name="business" value=" ">
+														<input type="hidden" name="item_name" value="basmati rise">
+														<input type="hidden" name="amount" value="30.99">
+														<input type="hidden" name="discount_amount" value="1.00">
+														<input type="hidden" name="currency_code" value="USD">
+														<input type="hidden" name="return" value=" ">
+														<input type="hidden" name="cancel_return" value=" ">
+														<input type="submit" name="submit" value="Add to cart" class="button">
+													</fieldset>
+												</form>
+											</div>
+										</div>
+									</figure>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3 top_brand_left">
 						<div class="hover14 column">
 							<div class="agile_top_brand_left_grid">
 								<div class="agile_top_brand_left_grid_pos">
@@ -403,7 +404,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="clearfix"> </div>
 				</div>
 				<div class="agile_top_brands_grids">
-					<div class="col-md-4 top_brand_left">
+					<div class="col-md-3 top_brand_left">
 						<div class="hover14 column">
 							<div class="agile_top_brand_left_grid">
 								<div class="agile_top_brand_left_grid_pos">
@@ -439,7 +440,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 						</div>
 					</div>
-					<div class="col-md-4 top_brand_left">
+					<div class="col-md-3 top_brand_left">
 						<div class="hover14 column">
 							<div class="agile_top_brand_left_grid">
 								<div class="agile_top_brand_left_grid_pos">
@@ -475,7 +476,43 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 						</div>
 					</div>
-					<div class="col-md-4 top_brand_left">
+                    <div class="col-md-3 top_brand_left">
+						<div class="hover14 column">
+							<div class="agile_top_brand_left_grid">
+								<div class="agile_top_brand_left_grid_pos">
+									<img src="images/offer.png" alt=" " class="img-responsive">
+								</div>
+								<div class="agile_top_brand_left_grid1">
+									<figure>
+										<div class="snipcart-item block">
+											<div class="snipcart-thumb">
+												<a href="single.html"><img title=" " alt=" " src="images/gu5.png"></a>		
+												<p>Le-Gourmet</p>
+												<h4>$30.99 <span>$45.00</span></h4>
+											</div>
+											<div class="snipcart-details top_brand_home_details">
+												<form action="#" method="post">
+													<fieldset>
+														<input type="hidden" name="cmd" value="_cart">
+														<input type="hidden" name="add" value="1">
+														<input type="hidden" name="business" value=" ">
+														<input type="hidden" name="item_name" value="basmati rise">
+														<input type="hidden" name="amount" value="30.99">
+														<input type="hidden" name="discount_amount" value="1.00">
+														<input type="hidden" name="currency_code" value="USD">
+														<input type="hidden" name="return" value=" ">
+														<input type="hidden" name="cancel_return" value=" ">
+														<input type="submit" name="submit" value="Add to cart" class="button">
+													</fieldset>
+												</form>
+											</div>
+										</div>
+									</figure>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3 top_brand_left">
 						<div class="hover14 column">
 							<div class="agile_top_brand_left_grid">
 								<div class="agile_top_brand_left_grid_pos">
@@ -517,7 +554,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="clearfix"> </div>
 				</div>
 				<div class="agile_top_brands_grids">
-					<div class="col-md-4 top_brand_left">
+					<div class="col-md-3 top_brand_left">
 						<div class="hover14 column">
 							<div class="agile_top_brand_left_grid">
 								<div class="agile_top_brand_left_grid_pos">
@@ -553,7 +590,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 						</div>
 					</div>
-					<div class="col-md-4 top_brand_left">
+					<div class="col-md-3 top_brand_left">
 						<div class="hover14 column">
 							<div class="agile_top_brand_left_grid">
 								<div class="agile_top_brand_left_grid_pos">
@@ -589,7 +626,46 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 						</div>
 					</div>
-					<div class="col-md-4 top_brand_left">
+					<div class="col-md-3 top_brand_left">
+						<div class="hover14 column">
+							<div class="agile_top_brand_left_grid">
+								<div class="agile_top_brand_left_grid_pos">
+									<img src="images/offer.png" alt=" " class="img-responsive">
+								</div>
+								<div class="agile_top_brand_left_grid_pos">
+									<img src="images/offer.png" alt=" " class="img-responsive">
+								</div>
+								<div class="agile_top_brand_left_grid1">
+									<figure>
+										<div class="snipcart-item block">
+											<div class="snipcart-thumb">
+												<a href="single.html"><img src="images/gu9.png" alt=" " class="img-responsive"></a>
+												<p>Fruit Nut</p>
+												<h4>$80.99 <span>$105.00</span></h4>
+											</div>
+											<div class="snipcart-details top_brand_home_details">
+												<form action="#" method="post">
+													<fieldset>
+														<input type="hidden" name="cmd" value="_cart">
+														<input type="hidden" name="add" value="1">
+														<input type="hidden" name="business" value=" ">
+														<input type="hidden" name="item_name" value="Pepsi soft drink">
+														<input type="hidden" name="amount" value="80.00">
+														<input type="hidden" name="discount_amount" value="1.00">
+														<input type="hidden" name="currency_code" value="USD">
+														<input type="hidden" name="return" value=" ">
+														<input type="hidden" name="cancel_return" value=" ">
+														<input type="submit" name="submit" value="Add to cart" class="button">
+													</fieldset>
+												</form>
+											</div>
+										</div>
+									</figure>
+								</div>
+							</div>
+						</div>
+					</div>
+                    <div class="col-md-3 top_brand_left">
 						<div class="hover14 column">
 							<div class="agile_top_brand_left_grid">
 								<div class="agile_top_brand_left_grid_pos">
