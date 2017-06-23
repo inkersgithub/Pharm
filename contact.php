@@ -1,4 +1,4 @@
-<<?php include_once 'dbconnect.php';
+<?php include_once 'dbconnect.php';
 ?>
 
 <!--
@@ -176,7 +176,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="col-md-6 w3_agileits_contact_grid_right">
 				<h2 class="w3_agile_header">Leave a<span> Message</span></h2>
 
-				<form action="" method="post">
+		<!--		<form action="" method="post">
 					<span class="input input--ichiro">
 						<input class="input__field input__field--ichiro" type="text" id="contactName" name="contactName" placeholder=" " required="" />
 						<label class="input__label input__label--ichiro" for="contactName">
@@ -196,80 +196,41 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="clearfix"> </div>
 		</div>
 	</div>
+-->
 
 	<?php
 
-// Replace this with your own email address
-$siteOwnersEmail = 'mubarak@inkers.in';
+	//if "email" variable is filled out, send email
+	  if (isset($_REQUEST['email']))  {
 
+	  //Email information
+	  $admin_email = "mubaraknet123789@gmail.com";
+	  $email = $_REQUEST['email'];
+	  $subject = "New message from " . $name;
+	  $comment = $_REQUEST['message'];
 
-if (isset($_POST['send'])) {
+	  //send email
+	  mail($admin_email, "$subject", $message, "From:" . $name . "<" . $email . ">");
 
-   $name = mysqli_real_escape_string($con, $_POST['contactName']);
-   $email = mysqli_real_escape_string($con, $_POST['contactEmail']);
-   $contact_message = mysqli_real_escape_string($con, $_POST['message']);
-	 $error = false;
-   // Check Name
-	if (strlen($name) < 2) {
-		$error = true;
-		$error['name'] = "Please enter your name.";
-	}
-	// Check Email
-	if (!preg_match('/^[a-z0-9&\'\.\-_\+]+@[a-z0-9\-]+\.([a-z0-9\-]+\.)*+[a-z]{2}/is', $email)) {
-		$error = true;
-		$error['email'] = "Please enter a valid email address.";
-	}
-	// Check Message
-	if (strlen($contact_message) < 15) {
-		$error = true;
-		$error['message'] = "Please enter your message. It should have at least 15 characters.";
-	}
+	  //Email response
+	  echo "Thank you for contacting us!";
+	  }
 
+	  //if "email" variable is not filled out, display the form
+	  else  {
+	?>
 
+	 <form method="post">
+	  Email: <input name="email" type="text" /><br />
+	  Name: <input name="name" type="text" /><br />
+	  Message:<br />
+	  <textarea name="message" rows="15" cols="40"></textarea><br />
+	  <input type="submit" value="Submit" />
+	  </form>
 
-   // Set Message
-   $message = "Email from: " . $name . "<br />";
-	 $message .= "Email address: " . $email . "<br />";
-   $message .= "Message: <br />";
-   $message .= $contact_message;
-   $message .= "<br /> ----- <br /> This email was sent from your site's contact form. <br />";
-
-   // Set From: header
-   $from =  $name . " <" . $email . ">";
-
-   // Email Headers
-	$headers = "From: " . $from . "\r\n";
-	$headers .= "Reply-To: ". $email . "\r\n";
- 	$headers .= "MIME-Version: 1.0\r\n";
-	$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-
-	$subject = "New order from " . $name;
-
-
-  if (!$error) {
-
-      ini_set("sendmail_from", $siteOwnersEmail); // for windows server
-      $mail = mail($siteOwnersEmail, $subject, $message, $headers);
-
-		if ($mail) { echo "OK"; }
-      else { echo "Something went wrong. Please try again."; }
-
-	} # end if - no validation error
-
-	else {
-
-		$response = (isset($error['name'])) ? $error['name'] . "<br /> \n" : null;
-		$response .= (isset($error['email'])) ? $error['email'] . "<br /> \n" : null;
-		$response .= (isset($error['message'])) ? $error['message'] . "<br />" : null;
-
-		echo $response;
-
-	} # end if - there was a validation error
-
-}
-
-?>
-
+	<?php
+	  }
+	?>
 
 <!-- contact -->
 
