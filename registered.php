@@ -1,9 +1,17 @@
-<!--
-author: W3layouts
-author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,15 +52,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- header -->
 	<div class="agileits_header">
 		<div class="container">
-			<div class="w3l_offers">
-				<p>SALE UP TO 70% OFF. USE CODE "SALE70%" . <a href="products.html">SHOP NOW</a></p>
-			</div>
+			
 			<div class="agile-login">
 				<ul>
-					<li><a href="registered.html"> Create Account </a></li>
-					<li><a href="login.html">Login</a></li>
-					<li><a href="contact.html">Help</a></li>
-					
+					<li><a href="login.html">Login</a></li>		
 				</ul>
 			</div>
 			<div class="product_list_header">  
@@ -70,8 +73,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 		<div class="w3ls_logo_products_left1">
 				<ul class="phone_email">
-					<li><i class="fa fa-phone" aria-hidden="true"></i>Order online or call us : (+0123) 234 567</li>
-					
+			
 				</ul>
 			</div>
 			<div class="w3ls_logo_products_left">
@@ -103,117 +105,42 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<span class="icon-bar"></span>
 									<span class="icon-bar"></span>
 								</button>
-							</div> 
+							</div>
 							<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 								<ul class="nav navbar-nav">
-									<li class="active"><a href="index.html" class="act">Home</a></li>	
+									<li class="active"><a href="index.php" class="act">Home</a></li>
 									<!-- Mega Menu -->
 									<li class="dropdown">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown">Groceries<b class="caret"></b></a>
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown">Category1<b class="caret"></b></a>
 										<ul class="dropdown-menu multi-column columns-3">
 											<div class="row">
 												<div class="multi-gd-img">
 													<ul class="multi-column-dropdown">
-														<h6>All Groceries</h6>
-														<li><a href="groceries.html">Dals & Pulses</a></li>
-														<li><a href="groceries.html">Almonds</a></li>
-														<li><a href="groceries.html">Cashews</a></li>
-														<li><a href="groceries.html">Dry Fruit</a></li>
-														<li><a href="groceries.html"> Mukhwas </a></li>
-														<li><a href="groceries.html">Rice & Rice Products</a></li>
-													</ul>
-												</div>	
-												
-											</div>
-										</ul>
-									</li>
-									<li class="dropdown">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown">Household<b class="caret"></b></a>
-										<ul class="dropdown-menu multi-column columns-3">
-											<div class="row">
-												<div class="multi-gd-img">
-													<ul class="multi-column-dropdown">
-														<h6>All Household</h6>
-														<li><a href="household.html">Cookware</a></li>
-														<li><a href="household.html">Dust Pans</a></li>
-														<li><a href="household.html">Scrubbers</a></li>
-														<li><a href="household.html">Dust Cloth</a></li>
-														<li><a href="household.html"> Mops </a></li>
-														<li><a href="household.html">Kitchenware</a></li>
+														<h6>All Category</h6>
+														<li><a href="gourmet.php">Category 2</a></li>
+														<li><a href="gourmet.php">Category 3</a></li>
+														<li><a href="gourmet.php">Category 4</a></li>
+														<li><a href="gourmet.php">Category 5</a></li>
+														<li><a href="gourmet.php">Category 6</a></li>
 													</ul>
 												</div>
-												
-												
+
 											</div>
 										</ul>
 									</li>
-									<li class="dropdown">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown">Personal Care<b class="caret"></b></a>
-										<ul class="dropdown-menu multi-column columns-3">
-											<div class="row">
-												<div class="multi-gd-img">
-													<ul class="multi-column-dropdown">
-														<h6>Baby Care</h6>
-														<li><a href="personalcare.html">Baby Soap</a></li>
-														<li><a href="personalcare.html">Baby Care Accessories</a></li>
-														<li><a href="personalcare.html">Baby Oil & Shampoos</a></li>
-														<li><a href="personalcare.html">Baby Creams & Lotion</a></li>
-														<li><a href="personalcare.html"> Baby Powder</a></li>
-														<li><a href="personalcare.html">Diapers & Wipes</a></li>
-													</ul>
-												</div>
-												
-											</div>
-										</ul>
-									</li>
-									<li class="dropdown">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown">Packaged Foods<b class="caret"></b></a>
-										<ul class="dropdown-menu multi-column columns-3">
-											<div class="row">
-												<div class="multi-gd-img">
-													<ul class="multi-column-dropdown">
-														<h6>All Accessories</h6>
-														<li><a href="packagedfoods.html">Baby Food</a></li>
-														<li><a href="packagedfoods.html">Dessert Items</a></li>
-														<li><a href="packagedfoods.html">Biscuits</a></li>
-														<li><a href="packagedfoods.html">Breakfast Cereals</a></li>
-														<li><a href="packagedfoods.html"> Canned Food </a></li>
-														<li><a href="packagedfoods.html">Chocolates & Sweets</a></li>
-													</ul>
-												</div>
-												
-											
-											</div>
-										</ul>
-									</li>
-									<li class="dropdown">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown">Beverages<b class="caret"></b></a>
-										<ul class="dropdown-menu multi-column columns-3">
-											<div class="row">
-												<div class="multi-gd-img">
-													<ul class="multi-column-dropdown">
-														<h6>Tea & Coeffe</h6>
-														<li><a href="beverages.html">Green Tea</a></li>
-														<li><a href="beverages.html">Ground Coffee</a></li>
-														<li><a href="beverages.html">Herbal Tea</a></li>
-														<li><a href="beverages.html">Instant Coffee</a></li>
-														<li><a href="beverages.html"> Tea </a></li>
-														<li><a href="beverages.html">Tea Bags</a></li>
-													</ul>
-												</div>
-							
-											</div>
-										</ul>
-									</li>
-									<li><a href="gourmet.html">Gourmet</a></li>
-									<li><a href="offers.html">Offers</a></li>
-									<li><a href="contact.html">Contact</a></li>
+									<li><a href="gourmet.php">Category 7</a></li>
+									<li><a href="gourmet.php">Category 8</a></li>
+									<li><a href="gourmet.php">Category 9</a></li>
+									<li><a href="gourmet.php">Category 10</a></li>
+									<li><a href="gourmet.php">Category 11</a></li>
+                                    <li><a href="gourmet.php">Category 12</a></li>
+									<li><a href="contact.php">Contact</a></li>
 								</ul>
 							</div>
 							</nav>
 			</div>
 		</div>
-		
+
 <!-- //navigation -->
 <!-- breadcrumbs -->
 	<div class="breadcrumbs">
@@ -234,14 +161,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<form action="#" method="post">
 					<input type="text" placeholder="First Name..." required=" " >
 					<input type="text" placeholder="Last Name..." required=" " >
-				</form>
-				<div class="register-check-box">
-					<div class="check">
-						<label class="checkbox"><input type="checkbox" name="checkbox"><i> </i>Subscribe to Newsletter</label>
-					</div>
-				</div>
-				<h6>Login information</h6>
-					<form action="#" method="post">
+					
+					<input style="margin-top: 15px;" type="text" placeholder="Address Line 1..." required=" " >
+					<input style="margin-top: 15px;" type="text" placeholder="Address Line 2..." required=" " >
+					<input style="margin-top: 15px;" type="text" placeholder="City..." required=" " >
+					<input style="margin-top: 15px;" type="text" placeholder="State..." required=" " >
+					<input style="margin-top: 15px;" type="text" pattern="[0-9]{6}" placeholder="Pincode..." required=" " >
+					<input style="margin-top: 15px;" type="text" pattern="[789][0-9]{9}" placeholder="Mobile No..." required=" " >
+				<h6>Login information</h6>					
 					<input type="email" placeholder="Email Address" required=" " >
 					<input type="password" placeholder="Password" required=" " >
 					<input type="password" placeholder="Password Confirmation" required=" " >

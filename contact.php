@@ -44,14 +44,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- header -->
 	<div class="agileits_header">
 		<div class="container">
-			<div class="w3l_offers">
-				<p>SALE UP TO 70% OFF. USE CODE "SALE70%" . <a href="products.html">SHOP NOW</a></p>
-			</div>
+			
 			<div class="agile-login">
 				<ul>
 					<li><a href="registered.html"> Create Account </a></li>
 					<li><a href="login.html">Login</a></li>
-					<li><a href="contact.html">Help</a></li>
+					
 					
 				</ul>
 			</div>
@@ -69,13 +67,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="logo_products">
 		<div class="container">
 		<div class="w3ls_logo_products_left1">
-				<ul class="phone_email">
-					<li><i class="fa fa-phone" aria-hidden="true"></i>Order online or call us : (+0123) 234 567</li>
-					
-				</ul>
+				
 			</div>
 			<div class="w3ls_logo_products_left">
-				<h1><a href="index.html">super Market</a></h1>
+				<h1><a href="index.html">MYSITELOGO</a></h1>
 			</div>
 		<div class="w3l_search">
 			<form action="#" method="post">
@@ -103,117 +98,42 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<span class="icon-bar"></span>
 									<span class="icon-bar"></span>
 								</button>
-							</div> 
+							</div>
 							<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 								<ul class="nav navbar-nav">
-									<li class="active"><a href="index.html" class="act">Home</a></li>	
+									<li class="active"><a href="index.php" class="act">Home</a></li>
 									<!-- Mega Menu -->
 									<li class="dropdown">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown">Groceries<b class="caret"></b></a>
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown">Category1<b class="caret"></b></a>
 										<ul class="dropdown-menu multi-column columns-3">
 											<div class="row">
 												<div class="multi-gd-img">
 													<ul class="multi-column-dropdown">
-														<h6>All Groceries</h6>
-														<li><a href="groceries.html">Dals & Pulses</a></li>
-														<li><a href="groceries.html">Almonds</a></li>
-														<li><a href="groceries.html">Cashews</a></li>
-														<li><a href="groceries.html">Dry Fruit</a></li>
-														<li><a href="groceries.html"> Mukhwas </a></li>
-														<li><a href="groceries.html">Rice & Rice Products</a></li>
-													</ul>
-												</div>	
-												
-											</div>
-										</ul>
-									</li>
-									<li class="dropdown">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown">Household<b class="caret"></b></a>
-										<ul class="dropdown-menu multi-column columns-3">
-											<div class="row">
-												<div class="multi-gd-img">
-													<ul class="multi-column-dropdown">
-														<h6>All Household</h6>
-														<li><a href="household.html">Cookware</a></li>
-														<li><a href="household.html">Dust Pans</a></li>
-														<li><a href="household.html">Scrubbers</a></li>
-														<li><a href="household.html">Dust Cloth</a></li>
-														<li><a href="household.html"> Mops </a></li>
-														<li><a href="household.html">Kitchenware</a></li>
+														<h6>All Category</h6>
+														<li><a href="gourmet.php">Category 2</a></li>
+														<li><a href="gourmet.php">Category 3</a></li>
+														<li><a href="gourmet.php">Category 4</a></li>
+														<li><a href="gourmet.php">Category 5</a></li>
+														<li><a href="gourmet.php">Category 6</a></li>
 													</ul>
 												</div>
-												
-												
+
 											</div>
 										</ul>
 									</li>
-									<li class="dropdown">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown">Personal Care<b class="caret"></b></a>
-										<ul class="dropdown-menu multi-column columns-3">
-											<div class="row">
-												<div class="multi-gd-img">
-													<ul class="multi-column-dropdown">
-														<h6>Baby Care</h6>
-														<li><a href="personalcare.html">Baby Soap</a></li>
-														<li><a href="personalcare.html">Baby Care Accessories</a></li>
-														<li><a href="personalcare.html">Baby Oil & Shampoos</a></li>
-														<li><a href="personalcare.html">Baby Creams & Lotion</a></li>
-														<li><a href="personalcare.html"> Baby Powder</a></li>
-														<li><a href="personalcare.html">Diapers & Wipes</a></li>
-													</ul>
-												</div>
-												
-											</div>
-										</ul>
-									</li>
-									<li class="dropdown">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown">Packaged Foods<b class="caret"></b></a>
-										<ul class="dropdown-menu multi-column columns-3">
-											<div class="row">
-												<div class="multi-gd-img">
-													<ul class="multi-column-dropdown">
-														<h6>All Accessories</h6>
-														<li><a href="packagedfoods.html">Baby Food</a></li>
-														<li><a href="packagedfoods.html">Dessert Items</a></li>
-														<li><a href="packagedfoods.html">Biscuits</a></li>
-														<li><a href="packagedfoods.html">Breakfast Cereals</a></li>
-														<li><a href="packagedfoods.html"> Canned Food </a></li>
-														<li><a href="packagedfoods.html">Chocolates & Sweets</a></li>
-													</ul>
-												</div>
-												
-											
-											</div>
-										</ul>
-									</li>
-									<li class="dropdown">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown">Beverages<b class="caret"></b></a>
-										<ul class="dropdown-menu multi-column columns-3">
-											<div class="row">
-												<div class="multi-gd-img">
-													<ul class="multi-column-dropdown">
-														<h6>Tea & Coeffe</h6>
-														<li><a href="beverages.html">Green Tea</a></li>
-														<li><a href="beverages.html">Ground Coffee</a></li>
-														<li><a href="beverages.html">Herbal Tea</a></li>
-														<li><a href="beverages.html">Instant Coffee</a></li>
-														<li><a href="beverages.html"> Tea </a></li>
-														<li><a href="beverages.html">Tea Bags</a></li>
-													</ul>
-												</div>
-							
-											</div>
-										</ul>
-									</li>
-									<li><a href="gourmet.html">Gourmet</a></li>
-									<li><a href="offers.html">Offers</a></li>
-									<li><a href="contact.html">Contact</a></li>
+									<li><a href="gourmet.php">Category 7</a></li>
+									<li><a href="gourmet.php">Category 8</a></li>
+									<li><a href="gourmet.php">Category 9</a></li>
+									<li><a href="gourmet.php">Category 10</a></li>
+									<li><a href="gourmet.php">Category 11</a></li>
+                                    <li><a href="gourmet.php">Category 12</a></li>
+									<li><a href="contact.php">Contact</a></li>
 								</ul>
 							</div>
 							</nav>
 			</div>
 		</div>
-		
+
 <!-- //navigation -->
 <!-- breadcrumbs -->
 	<div class="breadcrumbs">
@@ -230,15 +150,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="w3_agileits_contact_grids">
 			<div class="col-md-6 w3_agileits_contact_grid_left">
 				<div class="agile_map">
-					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.3905851087434!2d-34.90500565012194!3d-8.061582082752993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7ab18d90992e4ab%3A0x8e83c4afabe39a3a!2sSport+Club+Do+Recife!5e0!3m2!1sen!2sin!4v1478684415917" style="border:0"></iframe>
+					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62708.81459583633!2d76.6188019683048!3d10.788249437628714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba86dfa087d31ad%3A0xf542d6eb7a870a56!2sPalakkad%2C+Kerala!5e0!3m2!1sen!2sin!4v1498194550110" style="border:0"></iframe>
 				</div>
 				<div class="agileits_w3layouts_map_pos">
 					<div class="agileits_w3layouts_map_pos1">
 						<h3>Contact Info</h3>
-						<p>1234k Avenue, 4th block, New York City.</p>
+						<p>Anoop Inkers Contact me</p>
 						<ul class="wthree_contact_info_address">
-							<li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:info@example.com">info@example.com</a></li>
-							<li><i class="fa fa-phone" aria-hidden="true"></i>+(0123) 232 232</li>
+							<li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:info@example.com">anoop@inkers.in</a></li>
+							<li><i class="fa fa-phone" aria-hidden="true"></i>+919746364612</li>
 						</ul>
 						<div class="w3_agile_social_icons w3_agile_social_icons_contact">
 							<ul>
@@ -253,21 +173,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="col-md-6 w3_agileits_contact_grid_right">
 				<h2 class="w3_agile_header">Leave a<span> Message</span></h2>
 
-				<form action="#" method="post">
+				<form action="" method="post">
 					<span class="input input--ichiro">
-						<input class="input__field input__field--ichiro" type="text" id="input-25" name="Name" placeholder=" " required="" />
+						<input class="input__field input__field--ichiro" type="text" id="input-25" name="name" placeholder=" " required="" />
 						<label class="input__label input__label--ichiro" for="input-25">
 							<span class="input__label-content input__label-content--ichiro">Your Name</span>
 						</label>
 					</span>
 					<span class="input input--ichiro">
-						<input class="input__field input__field--ichiro" type="email" id="input-26" name="Email" placeholder=" " required="" />
+						<input class="input__field input__field--ichiro" type="email" id="input-26" name="email" placeholder=" " required="" />
 						<label class="input__label input__label--ichiro" for="input-26">
 							<span class="input__label-content input__label-content--ichiro">Your Email</span>
 						</label>
 					</span>
-					<textarea name="Message" placeholder="Your message here..." required=""></textarea>
-					<input type="submit" value="Submit">
+					<textarea name="message" id="message" placeholder="Your message here..." required=""></textarea>
+					<input type="submit" value="Submit">					
 				</form>
 			</div>
 			<div class="clearfix"> </div>
@@ -390,8 +310,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			  $('#responsive_wrapper').width(jQuery(this).val());
 			});
 			
-		});
+		});			
 </script>	
+
+	
+	
+	
 <!-- //main slider-banner --> 
 
 </body>
