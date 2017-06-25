@@ -49,18 +49,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- header -->
 	<div class="agileits_header">
 		<div class="container">
-			
+
 			<div class="agile-login">
 				<ul>
-					
+
 				<?php if (isset($_SESSION['usr_name'])) { ?>
 				<li><p style="font-weight:bold; color:white">Signed in as <?php echo $_SESSION['usr_name']; ?></p></li>
 				<li><a href="logout.php">Log out</a></li>
 				<?php } else { ?>
-				<li><a href="index.php">Login</a></li>
+				<li><a href="login.php">Login</a></li>
 				<li><a href="registered.php">Create Account</a></li>
-				<?php } ?>			
-				
+				<?php } ?>
+
 				</ul>
 			</div>
 			<div class="product_list_header">
@@ -77,7 +77,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="logo_products">
 		<div class="container">
 		<div class="w3ls_logo_products_left1">
-				
+
 			</div>
 			<div class="w3ls_logo_products_left">
 				<h1><a href="index.php">MySiteLogo</a></h1>

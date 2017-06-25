@@ -31,7 +31,7 @@ if (isset($_POST['register'])) {
 	$email = mysqli_real_escape_string($con, $_POST['email']);
 	$password = mysqli_real_escape_string($con, $_POST['password']);
 	$cpassword = mysqli_real_escape_string($con, $_POST['cpassword']);
-	
+
 
 
 	//name can contain only alpha characters and space
@@ -55,6 +55,10 @@ if (isset($_POST['register'])) {
 		if(mysqli_query($con, "INSERT INTO users(name,address1,address2,city,state,pincode,mobile,email,password) VALUES('" . $name . "', '" . $address1 . "', '" . $address2 . "', '" . $city . "', '" . $state . "', '" . $pincode . "', '" . $mobile . "', '" . $email . "', '" . md5($password) . "')")) {
 			$successmsg = "Successfully Registered! <a href='index.php'>Click here to Login</a>";
 			$_SESSION['usr_name'] = $name;
+			$_SESSION['usr_email'] = $email;
+			$result = mysqli_query($con, "SELECT id FROM users WHERE email = '" . $email. "'");
+			$row = mysqli_fetch_array($result);
+			$_SESSION['usr_id'] = $row['id'];
 			header("Location: index.php");
 		} else {
 			$errormsg = "Error in registering...Please try again later!";
@@ -74,7 +78,7 @@ if (isset($_POST['register'])) {
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Super Market Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+<meta name="keywords" content="Super Market Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -82,7 +86,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- font-awesome icons -->
-<link href="css/font-awesome.css" rel="stylesheet"> 
+<link href="css/font-awesome.css" rel="stylesheet">
 <!-- //font-awesome icons -->
 <!-- js -->
 <script src="js/jquery-1.11.1.min.js"></script>
@@ -94,7 +98,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="text/javascript" src="js/easing.js"></script>
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
-		$(".scroll").click(function(event){		
+		$(".scroll").click(function(event){
 			event.preventDefault();
 			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
 		});
@@ -102,23 +106,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 <!-- start-smoth-scrolling -->
 </head>
-	
+
 <body>
 <!-- header -->
 	<div class="agileits_header">
 		<div class="container">
-			
+
 			<div class="agile-login">
 				<ul>
-					<li><a href="login.html">Login</a></li>		
+					<li><a href="login.php">Login</a></li>
 				</ul>
 			</div>
-			<div class="product_list_header">  
-					<form action="#" method="post" class="last"> 
+			<div class="product_list_header">
+					<form action="#" method="post" class="last">
 						<input type="hidden" name="cmd" value="_cart">
 						<input type="hidden" name="display" value="1">
 						<button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-					</form>  
+					</form>
 			</div>
 			<div class="clearfix"> </div>
 		</div>
@@ -128,11 +132,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 		<div class="w3ls_logo_products_left1">
 				<ul class="phone_email">
-			
+
 				</ul>
 			</div>
 			<div class="w3ls_logo_products_left">
-				<h1><a href="index.html">super Market</a></h1>
+				<h1><a href="index.php">super Market</a></h1>
 			</div>
 		<div class="w3l_search">
 			<form action="#" method="post">
@@ -143,7 +147,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="clearfix"></div>
 			</form>
 		</div>
-			
+
 			<div class="clearfix"> </div>
 		</div>
 	</div>
@@ -188,7 +192,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<li><a href="gourmet.php">Category 9</a></li>
 									<li><a href="gourmet.php">Category 10</a></li>
 									<li><a href="gourmet.php">Category 11</a></li>
-                                    <li><a href="gourmet.php">Category 12</a></li>
+                  <li><a href="gourmet.php">Category 12</a></li>
 									<li><a href="contact.php">Contact</a></li>
 								</ul>
 							</div>
@@ -201,7 +205,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="breadcrumbs">
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
-				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+				<li><a href="index.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
 				<li class="active">Register Page</li>
 			</ol>
 		</div>
@@ -221,12 +225,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<input name="state" style="margin-top: 15px;" type="text" placeholder="State..." required=" " >
 					<input name="pincode" style="margin-top: 15px;" type="text" pattern="[0-9]{6}" placeholder="Pincode..." required=" " >
 					<input name="mobile" style="margin-top: 15px;" type="text" pattern="[789][0-9]{9}" placeholder="Mobile No..." required=" " >
-					<h6>Login information</h6>					
-					
-					
-					<input name="email" type="email" id="email" placeholder="Email Address" required=" " onblur="checkAvailability()" onkeyup='check();'><span id="user-availability-status"></span>   
+					<h6>Login information</h6>
+
+
+					<input name="email" type="email" id="email" placeholder="Email Address" required=" " onblur="checkAvailability()" onkeyup='check();'><span id="user-availability-status"></span>
 					<p><img src="LoaderIcon.gif" id="loaderIcon" style="display:none" /></p>
-				
+
 					<input name="password" type="password" id="password" placeholder="Password" required=" " pattern=".{8,}" title="8 or more characters">
 					<input name="cpassword" type="password" id="confirm_password" placeholder="Password Confirmation" required=" ">
 					<div class="register-check-box">
@@ -238,7 +242,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</form>
 			</div>
 			<div class="register-home">
-				<a href="index.html">Home</a>
+				<a href="index.php">Home</a>
 			</div>
 		</div>
 	</div>
@@ -249,7 +253,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="w3_footer_grids">
 				<div class="col-md-3 w3_footer_grid">
 					<h3>Contact</h3>
-					
+
 					<ul class="address">
 						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>1234k Avenue, 4th block, <span>New York City.</span></li>
 						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@example.com">info@example.com</a></li>
@@ -258,7 +262,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				<div class="col-md-3 w3_footer_grid">
 					<h3>Information</h3>
-					<ul class="info"> 
+					<ul class="info">
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="about.html">About Us</a></li>
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="contact.html">Contact Us</a></li>
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="short-codes.html">Short Codes</a></li>
@@ -268,7 +272,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				<div class="col-md-3 w3_footer_grid">
 					<h3>Category</h3>
-					<ul class="info"> 
+					<ul class="info">
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="groceries.html">Groceries</a></li>
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="household.html">Household</a></li>
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="personalcare.html">Personal Care</a></li>
@@ -278,27 +282,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				<div class="col-md-3 w3_footer_grid">
 					<h3>Profile</h3>
-					<ul class="info"> 
+					<ul class="info">
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="products.html">Store</a></li>
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="checkout.html">My Cart</a></li>
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="login.html">Login</a></li>
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="registered.html">Create Account</a></li>
 					</ul>
-					
-					
+
+
 				</div>
 				<div class="clearfix"> </div>
 			</div>
 		</div>
-		
+
 		<div class="footer-copy">
-			
+
 			<div class="container">
 				<p>© 2017 Super Market. All rights reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
 			</div>
 		</div>
-		
-	</div>	
+
+	</div>
 	<div class="footer-botm">
 			<div class="container">
 				<div class="w3layouts-foot">
@@ -309,13 +313,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><a href="#" class="w3_agile_vimeo"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
 					</ul>
 				</div>
-				<div class="payment-w3ls">	
+				<div class="payment-w3ls">
 					<img src="images/card.png" alt=" " class="img-responsive">
 				</div>
 				<div class="clearfix"> </div>
 			</div>
 		</div>
-<!-- //footer -->	
+<!-- //footer -->
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
 <!-- top-header and slider -->
@@ -327,12 +331,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				containerID: 'toTop', // fading element id
 				containerHoverID: 'toTopHover', // fading element hover id
 				scrollSpeed: 1200,
-				easingType: 'linear' 
+				easingType: 'linear'
 				};
 			*/
-								
+
 			$().UItoTop({ easingType: 'easeOutQuart' });
-								
+
 			});
 	</script>
 <!-- //here ends scrolling icon -->
@@ -353,15 +357,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="text/javascript">
 		jQuery(document).ready(function(){
 			jQuery('#demo1').skdslider({'delay':5000, 'animationSpeed': 2000,'showNextPrev':true,'showPlayButton':true,'autoSlide':true,'animationType':'fading'});
-						
+
 			jQuery('#responsive').change(function(){
 			  $('#responsive_wrapper').width(jQuery(this).val());
 			});
-			
+
 		});
-</script>	
-<!-- //main slider-banner --> 
-	
+</script>
+<!-- //main slider-banner -->
+
 <script>
 var password = document.getElementById("password")
   , confirm_password = document.getElementById("confirm_password");
@@ -375,7 +379,7 @@ function validatePassword(){
 }
 
 password.onchange = validatePassword;
-confirm_password.onkeyup = validatePassword;	
+confirm_password.onkeyup = validatePassword;
 
 </script>
 
