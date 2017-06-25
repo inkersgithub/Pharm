@@ -7,12 +7,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 <?php
 session_start();
+include_once 'dbconnect.php';
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-<title>Super Market an Ecommerce Online Shopping Category Flat Bootstrap Responsive Website Template | Home :: w3layouts</title>
+<title>Home|MySite</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -136,7 +137,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<li><a href="gourmet.php">Category 9</a></li>
 									<li><a href="gourmet.php">Category 10</a></li>
 									<li><a href="gourmet.php">Category 11</a></li>
-                                    <li><a href="gourmet.php">Category 12</a></li>
+                  <li><a href="gourmet.php">Category 12</a></li>
 									<li><a href="contact.php">Contact</a></li>
 								</ul>
 							</div>
@@ -1106,25 +1107,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<ul class="info">
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="about.php">About Us</a></li>
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="contact.php">Contact Us</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="short-codes.php">Short Codes</a></li>
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="faq.php">FAQ's</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="products.php">Special Products</a></li>
 					</ul>
 				</div>
 				<div class="col-md-3 w3_footer_grid">
 					<h3>Category</h3>
 					<ul class="info">
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="groceries.php">Groceries</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="household.php">Household</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="personalcare.php">Personal Care</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="packagedfoods.php">Packaged Foods</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="beverages.php">Beverages</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="gourmet.php">Category 1</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="gourmet.php">Category 2</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="gourmet.php">Category 3</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="gourmet.php">Category 4</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="gourmet.php">Category 5</a></li>
 					</ul>
 				</div>
 				<div class="col-md-3 w3_footer_grid">
 					<h3>Profile</h3>
 					<ul class="info">
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="products.php">Store</a></li>
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="checkout.php">My Cart</a></li>
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="login.php">Login</a></li>
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="registered.php">Create Account</a></li>
@@ -1137,7 +1135,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="footer-copy">
 
 			<div class="container">
-				<p>© 2017 Super Market. All rights reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
+				<p>© 2017 MySite. All rights reserved | Design by <a href="http://inkers.in/">inkers Inc.</a></p>
 			</div>
 		</div>
 
@@ -1152,9 +1150,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><a href="#" class="w3_agile_vimeo"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
 					</ul>
 				</div>
-				<div class="payment-w3ls">
-					<img src="images/card.png" alt=" " class="img-responsive">
-				</div>
+
 				<div class="clearfix"> </div>
 			</div>
 		</div>

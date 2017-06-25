@@ -4,14 +4,20 @@ author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+
+<?php
+session_start();
+include_once 'dbconnect.php';
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
-<title>Super Market an Ecommerce Online Shopping Category Flat Bootstrap Responsive Website Template | Gourmet :: w3layouts</title>
+<title>Gourmet|MySite</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Super Market Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+<meta name="keywords" content="Super Market Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -19,7 +25,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- font-awesome icons -->
-<link href="css/font-awesome.css" rel="stylesheet"> 
+<link href="css/font-awesome.css" rel="stylesheet">
 <!-- //font-awesome icons -->
 <!-- js -->
 <script src="js/jquery-1.11.1.min.js"></script>
@@ -31,7 +37,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="text/javascript" src="js/easing.js"></script>
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
-		$(".scroll").click(function(event){		
+		$(".scroll").click(function(event){
 			event.preventDefault();
 			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
 		});
@@ -39,26 +45,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 <!-- start-smoth-scrolling -->
 </head>
-	
+
 <body>
 <!-- header -->
 	<div class="agileits_header">
 		<div class="container">
-			
+
 			<div class="agile-login">
 				<ul>
-					<li><a href="registered.html"> Create Account </a></li>
-					<li><a href="login.html">Login</a></li>
-					
-					
+
+					<?php if (isset($_SESSION['usr_name'])) { ?>
+					<li><p style="font-weight:bold; color:white">Signed in as <?php echo $_SESSION['usr_name']; ?></p></li>
+					<li><a href="logout.php">Log out</a></li>
+					<?php } else { ?>
+					<li><a href="login.php">Login</a></li>
+					<li><a href="registered.php">Create Account</a></li>
+					<?php } ?>
+
 				</ul>
 			</div>
-			<div class="product_list_header">  
-					<form action="#" method="post" class="last"> 
+			<div class="product_list_header">
+					<form action="#" method="post" class="last">
 						<input type="hidden" name="cmd" value="_cart">
 						<input type="hidden" name="display" value="1">
 						<button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-					</form>  
+					</form>
 			</div>
 			<div class="clearfix"> </div>
 		</div>
@@ -70,12 +81,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--
 				<ul class="phone_email">
 					<li><i class="fa fa-phone" aria-hidden="true"></i>Order online or call us : (+0123) 234 567</li>
-					
+
 				</ul>
 -->
 			</div>
 			<div class="w3ls_logo_products_left">
-				<h1><a href="index.html">super Market</a></h1>
+				<h1><a href="index.php">MySiteLogo</a></h1>
 			</div>
 		<div class="w3l_search">
 			<form action="#" method="post">
@@ -86,7 +97,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="clearfix"></div>
 			</form>
 		</div>
-			
+
 			<div class="clearfix"> </div>
 		</div>
 	</div>
@@ -131,7 +142,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<li><a href="gourmet.php">Category 9</a></li>
 									<li><a href="gourmet.php">Category 10</a></li>
 									<li><a href="gourmet.php">Category 11</a></li>
-                                    <li><a href="gourmet.php">Category 12</a></li>
+                  <li><a href="gourmet.php">Category 12</a></li>
 									<li><a href="contact.php">Contact</a></li>
 								</ul>
 							</div>
@@ -144,7 +155,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="breadcrumbs">
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
-				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+				<li><a href="index.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
 				<li class="active">Gourmet</li>
 			</ol>
 		</div>
@@ -153,19 +164,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--- gourmet --->
 	<div class="products">
 		<div class="container">
-			
+
 			<div class="col-md-12 products-right">
 				<div class="products-right-grid">
 					<div class="products-right-grids">
 						<div class="sorting">
 							<select id="country" onchange="change_country(this.value)" class="frm-field required sect">
 								<option value="null"><i class="fa fa-arrow-right" aria-hidden="true"></i>Default sorting</option>
-								<option value="null"><i class="fa fa-arrow-right" aria-hidden="true"></i>Sort by popularity</option> 
-								<option value="null"><i class="fa fa-arrow-right" aria-hidden="true"></i>Sort by average rating</option>		
-								<option value="null"><i class="fa fa-arrow-right" aria-hidden="true"></i>Sort by price</option>		
-                            </select>
+								<option value="null"><i class="fa fa-arrow-right" aria-hidden="true"></i>Sort by popularity</option>
+								<option value="null"><i class="fa fa-arrow-right" aria-hidden="true"></i>Sort by average rating</option>
+								<option value="null"><i class="fa fa-arrow-right" aria-hidden="true"></i>Sort by price</option>
+              </select>
 						</div>
-						
+
 						<div class="clearfix"> </div>
 					</div>
 				</div>
@@ -181,7 +192,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<figure>
 										<div class="snipcart-item block">
 											<div class="snipcart-thumb">
-												<a href="single.php"><img title=" " alt=" " src="images/gu1.png"></a>		
+												<a href="single.php"><img title=" " alt=" " src="images/gu1.png"></a>
 												<p>Milk Caramel</p>
 												<h4>$35.99 <span>$55.00</span></h4>
 											</div>
@@ -217,7 +228,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<figure>
 										<div class="snipcart-item block">
 											<div class="snipcart-thumb">
-												<a href="single.php"><img title=" " alt=" " src="images/gu2.png"></a>		
+												<a href="single.php"><img title=" " alt=" " src="images/gu2.png"></a>
 												<p>Gourmet</p>
 												<h4>$30.99 <span>$45.00</span></h4>
 											</div>
@@ -254,7 +265,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<figure>
 										<div class="snipcart-item block">
 											<div class="snipcart-thumb">
-												<a href="single.php"><img title=" " alt=" " src="images/gu2.png"></a>		
+												<a href="single.php"><img title=" " alt=" " src="images/gu2.png"></a>
 												<p>Gourmet</p>
 												<h4>$30.99 <span>$45.00</span></h4>
 											</div>
@@ -333,7 +344,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<figure>
 										<div class="snipcart-item block">
 											<div class="snipcart-thumb">
-												<a href="single.php"><img title=" " alt=" " src="images/gu4.png"></a>		
+												<a href="single.php"><img title=" " alt=" " src="images/gu4.png"></a>
 												<p>Miniatures</p>
 												<h4>$35.99 <span>$55.00</span></h4>
 											</div>
@@ -369,7 +380,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<figure>
 										<div class="snipcart-item block">
 											<div class="snipcart-thumb">
-												<a href="single.php"><img title=" " alt=" " src="images/gu5.png"></a>		
+												<a href="single.php"><img title=" " alt=" " src="images/gu5.png"></a>
 												<p>Le-Gourmet</p>
 												<h4>$30.99 <span>$45.00</span></h4>
 											</div>
@@ -405,7 +416,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<figure>
 										<div class="snipcart-item block">
 											<div class="snipcart-thumb">
-												<a href="single.php"><img title=" " alt=" " src="images/gu5.png"></a>		
+												<a href="single.php"><img title=" " alt=" " src="images/gu5.png"></a>
 												<p>Le-Gourmet</p>
 												<h4>$30.99 <span>$45.00</span></h4>
 											</div>
@@ -483,7 +494,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<figure>
 										<div class="snipcart-item block">
 											<div class="snipcart-thumb">
-												<a href="single.php"><img title=" " alt=" " src="images/gu7.png"></a>		
+												<a href="single.php"><img title=" " alt=" " src="images/gu7.png"></a>
 												<p>Poultry Rub</p>
 												<h4>$35.99 <span>$55.00</span></h4>
 											</div>
@@ -519,7 +530,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<figure>
 										<div class="snipcart-item block">
 											<div class="snipcart-thumb">
-												<a href="single.php"><img title=" " alt=" " src="images/gu8.png"></a>		
+												<a href="single.php"><img title=" " alt=" " src="images/gu8.png"></a>
 												<p>Sandwich</p>
 												<h4>$30.99 <span>$45.00</span></h4>
 											</div>
@@ -655,7 +666,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="w3_footer_grids">
 				<div class="col-md-3 w3_footer_grid">
 					<h3>Contact</h3>
-					
+
 					<ul class="address">
 						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>1234k Avenue, 4th block, <span>New York City.</span></li>
 						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@example.com">info@example.com</a></li>
@@ -664,47 +675,42 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				<div class="col-md-3 w3_footer_grid">
 					<h3>Information</h3>
-					<ul class="info"> 
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="about.html">About Us</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="contact.html">Contact Us</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="short-codes.html">Short Codes</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="faq.html">FAQ's</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="products.html">Special Products</a></li>
+					<ul class="info">
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="about.php">About Us</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="contact.php">Contact Us</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="faq.php">FAQ's</a></li>
 					</ul>
 				</div>
 				<div class="col-md-3 w3_footer_grid">
 					<h3>Category</h3>
-					<ul class="info"> 
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="groceries.html">Groceries</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="household.html">Household</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="personalcare.html">Personal Care</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="packagedfoods.html">Packaged Foods</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="beverages.html">Beverages</a></li>
+					<ul class="info">
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="gourmet.php">Category 1</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="gourmet.php">Category 2</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="gourmet.php">Category 3</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="gourmet.php">Category 4</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="gourmet.php">Category 5</a></li>
 					</ul>
 				</div>
 				<div class="col-md-3 w3_footer_grid">
 					<h3>Profile</h3>
-					<ul class="info"> 
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="products.html">Store</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="checkout.html">My Cart</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="login.html">Login</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="registered.html">Create Account</a></li>
+					<ul class="info">
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="checkout.php">My Cart</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="login.php">Login</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="registered.php">Create Account</a></li>
 					</ul>
-					
-					
 				</div>
 				<div class="clearfix"> </div>
 			</div>
 		</div>
-		
+
 		<div class="footer-copy">
-			
+
 			<div class="container">
-				<p>© 2017 Super Market. All rights reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
+				<p>© 2017 MySite. All rights reserved | Design by <a href="http://inkers.in/">inkers Inc.</a></p>
 			</div>
 		</div>
-		
-	</div>	
+
+	</div>
 	<div class="footer-botm">
 			<div class="container">
 				<div class="w3layouts-foot">
@@ -715,13 +721,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><a href="#" class="w3_agile_vimeo"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
 					</ul>
 				</div>
-				<div class="payment-w3ls">	
-					<img src="images/card.png" alt=" " class="img-responsive">
-				</div>
+
 				<div class="clearfix"> </div>
 			</div>
 		</div>
-<!-- //footer -->	
+<!-- //footer -->
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
 <!-- top-header and slider -->
@@ -733,12 +737,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				containerID: 'toTop', // fading element id
 				containerHoverID: 'toTopHover', // fading element hover id
 				scrollSpeed: 1200,
-				easingType: 'linear' 
+				easingType: 'linear'
 				};
 			*/
-								
+
 			$().UItoTop({ easingType: 'easeOutQuart' });
-								
+
 			});
 	</script>
 <!-- //here ends scrolling icon -->
@@ -759,14 +763,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="text/javascript">
 		jQuery(document).ready(function(){
 			jQuery('#demo1').skdslider({'delay':5000, 'animationSpeed': 2000,'showNextPrev':true,'showPlayButton':true,'autoSlide':true,'animationType':'fading'});
-						
+
 			jQuery('#responsive').change(function(){
 			  $('#responsive_wrapper').width(jQuery(this).val());
 			});
-			
+
 		});
-</script>	
-<!-- //main slider-banner --> 
+</script>
+<!-- //main slider-banner -->
 
 </body>
 </html>

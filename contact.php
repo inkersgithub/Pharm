@@ -1,4 +1,6 @@
-<?php include_once 'dbconnect.php';
+<?php
+session_start();
+include_once 'dbconnect.php';
 ?>
 
 <!--
@@ -10,7 +12,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-<title>Super Market an Ecommerce Online Shopping Category Flat Bootstrap Responsive Website Template | Contact :: w3layouts</title>
+<title>Contact us|MySite</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -50,9 +52,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 			<div class="agile-login">
 				<ul>
-					<li><a href="registered.html"> Create Account </a></li>
-					<li><a href="login.html">Login</a></li>
 
+					<?php if (isset($_SESSION['usr_name'])) { ?>
+					<li><p style="font-weight:bold; color:white">Signed in as <?php echo $_SESSION['usr_name']; ?></p></li>
+					<li><a href="logout.php">Log out</a></li>
+					<?php } else { ?>
+					<li><a href="login.php">Login</a></li>
+					<li><a href="registered.php">Create Account</a></li>
+					<?php } ?>
 
 				</ul>
 			</div>
@@ -73,7 +80,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 			</div>
 			<div class="w3ls_logo_products_left">
-				<h1><a href="index.html">MYSITELOGO</a></h1>
+				<h1><a href="index.php">MYSITELOGO</a></h1>
 			</div>
 		<div class="w3l_search">
 			<form action="#" method="post">
@@ -142,7 +149,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="breadcrumbs">
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
-				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+				<li><a href="index.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
 				<li class="active">Contact</li>
 			</ol>
 		</div>
@@ -176,7 +183,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="col-md-6 w3_agileits_contact_grid_right">
 				<h2 class="w3_agile_header">Leave a<span> Message</span></h2>
 
-		<!--		<form action="" method="post">
+				<form action="" method="post">
 					<span class="input input--ichiro">
 						<input class="input__field input__field--ichiro" type="text" id="contactName" name="contactName" placeholder=" " required="" />
 						<label class="input__label input__label--ichiro" for="contactName">
@@ -196,41 +203,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="clearfix"> </div>
 		</div>
 	</div>
--->
 
-	<?php
-
-	//if "email" variable is filled out, send email
-	  if (isset($_REQUEST['email']))  {
-
-	  //Email information
-	  $admin_email = "mubaraknet123789@gmail.com";
-	  $email = $_REQUEST['email'];
-	  $subject = "New message from " . $name;
-	  $comment = $_REQUEST['message'];
-
-	  //send email
-	  mail($admin_email, "$subject", $message, "From:" . $name . "<" . $email . ">");
-
-	  //Email response
-	  echo "Thank you for contacting us!";
-	  }
-
-	  //if "email" variable is not filled out, display the form
-	  else  {
-	?>
-
-	 <form method="post">
-	  Email: <input name="email" type="text" /><br />
-	  Name: <input name="name" type="text" /><br />
-	  Message:<br />
-	  <textarea name="message" rows="15" cols="40"></textarea><br />
-	  <input type="submit" value="Submit" />
-	  </form>
-
-	<?php
-	  }
-	?>
 
 <!-- contact -->
 
@@ -250,33 +223,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="col-md-3 w3_footer_grid">
 					<h3>Information</h3>
 					<ul class="info">
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="about.html">About Us</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="contact.html">Contact Us</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="short-codes.html">Short Codes</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="faq.html">FAQ's</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="products.html">Special Products</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="about.php">About Us</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="contact.php">Contact Us</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="faq.php">FAQ's</a></li>
 					</ul>
 				</div>
 				<div class="col-md-3 w3_footer_grid">
 					<h3>Category</h3>
 					<ul class="info">
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="groceries.html">Groceries</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="household.html">Household</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="personalcare.html">Personal Care</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="packagedfoods.html">Packaged Foods</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="beverages.html">Beverages</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="gourmet.php">Category 1</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="gourmet.php">Category 2</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="gourmet.php">Category 3</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="gourmet.php">Category 4</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="gourmet.php">Category 5</a></li>
 					</ul>
 				</div>
 				<div class="col-md-3 w3_footer_grid">
 					<h3>Profile</h3>
 					<ul class="info">
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="products.html">Store</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="checkout.html">My Cart</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="login.html">Login</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="registered.html">Create Account</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="checkout.php">My Cart</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="login.php">Login</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="registered.php">Create Account</a></li>
 					</ul>
-
-
 				</div>
 				<div class="clearfix"> </div>
 			</div>
@@ -285,7 +253,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="footer-copy">
 
 			<div class="container">
-				<p>© 2017 Super Market. All rights reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
+				<p>© 2017 MySite. All rights reserved | Design by <a href="http://inkers.in/">inkers Inc.</a></p>
 			</div>
 		</div>
 
@@ -300,9 +268,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><a href="#" class="w3_agile_vimeo"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
 					</ul>
 				</div>
-				<div class="payment-w3ls">
-					<img src="images/card.png" alt=" " class="img-responsive">
-				</div>
+				
 				<div class="clearfix"> </div>
 			</div>
 		</div>
