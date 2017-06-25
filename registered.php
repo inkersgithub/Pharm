@@ -1,12 +1,67 @@
 
+<!--
+author: W3layouts
+author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
 
 
+<?php
+session_start();
+
+if(isset($_SESSION['usr_id'])) {
+	header("Location: index.php");
+}
+
+include_once 'dbconnect.php';
+
+//set validation error flag as false
+$error = false;
+
+//check if form is submitted
+if (isset($_POST['register'])) {
+	$name = mysqli_real_escape_string($con, $_POST['name']);
+	$address1 = mysqli_real_escape_string($con, $_POST['address1']);
+	$address2 = mysqli_real_escape_string($con, $_POST['address2']);
+	$city = mysqli_real_escape_string($con, $_POST['city']);
+	$state = mysqli_real_escape_string($con, $_POST['state']);
+	$pincode = mysqli_real_escape_string($con, $_POST['pincode']);
+	$mobile = mysqli_real_escape_string($con, $_POST['mobile']);
+	$email = mysqli_real_escape_string($con, $_POST['email']);
+	$password = mysqli_real_escape_string($con, $_POST['password']);
+	$cpassword = mysqli_real_escape_string($con, $_POST['cpassword']);
+	
 
 
-
-
-
-
+	//name can contain only alpha characters and space
+	if (!preg_match("/^[a-zA-Z ]+$/",$name)) {
+		$error = true;
+		$name_error = "Name must contain only alphabets and space";
+	}
+	if(!filter_var($email,FILTER_VALIDATE_EMAIL)) {
+		$error = true;
+		$email_error = "Please Enter Valid Email ID";
+	}
+	if(strlen($password) < 8) {
+		$error = true;
+		$password_error = "Password must be minimum of 6 characters";
+	}
+	if($password != $cpassword) {
+		$error = true;
+		$cpassword_error = "Password and Confirm Password doesn't match";
+	}
+	if (!$error) {
+		if(mysqli_query($con, "INSERT INTO users(name,address1,address2,city,state,pincode,mobile,email,password) VALUES('" . $name . "', '" . $address1 . "', '" . $address2 . "', '" . $city . "', '" . $state . "', '" . $pincode . "', '" . $mobile . "', '" . $email . "', '" . md5($password) . "')")) {
+			$successmsg = "Successfully Registered! <a href='index.php'>Click here to Login</a>";
+			$_SESSION['usr_name'] = $name;
+			header("Location: index.php");
+		} else {
+			$errormsg = "Error in registering...Please try again later!";
+		}
+	}
+}
+?>
 
 
 
@@ -158,26 +213,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<h2>Register Here</h2>
 			<div class="login-form-grids">
 				<h5>profile information</h5>
-				<form action="#" method="post">
-					<input type="text" placeholder="First Name..." required=" " >
-					<input type="text" placeholder="Last Name..." required=" " >
+				<form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="signupform">
+					<input name="name" type="text" placeholder="First Name..." required=" " >
+					<input name="address1" style="margin-top: 15px;" type="text" placeholder="Address Line 1..." required=" " >
+					<input name="address2" style="margin-top: 15px;" type="text" placeholder="Address Line 2..." required=" " >
+					<input name="city" style="margin-top: 15px;" type="text" placeholder="City..." required=" " >
+					<input name="state" style="margin-top: 15px;" type="text" placeholder="State..." required=" " >
+					<input name="pincode" style="margin-top: 15px;" type="text" pattern="[0-9]{6}" placeholder="Pincode..." required=" " >
+					<input name="mobile" style="margin-top: 15px;" type="text" pattern="[789][0-9]{9}" placeholder="Mobile No..." required=" " >
+					<h6>Login information</h6>					
 					
-					<input style="margin-top: 15px;" type="text" placeholder="Address Line 1..." required=" " >
-					<input style="margin-top: 15px;" type="text" placeholder="Address Line 2..." required=" " >
-					<input style="margin-top: 15px;" type="text" placeholder="City..." required=" " >
-					<input style="margin-top: 15px;" type="text" placeholder="State..." required=" " >
-					<input style="margin-top: 15px;" type="text" pattern="[0-9]{6}" placeholder="Pincode..." required=" " >
-					<input style="margin-top: 15px;" type="text" pattern="[789][0-9]{9}" placeholder="Mobile No..." required=" " >
-				<h6>Login information</h6>					
-					<input type="email" placeholder="Email Address" required=" " >
-					<input type="password" placeholder="Password" required=" " >
-					<input type="password" placeholder="Password Confirmation" required=" " >
+					
+					<input name="email" type="email" id="email" placeholder="Email Address" required=" " onblur="checkAvailability()" onkeyup='check();'><span id="user-availability-status"></span>   
+					<p><img src="LoaderIcon.gif" id="loaderIcon" style="display:none" /></p>
+				
+					<input name="password" type="password" id="password" placeholder="Password" required=" " pattern=".{8,}" title="8 or more characters">
+					<input name="cpassword" type="password" id="confirm_password" placeholder="Password Confirmation" required=" ">
 					<div class="register-check-box">
 						<div class="check">
-							<label class="checkbox"><input type="checkbox" name="checkbox"><i> </i>I accept the terms and conditions</label>
+							<label class="checkbox"><input type="checkbox" name="checkbox" required="" title="Please Accept terms and conditions"><i> </i>I accept the terms and conditions</label>
 						</div>
 					</div>
-					<input type="submit" value="Register">
+					<input type="submit" id="submit" name="register" value="Register">
 				</form>
 			</div>
 			<div class="register-home">
@@ -304,6 +361,41 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 </script>	
 <!-- //main slider-banner --> 
+	
+<script>
+var password = document.getElementById("password")
+  , confirm_password = document.getElementById("confirm_password");
+
+function validatePassword(){
+  if(password.value != confirm_password.value) {
+    confirm_password.setCustomValidity("Passwords Don't Match");
+  } else {
+    confirm_password.setCustomValidity('');
+  }
+}
+
+password.onchange = validatePassword;
+confirm_password.onkeyup = validatePassword;	
+
+</script>
+
+<script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script>
+function checkAvailability() {
+	$("#loaderIcon").show();
+	jQuery.ajax({
+	url: "check_availability.php",
+	data:'email='+$("#email").val(),
+	type: "POST",
+	success:function(data){
+		$("#user-availability-status").html(data);
+		$("#loaderIcon").hide();
+	},
+	error:function (){
+	}
+	});
+}
+</script>
 
 </body>
 </html>

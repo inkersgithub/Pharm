@@ -4,6 +4,11 @@ author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,10 +52,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			
 			<div class="agile-login">
 				<ul>
-					<li><a href="registered.php"> Create Account </a></li>
-					<li><a href="login.php">Login</a></li>
 					
-
+				<?php if (isset($_SESSION['usr_name'])) { ?>
+				<li><p style="font-weight:bold; color:white">Signed in as <?php echo $_SESSION['usr_name']; ?></p></li>
+				<li><a href="logout.php">Log out</a></li>
+				<?php } else { ?>
+				<li><a href="index.php">Login</a></li>
+				<li><a href="registered.php">Create Account</a></li>
+				<?php } ?>			
+				
 				</ul>
 			</div>
 			<div class="product_list_header">
