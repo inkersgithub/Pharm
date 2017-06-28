@@ -3,12 +3,25 @@ session_start();
 include_once 'dbconnect.php';
 ?>
 
-<!--
-author: W3layouts
-author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+<?php 
+if(isset($_POST['send'])){
+    $to = "anoop.inkers@gmail.com"; // this is your Email address
+    $from = $_POST['contactEmail']; // this is the sender's Email address
+    $first_name = $_POST['contactName'];
+    $subject = "Form submission";
+    $subject2 = "Copy of your form submission";
+    $message = $first_name . " wrote the following:" . "\n\n" . $_POST['message'];
+    $message2 = "Here is a copy of your message " . $first_name . "\n\n" . $_POST['message'];
+
+    $headers = "From:" . $from;
+    $headers2 = "From:" . $to;
+    mail($to,$subject,$message,$headers);
+   // mail($from,$subject2,$message2,$headers2); // sends a copy of the message to the sender
+    $smsg= "Mail Sent. Thank you " . $first_name . ", we will contact you shortly.";
+    // You can also use header('Location: thank_you.php'); to redirect to another page.
+    }
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -167,7 +180,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<h3>Contact Info</h3>
 						<p>Anoop Inkers Contact me</p>
 						<ul class="wthree_contact_info_address">
-							<li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:info@example.com">anoop@inkers.in</a></li>
+							<li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:anoop@inkers.in">anoop@inkers.in</a></li>
 							<li><i class="fa fa-phone" aria-hidden="true"></i>+919746364612</li>
 						</ul>
 						<div class="w3_agile_social_icons w3_agile_social_icons_contact">
@@ -183,7 +196,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="col-md-6 w3_agileits_contact_grid_right">
 				<h2 class="w3_agile_header">Leave a<span> Message</span></h2>
 
-				<form action="" method="post">
+				<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+					<span><?php if (isset($smsg)) { echo $smsg; } ?></span>
 					<span class="input input--ichiro">
 						<input class="input__field input__field--ichiro" type="text" id="contactName" name="contactName" placeholder=" " required="" />
 						<label class="input__label input__label--ichiro" for="contactName">
@@ -215,8 +229,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<h3>Contact</h3>
 
 					<ul class="address">
-						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>1234k Avenue, 4th block, <span>New York City.</span></li>
-						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@example.com">info@example.com</a></li>
+						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Anoop P 1234 Inkers, <span>Contact Me.</span></li>
+						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:anoop@inkers.in">anoop@inkers.in</a></li>
 						<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+1234 567 567</li>
 					</ul>
 				</div>
@@ -258,20 +272,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 
 	</div>
-	<div class="footer-botm">
-			<div class="container">
-				<div class="w3layouts-foot">
-					<ul>
-						<li><a href="#" class="w3_agile_facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-						<li><a href="#" class="agile_twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-						<li><a href="#" class="w3_agile_dribble"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
-						<li><a href="#" class="w3_agile_vimeo"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
-					</ul>
-				</div>
-				
-				<div class="clearfix"> </div>
-			</div>
-		</div>
+	
 <!-- //footer -->
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>

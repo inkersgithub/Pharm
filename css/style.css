@@ -73,7 +73,7 @@ input[type="submit"],#PPMiniCart .minicart-submit,.w3ls_vegetables ul li a,input
 }
 .agileits_header {
     background: #333333;
-    padding: 12px 0;
+    padding: 4.7px 0;
 }
 .w3l_offers {
     float: left;
@@ -757,7 +757,7 @@ i.gray-star {
 }
 /*-- footer --*/
 .footer {
-    padding: 5em 0 2em;
+    padding: 2em 0 0em;
     background: #2b2a2a;
 }
 .w3_footer_grid h3 {
@@ -823,7 +823,7 @@ i.fa.fa-arrow-right {
     box-shadow: 0px 0px 15px rgba(255, 155, 5, 0.49);
 }
 .footer-copy p{
-	margin:4em 0 0;
+	margin:2em 0 0;
 	text-align:center;
 	color:#999;
 	line-height:1.8em;
