@@ -1,3 +1,46 @@
+<?php
+
+include_once 'dbconnect.php';
+if(isset($_POST['upload'])){
+	$file=$_FILES['pic'];
+	$filename=$_FILES['pic']['name'];
+  $filetmpname=$_FILES['pic']['tmp_name'];
+  $filesize=$_FILES['pic']['size'];
+  $fileerror=$_FILES['pic']['error'];
+
+	$description = mysqli_real_escape_string($con, $_POST['description']);
+	$category = mysqli_real_escape_string($con, $_POST['category']);
+	$price = mysqli_real_escape_string($con, $_POST['price']);
+  if($description==""){
+    $description = "No Description";
+	}
+
+	$temp=explode('.',$filename);
+	$fileext=strtolower(end($temp));
+	if($fileerror === 0){
+  	if($filesize < 100000){
+      $filenewname = uniqid('',true).".".$fileext;
+      if(!is_dir('uploads/'.$category)) {
+      	mkdir('uploads/'.$category, 0777, true);
+      }
+      $path = 'uploads/'.$category.'/'.$filenewname;
+      if(move_uploaded_file($filetmpname,$path)){
+      	if(mysqli_query($con,"INSERT INTO products(name,cname,description,price,image) VALUES('" . $filenewname . "', '" . $category . "', '" . $description . "', '" . $price . "', '" . $path . "')")){
+					echo "Product added successfully";
+				}
+      }
+    }
+    else {
+    	$errormsg = "Your file size is greater than 100K";
+    }
+  }
+  else {
+  	$errormsg = "Error uploading file.Inconvenience regretted.";
+  }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,8 +51,8 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	
-	
+
+
 <style type="text/css">
 	.bs-example{
 		margin: 20px;
@@ -51,14 +94,14 @@ input[type=submit]:hover {
 
 </head>
 <body background="images/admin.jpg">
-	
+
 <div class="logo_products">
 		<div class="container">
 		<div class="w3ls_logo_products_left" style="text-align: center;">
 			<h1><a style="font-family: -webkit-pictograph;color: #ffffff;" href="index.php">ADMIN PANEL</a></h1>
 		</div>
-		</div>		
-</div>	
+		</div>
+</div>
 <div style="margin-top:10px">
 <div class="bs-example">
     <ul class="nav nav-tabs" style="margin-left: 25px;margin-right:27px;border-bottom: snow">
@@ -69,22 +112,25 @@ input[type=submit]:hover {
         <div id="sectionA" class="tab-pane fade in active">
            <div style="min-height: 700px;background-color: antiquewhite;" class="col-md-6 top_brand_left">
 			   <div class="containerr">
-  					<form action="/action_page.php">
+  					<form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="requeststatus" enctype="multipart/form-data">
 						<h2 style="text-align:center;">ADD PRODUCT</h2>
-						<label for="fname">Product Name</label>
-    					<input type="text" id="fname" name="firstname" placeholder="Product Name.." required>
-						<label for="country">Category</label>
-    					<select id="country" name="country">
+						<label for="name">Product Name</label>
+    					<input type="text" id="name" name="name" placeholder="Product Name.." required>
+						<label for="price">Product Price</label>
+	    				<input type="number" id="price" name="price" placeholder="Product Price.." required>
+						<label for="cat">Category</label>
+    					<select id="cat" name="category">
 							<option value="default">Default</option>
 							<option value="category2">Category2</option>
       						<option value="category3">Category3</option>
     					</select>
-						<label for="subject">Subject</label>
-						<textarea id="subject" name="subject" placeholder="Write something.." style="height:200px" required></textarea>
-						<input style="margin-bottom: 25px;" type="file" name="pic" accept="image/*" required>
-						<input type="submit" value="Submit">
+						<label for="subject">Description</label>
+						<textarea id="subject" name="description" placeholder="Write something.." style="height:200px" required></textarea>
+						<label for="pic">Product Image</label>
+						<input style="margin-bottom: 25px;" id="pic" type="file" name="pic" accept="image/*" required>
+						<input type="submit" value="Submit" name="upload">
   					</form>
-			   	</div>     
+			   	</div>
 		   </div>
         </div>
         <div id="sectionB" class="tab-pane fade">
@@ -103,7 +149,7 @@ input[type=submit]:hover {
     </div>
 </div>
 </div>
-	
-	
+
+
 </body>
-</html>                                		
+</html>
