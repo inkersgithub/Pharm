@@ -11,6 +11,7 @@ if(isset($_POST['upload'])){
 	$description = mysqli_real_escape_string($con, $_POST['description']);
 	$category = mysqli_real_escape_string($con, $_POST['category']);
 	$price = mysqli_real_escape_string($con, $_POST['price']);
+	$name = mysqli_real_escape_string($con, $_POST['name']);
   if($description==""){
     $description = "No Description";
 	}
@@ -25,7 +26,7 @@ if(isset($_POST['upload'])){
       }
       $path = 'uploads/'.$category.'/'.$filenewname;
       if(move_uploaded_file($filetmpname,$path)){
-      	if(mysqli_query($con,"INSERT INTO products(name,cname,description,price,image) VALUES('" . $filenewname . "', '" . $category . "', '" . $description . "', '" . $price . "', '" . $path . "')")){
+      	if(mysqli_query($con,"INSERT INTO products(name,cname,description,price,image) VALUES('" . $name . "', '" . $category . "', '" . $description . "', '" . $price . "', '" . $path . "')")){
 					echo "Product added successfully";
 				}
       }
