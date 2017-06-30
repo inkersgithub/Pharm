@@ -160,7 +160,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="agileinfo_single">
 
 				<div class="col-md-4 agileinfo_single_left">
-					<img id="example" src="images/si1.jpg" alt=" " class="img-responsive">
+					<img style="height:300px;width:280px" id="example" src="images/gu2.jpg" alt=" " class="img-responsive">
 				</div>
 				<div class="col-md-8 agileinfo_single_right">
 				<h2>KHARAMORRA Khakra - Hariyali</h2>
@@ -174,7 +174,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 					<div class="snipcart-item block">
 						<div class="snipcart-thumb agileinfo_single_right_snipcart">
-							<h4 class="m-sing">$21.00 <span>$25.00</span></h4>
+							<h4 class="m-sing">$21.00</h4>
 						</div>
 						<div class="snipcart-details agileinfo_single_right_details">
 							<form action="#" method="post">

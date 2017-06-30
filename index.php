@@ -152,20 +152,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<img src="images/11.jpg" alt="" />
 				<!--Slider Description example-->
 				<div class="slide-desc">
-					<h3>Buy Rice Products Are Now On Line With Us</h3>
+<!--					<h3>Buy Rice Products Are Now On Line With Us</h3>-->
 				</div>
 			</li>
 			<li>
 				<img src="images/22.jpg" alt="" />
 				  <div class="slide-desc">
-					<h3>Whole Spices Products Are Now On Line With Us</h3>
+<!--					<h3>Whole Spices Products Are Now On Line With Us</h3>-->
 				</div>
 			</li>
 
 			<li>
 				<img src="images/44.jpg" alt="" />
 				<div class="slide-desc">
-					<h3>Whole Spices Products Are Now On Line With Us</h3>
+<!--					<h3>Whole Spices Products Are Now On Line With Us</h3>-->
 				</div>
 			</li>
 		</ul>
@@ -174,40 +174,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- top-brands -->
 	<div class="top-brands">
 		<div class="container">
-		<h2>Top selling offers</h2>
+<!--		<h2>Top selling offers</h2>-->
 			<div class="grid_3 grid_5">
 				<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
 					<ul id="myTab" class="nav nav-tabs" role="tablist">
-						<li role="presentation" class="active"><a href="#expeditions" id="expeditions-tab" role="tab" data-toggle="tab" aria-controls="expeditions" aria-expanded="true">Advertised offers</a></li>
-						<li role="presentation"><a href="#tours" role="tab" id="tours-tab" data-toggle="tab" aria-controls="tours">Today Offers</a></li>
+						<li role="presentation" class="active"><a href="#expeditions" id="expeditions-tab" role="tab" data-toggle="tab" aria-controls="expeditions" aria-expanded="true">Top Selling</a></li>
+						<li role="presentation"><a href="#tours" role="tab" id="tours-tab" data-toggle="tab" aria-controls="tours">Popular</a></li>
 					</ul>
 					<div id="myTabContent" class="tab-content">
 						<div role="tabpanel" class="tab-pane fade in active" id="expeditions" aria-labelledby="expeditions-tab">
 							<div class="agile-tp">
-								<h5>Advertised this week</h5>
+								<h5>Most Buyed</h5>
 								<p class="w3l-ad">We've pulled together all our advertised offers into one place, so you won't miss out on a great deal.</p>
 							</div>
 							<div class="agile_top_brands_grids">
-								<div class="col-md-4 top_brand_left">
+		<?php echo 				'<div class="col-md-4 top_brand_left">
 									<div class="hover14 column">
 										<div class="agile_top_brand_left_grid">
-											<div class="agile_top_brand_left_grid_pos">
-												<img src="images/offer.png" alt=" " class="img-responsive" />
-											</div>
 											<div class="agile_top_brand_left_grid1">
 												<figure>
 													<div class="snipcart-item block" >
 														<div class="snipcart-thumb">
 															<a href="products.php"><img title=" " alt=" " src="images/1.png" /></a>
 															<p>Tata-salt</p>
-															<div class="stars">
-																<i class="fa fa-star blue-star" aria-hidden="true"></i>
-																<i class="fa fa-star blue-star" aria-hidden="true"></i>
-																<i class="fa fa-star blue-star" aria-hidden="true"></i>
-																<i class="fa fa-star blue-star" aria-hidden="true"></i>
-																<i class="fa fa-star gray-star" aria-hidden="true"></i>
-															</div>
-															<h4>$20.99 <span>$35.00</span></h4>
+															<h4>$20.99</h4>
 														</div>
 														<div class="snipcart-details top_brand_home_details">
 															<form action="#" method="post">
@@ -230,7 +220,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											</div>
 										</div>
 									</div>
-								</div>
+								</div> '        ?>
 								<div class="col-md-4 top_brand_left">
 									<div class="hover14 column">
 										<div class="agile_top_brand_left_grid">
@@ -480,7 +470,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 																<i class="fa fa-star blue-star" aria-hidden="true"></i>
 																<i class="fa fa-star gray-star" aria-hidden="true"></i>
 															</div>
-															<h4>$35.99 <span>$55.00</span></h4>
+															<h4>$35.99</h4>
 														</div>
 														<div class="snipcart-details top_brand_home_details">
 															<form action="#" method="post">
@@ -734,31 +724,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 <!-- //top-brands -->
- <!-- Carousel
-    ================================================== -->
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-      </ol>
-      <div class="carousel-inner" role="listbox">
-        <div class="item active">
-         <a href="beverages.php"> <img class="first-slide" src="images/b1.jpg" alt="First slide"></a>
-
-        </div>
-        <div class="item">
-         <a href="personalcare.php"> <img class="second-slide " src="images/b3.jpg" alt="Second slide"></a>
-
-        </div>
-        <div class="item">
-          <a href="household.php"><img class="third-slide " src="images/b1.jpg" alt="Third slide"></a>
-
-        </div>
-      </div>
-
-    </div><!-- /.carousel -->
+ 
 <!--banner-bottom-->
 				<div class="ban-bottom-w3l">
 					<div class="container">
@@ -798,37 +764,37 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--brands-->
 	<div class="brands">
 		<div class="container">
-		<h3>Brand Store</h3>
+		<h3>Brand</h3>
 			<div class="brands-agile">
 				<div class="col-md-2 w3layouts-brand">
 					<div class="brands-w3l">
-						<p><a href="#">Lorem</a></p>
+						<p><a href="#">Brand </a></p>
 					</div>
 				</div>
 				<div class="col-md-2 w3layouts-brand">
 					<div class="brands-w3l">
-						<p><a href="#">Lorem</a></p>
+						<p><a href="#">Brand 1</a></p>
 					</div>
 				</div>
 				<div class="col-md-2 w3layouts-brand">
 					<div class="brands-w3l">
-						<p><a href="#">Lorem</a></p>
+						<p><a href="#">Brand 2</a></p>
 					</div>
 				</div>
 
 				<div class="col-md-2 w3layouts-brand">
 					<div class="brands-w3l">
-						<p><a href="#">Lorem</a></p>
+						<p><a href="#">Brand 3</a></p>
 					</div>
 				</div>
 				<div class="col-md-2 w3layouts-brand">
 					<div class="brands-w3l">
-						<p><a href="#">Lorem</a></p>
+						<p><a href="#">Brand 4</a></p>
 					</div>
 				</div>
 				<div class="col-md-2 w3layouts-brand">
 					<div class="brands-w3l">
-						<p><a href="#">Lorem</a></p>
+						<p><a href="#">Brand 5</a></p>
 					</div>
 				</div>
 				<div class="clearfix"></div>
@@ -836,33 +802,33 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="brands-agile-1">
 				<div class="col-md-2 w3layouts-brand">
 					<div class="brands-w3l">
-						<p><a href="#">Lorem</a></p>
+						<p><a href="#">Brand 6</a></p>
 					</div>
 				</div>
 				<div class="col-md-2 w3layouts-brand">
 					<div class="brands-w3l">
-						<p><a href="#">Lorem</a></p>
+						<p><a href="#">Brand 7</a></p>
 					</div>
 				</div>
 				<div class="col-md-2 w3layouts-brand">
 					<div class="brands-w3l">
-						<p><a href="#">Lorem</a></p>
+						<p><a href="#">Brand 8</a></p>
 					</div>
 				</div>
 
 				<div class="col-md-2 w3layouts-brand">
 					<div class="brands-w3l">
-						<p><a href="#">Lorem</a></p>
+						<p><a href="#">Brand 9</a></p>
 					</div>
 				</div>
 				<div class="col-md-2 w3layouts-brand">
 					<div class="brands-w3l">
-						<p><a href="#">Lorem</a></p>
+						<p><a href="#">Brand 10</a></p>
 					</div>
 				</div>
 				<div class="col-md-2 w3layouts-brand">
 					<div class="brands-w3l">
-						<p><a href="#">Lorem</a></p>
+						<p><a href="#">Brand 11</a></p>
 					</div>
 				</div>
 				<div class="clearfix"></div>
@@ -870,33 +836,33 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="brands-agile-2">
 				<div class="col-md-2 w3layouts-brand">
 					<div class="brands-w3l">
-						<p><a href="#">Lorem</a></p>
+						<p><a href="#">Brand 12</a></p>
 					</div>
 				</div>
 				<div class="col-md-2 w3layouts-brand">
 					<div class="brands-w3l">
-						<p><a href="#">Lorem</a></p>
+						<p><a href="#">Brand 13</a></p>
 					</div>
 				</div>
 				<div class="col-md-2 w3layouts-brand">
 					<div class="brands-w3l">
-						<p><a href="#">Lorem</a></p>
+						<p><a href="#">Brand 14</a></p>
 					</div>
 				</div>
 
 				<div class="col-md-2 w3layouts-brand">
 					<div class="brands-w3l">
-						<p><a href="#">Lorem</a></p>
+						<p><a href="#">Brand 15</a></p>
 					</div>
 				</div>
 				<div class="col-md-2 w3layouts-brand">
 					<div class="brands-w3l">
-						<p><a href="#">Lorem</a></p>
+						<p><a href="#">Brand 16</a></p>
 					</div>
 				</div>
 				<div class="col-md-2 w3layouts-brand">
 					<div class="brands-w3l">
-						<p><a href="#">Lorem</a></p>
+						<p><a href="#">Brand 17</a></p>
 					</div>
 				</div>
 				<div class="clearfix"></div>
@@ -905,6 +871,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 <!--//brands-->
 <!-- new -->
+<!--
 	<div class="newproducts-w3agile">
 		<div class="container">
 			<h3>New offers</h3>
@@ -1088,6 +1055,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 		</div>
 	</div>
+-->
 <!-- //new -->
 <!-- //footer -->
 <div class="footer">

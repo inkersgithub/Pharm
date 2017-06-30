@@ -185,16 +185,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="col-md-3 top_brand_left">
 						<div class="hover14 column">
 							<div class="agile_top_brand_left_grid">
-								<div class="agile_top_brand_left_grid_pos">
-									<img src="images/offer.png" alt=" " class="img-responsive">
-								</div>
+								
 								<div class="agile_top_brand_left_grid1">
 									<figure>
 										<div class="snipcart-item block">
 											<div class="snipcart-thumb">
-												<a href="single.php"><img title=" " alt=" " src="images/gu1.png"></a>
+												<a href="single.php"><img style="height: 150px;" title=" " alt=" " src="images/22.jpg"></a>
 												<p>Milk Caramel</p>
-												<h4>$35.99 <span>$55.00</span></h4>
+												<h4>$35.99</h4>
 											</div>
 											<div class="snipcart-details top_brand_home_details">
 												<form action="#" method="post">
@@ -228,7 +226,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<figure>
 										<div class="snipcart-item block">
 											<div class="snipcart-thumb">
-												<a href="single.php"><img title=" " alt=" " src="images/gu2.png"></a>
+												<a href="single.php"><img style="height: 150px;" title=" " alt=" " src="images/gu2.jpg"></a>
 												<p>Gourmet</p>
 												<h4>$30.99 <span>$45.00</span></h4>
 											</div>
