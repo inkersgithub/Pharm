@@ -94,8 +94,8 @@ input[type=submit]:hover {
 </style>
 
 </head>
-<body background="images/admin.jpg">
-
+<!--<body background="images/admin.jpg">-->
+<bod>
 <div class="logo_products">
 		<div class="container">
 		<div class="w3ls_logo_products_left" style="text-align: center;">

@@ -115,7 +115,7 @@ i.fa.fa-phone {
     font-size: 20px;
 }
 button.btn.btn-default.search {
-    background: #fe9126;
+    background: #2693fe;
     padding: 11px 12px 11px;
     float: right;
     outline: none;
@@ -282,7 +282,7 @@ ul.multi-column-dropdown h6 {
     width: 100%;
 }
 .navigation-agileits {
-    background: #fe9126;
+    background: #2693fe;
 }
 .navbar-nav > li {
     float: left;
@@ -541,7 +541,7 @@ div#myTabContent {
 }
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
     color: #FFF;
-    background: #fe9126;
+    background: #2693fe;
 	border:  0px solid transparent;
 }
 .nav-tabs {
@@ -778,8 +778,8 @@ i.gray-star {
     font-size: 14px;
 }
 .w3_footer_grid ul.address li i {
-    color:#fe9126;
-    border: 1px solid #fe9126;
+    color:#2693fe;
+    border: 1px solid #2693fe;
     padding: .5em;
     margin-right: 1em;
 }
@@ -788,7 +788,7 @@ i.gray-star {
     margin-left: 3em;
 }
 .w3_footer_grid ul li a {
-    color: #afafaf;
+    color: #d8d4d4;
     text-decoration: none;
 }
 .w3_footer_grid ul li a:hover {
@@ -800,7 +800,7 @@ i.gray-star {
 	color:#ff9b05;
 }
 i.fa.fa-arrow-right {
-    color: #fe9126;
+    color: #2693fe;
     margin-right: 10px;
 }
 .footer-copy1{
@@ -829,7 +829,7 @@ i.fa.fa-arrow-right {
 	line-height:1.8em;
 }
 .footer-copy p a{
-	color:#ff9b05;
+	color:#2693fe;
 	text-decoration:none;
 }
 .footer-copy p a:hover{
