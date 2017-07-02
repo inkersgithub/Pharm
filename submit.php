@@ -74,7 +74,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 	
 	
-
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -130,19 +137,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     cursor: pointer;
 }* The Modal (background) */
 
-.button{
-	font-size: 14px;
-    color: #fff;
-    background: #3399cc;
-    text-decoration: none;
-    position: relative;
-    border: none;
-    border-radius: 0;
-    width: 100%;
-    text-transform: uppercase;
-    padding: .5em 0;
-    outline: none;		
-}	
+	
 	
 	
 </style>	
@@ -321,7 +316,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												</form>';
 					if(!isset($_SESSION['usr_id'])){   
 						
-											echo '<button type="button" Style="font-size: 14px;color: #fff;background: #3399cc;text-decoration: none;position: relative;border: none; border-radius: 0;width: 100%;text-transform: uppercase;padding: .5em 0;outline: none;	" data-toggle="modal" data-target="#myModal">ADD TO CART</button>';
+											echo '<button type="button" class="button" data-toggle="modal" data-target="#myModal">Open Modal</button>';
 					}
 									echo	'</div>
 										</div>
