@@ -45,6 +45,52 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 <!-- start-smoth-scrolling -->
 </head>
+<style>
+/* The Modal (background) */
+	
+	body.modal-open{
+		overflow: :hidden;
+	}	
+	
+	
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0px;
+    border: 1px solid #888;
+    width: 91%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+</style>	
 
 <body>
 <!-- header -->
@@ -126,23 +172,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<div class="multi-gd-img">
 													<ul class="multi-column-dropdown">
 														<h6>All Category</h6>
-														<li><a href="gourmet.php">Category 2</a></li>
-														<li><a href="gourmet.php">Category 3</a></li>
-														<li><a href="gourmet.php">Category 4</a></li>
-														<li><a href="gourmet.php">Category 5</a></li>
-														<li><a href="gourmet.php">Category 6</a></li>
+														<li><a href="products.php">Category 2</a></li>
+														<li><a href="products.php">Category 3</a></li>
+														<li><a href="products.php">Category 4</a></li>
+														<li><a href="products.php">Category 5</a></li>
+														<li><a href="products.php">Category 6</a></li>
 													</ul>
 												</div>
 
 											</div>
 										</ul>
 									</li>
-									<li><a href="gourmet.php">Category 7</a></li>
-									<li><a href="gourmet.php">Category 8</a></li>
-									<li><a href="gourmet.php">Category 9</a></li>
-									<li><a href="gourmet.php">Category 10</a></li>
-									<li><a href="gourmet.php">Category 11</a></li>
-                  <li><a href="gourmet.php">Category 12</a></li>
+									<li><a href="products.php">Category 7</a></li>
+									<li><a href="products.php">Category 8</a></li>
+									<li><a href="products.php">Category 9</a></li>
+									<li><a href="products.php">Category 10</a></li>
+									<li><a href="products.php">Category 11</a></li>
+                  <li><a href="products.php">Category 12</a></li>
 									<li><a href="contact.php">Contact</a></li>
 								</ul>
 							</div>
@@ -181,458 +227,68 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 				</div>
             </div>
+				
+			
 				<div class="agile_top_brands_grids">
-					<div class="col-md-3 top_brand_left">
+	<?php
+				$i=1;				
+				$res = mysqli_query($con,"SELECT * FROM products");				
+				while ($row = mysqli_fetch_array($res)) {		
+					
+				echo	'<div class="col-md-3 top_brand_left">
 						<div class="hover14 column">
 							<div class="agile_top_brand_left_grid">
 								
 								<div class="agile_top_brand_left_grid1">
 									<figure>
-										<div class="snipcart-item block">
-											<div class="snipcart-thumb">
-												<a href="single.php"><img style="height: 150px;" title=" " alt=" " src="images/22.jpg"></a>
-												<p>Milk Caramel</p>
-												<h4>$35.99</h4>
-											</div>
+										<div class="snipcart-item block" >
+														<div class="snipcart-thumb">
+															<a href="single.php"><img style="height:150px" title=" " alt=" " src="'.$row['image'].'" /></a>
+															<p>'.$row['name'].'</p>
+															<h4>Rs-'.$row['price'].'</h4>
+														</div>
 											<div class="snipcart-details top_brand_home_details">
-												<form action="#" method="post">
+												<form action="" method="post">
 													<fieldset>
-														<input type="hidden" name="cmd" value="_cart">
+														<input type="hidden" name="productid" value="'.$row['id'].'">
 														<input type="hidden" name="add" value="1">
 														<input type="hidden" name="business" value=" ">
-														<input type="hidden" name="item_name" value="Fortune Sunflower Oil">
-														<input type="hidden" name="amount" value="35.99">
-														<input type="hidden" name="discount_amount" value="1.00">
-														<input type="hidden" name="currency_code" value="USD">
+														<input type="hidden" name="item_name" value="'.$row['name'].'">
+														<input type="hidden" name="amount" value="'.$row['price'].'">
+														<input type="hidden" name="discount_amount" value="0.00">
+														<input type="hidden" name="currency_code" value="INR">
 														<input type="hidden" name="return" value=" ">
 														<input type="hidden" name="cancel_return" value=" ">
 														<input type="submit" name="submit" value="Add to cart" class="button">
 													</fieldset>
 												</form>
+												<input type="submit" id="myBtn" class="button" value="Add to Cart">
 											</div>
 										</div>
 									</figure>
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col-md-3 top_brand_left">
-						<div class="hover14 column">
-							<div class="agile_top_brand_left_grid">
-								<div class="agile_top_brand_left_grid_pos">
-									<img src="images/offer.png" alt=" " class="img-responsive">
-								</div>
-								<div class="agile_top_brand_left_grid1">
-									<figure>
-										<div class="snipcart-item block">
-											<div class="snipcart-thumb">
-												<a href="single.php"><img style="height: 150px;" title=" " alt=" " src="images/gu2.jpg"></a>
-												<p>Gourmet</p>
-												<h4>$30.99 <span>$45.00</span></h4>
-											</div>
-											<div class="snipcart-details top_brand_home_details">
-											<div class="snipcart-details top_brand_home_details">
-												<form action="#" method="post">
-													<fieldset>
-														<input type="hidden" name="cmd" value="_cart">
-														<input type="hidden" name="add" value="1">
-														<input type="hidden" name="business" value=" ">
-														<input type="hidden" name="item_name" value="basmati rise">
-														<input type="hidden" name="amount" value="30.99">
-														<input type="hidden" name="discount_amount" value="1.00">
-														<input type="hidden" name="currency_code" value="USD">
-														<input type="hidden" name="return" value=" ">
-														<input type="hidden" name="cancel_return" value=" ">
-														<input type="submit" name="submit" value="Add to cart" class="button">
-													</fieldset>
-												</form>
-											</div>
-										</div>
-									</figure>
-								</div>
+					</div>';
+					
+					if($i%4==0){
+					echo   '<div class="clearfix"> </div>
 							</div>
-						</div>
-					</div>
-                        <div class="col-md-3 top_brand_left">
-						<div class="hover14 column">
-							<div class="agile_top_brand_left_grid">
-								<div class="agile_top_brand_left_grid_pos">
-									<img src="images/offer.png" alt=" " class="img-responsive">
-								</div>
-								<div class="agile_top_brand_left_grid1">
-									<figure>
-										<div class="snipcart-item block">
-											<div class="snipcart-thumb">
-												<a href="single.php"><img title=" " alt=" " src="images/gu2.png"></a>
-												<p>Gourmet</p>
-												<h4>$30.99 <span>$45.00</span></h4>
-											</div>
-											<div class="snipcart-details top_brand_home_details">
-											<div class="snipcart-details top_brand_home_details">
-												<form action="#" method="post">
-													<fieldset>
-														<input type="hidden" name="cmd" value="_cart">
-														<input type="hidden" name="add" value="1">
-														<input type="hidden" name="business" value=" ">
-														<input type="hidden" name="item_name" value="basmati rise">
-														<input type="hidden" name="amount" value="30.99">
-														<input type="hidden" name="discount_amount" value="1.00">
-														<input type="hidden" name="currency_code" value="USD">
-														<input type="hidden" name="return" value=" ">
-														<input type="hidden" name="cancel_return" value=" ">
-														<input type="submit" name="submit" value="Add to cart" class="button">
-													</fieldset>
-												</form>
-											</div>
-										</div>
-									</figure>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 top_brand_left">
-						<div class="hover14 column">
-							<div class="agile_top_brand_left_grid">
-								<div class="agile_top_brand_left_grid_pos">
-									<img src="images/offer.png" alt=" " class="img-responsive">
-								</div>
-								<div class="agile_top_brand_left_grid_pos">
-									<img src="images/offer.png" alt=" " class="img-responsive">
-								</div>
-								<div class="agile_top_brand_left_grid1">
-									<figure>
-										<div class="snipcart-item block">
-											<div class="snipcart-thumb">
-												<a href="single.php"><img src="images/gu3.png" alt=" " class="img-responsive"></a>
-												<p>Strawberry</p>
-												<h4>$80.99 <span>$105.00</span></h4>
-											</div>
-											<div class="snipcart-details top_brand_home_details">
-												<form action="#" method="post">
-													<fieldset>
-														<input type="hidden" name="cmd" value="_cart">
-														<input type="hidden" name="add" value="1">
-														<input type="hidden" name="business" value=" ">
-														<input type="hidden" name="item_name" value="Pepsi soft drink">
-														<input type="hidden" name="amount" value="80.00">
-														<input type="hidden" name="discount_amount" value="1.00">
-														<input type="hidden" name="currency_code" value="USD">
-														<input type="hidden" name="return" value=" ">
-														<input type="hidden" name="cancel_return" value=" ">
-														<input type="submit" name="submit" value="Add to cart" class="button">
-													</fieldset>
-												</form>
-											</div>
-										</div>
-									</figure>
-								</div>
-							</div>
-						</div>
-					</div>
-						<div class="clearfix"> </div>
-				</div>
+							<div class="agile_top_brands_grids">';
+			
+					}		
+					$i++;
+			}
+		?>	
+			
+			
+			
+			
+			
 				<div class="agile_top_brands_grids">
-					<div class="col-md-3 top_brand_left">
-						<div class="hover14 column">
-							<div class="agile_top_brand_left_grid">
-								<div class="agile_top_brand_left_grid_pos">
-									<img src="images/offer.png" alt=" " class="img-responsive">
-								</div>
-								<div class="agile_top_brand_left_grid1">
-									<figure>
-										<div class="snipcart-item block">
-											<div class="snipcart-thumb">
-												<a href="single.php"><img title=" " alt=" " src="images/gu4.png"></a>
-												<p>Miniatures</p>
-												<h4>$35.99 <span>$55.00</span></h4>
-											</div>
-											<div class="snipcart-details top_brand_home_details">
-												<form action="#" method="post">
-													<fieldset>
-														<input type="hidden" name="cmd" value="_cart">
-														<input type="hidden" name="add" value="1">
-														<input type="hidden" name="business" value=" ">
-														<input type="hidden" name="item_name" value="Fortune Sunflower Oil">
-														<input type="hidden" name="amount" value="35.99">
-														<input type="hidden" name="discount_amount" value="1.00">
-														<input type="hidden" name="currency_code" value="USD">
-														<input type="hidden" name="return" value=" ">
-														<input type="hidden" name="cancel_return" value=" ">
-														<input type="submit" name="submit" value="Add to cart" class="button">
-													</fieldset>
-												</form>
-											</div>
-										</div>
-									</figure>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 top_brand_left">
-						<div class="hover14 column">
-							<div class="agile_top_brand_left_grid">
-								<div class="agile_top_brand_left_grid_pos">
-									<img src="images/offer.png" alt=" " class="img-responsive">
-								</div>
-								<div class="agile_top_brand_left_grid1">
-									<figure>
-										<div class="snipcart-item block">
-											<div class="snipcart-thumb">
-												<a href="single.php"><img title=" " alt=" " src="images/gu5.png"></a>
-												<p>Le-Gourmet</p>
-												<h4>$30.99 <span>$45.00</span></h4>
-											</div>
-											<div class="snipcart-details top_brand_home_details">
-												<form action="#" method="post">
-													<fieldset>
-														<input type="hidden" name="cmd" value="_cart">
-														<input type="hidden" name="add" value="1">
-														<input type="hidden" name="business" value=" ">
-														<input type="hidden" name="item_name" value="basmati rise">
-														<input type="hidden" name="amount" value="30.99">
-														<input type="hidden" name="discount_amount" value="1.00">
-														<input type="hidden" name="currency_code" value="USD">
-														<input type="hidden" name="return" value=" ">
-														<input type="hidden" name="cancel_return" value=" ">
-														<input type="submit" name="submit" value="Add to cart" class="button">
-													</fieldset>
-												</form>
-											</div>
-										</div>
-									</figure>
-								</div>
-							</div>
-						</div>
-					</div>
-                    <div class="col-md-3 top_brand_left">
-						<div class="hover14 column">
-							<div class="agile_top_brand_left_grid">
-								<div class="agile_top_brand_left_grid_pos">
-									<img src="images/offer.png" alt=" " class="img-responsive">
-								</div>
-								<div class="agile_top_brand_left_grid1">
-									<figure>
-										<div class="snipcart-item block">
-											<div class="snipcart-thumb">
-												<a href="single.php"><img title=" " alt=" " src="images/gu5.png"></a>
-												<p>Le-Gourmet</p>
-												<h4>$30.99 <span>$45.00</span></h4>
-											</div>
-											<div class="snipcart-details top_brand_home_details">
-												<form action="#" method="post">
-													<fieldset>
-														<input type="hidden" name="cmd" value="_cart">
-														<input type="hidden" name="add" value="1">
-														<input type="hidden" name="business" value=" ">
-														<input type="hidden" name="item_name" value="basmati rise">
-														<input type="hidden" name="amount" value="30.99">
-														<input type="hidden" name="discount_amount" value="1.00">
-														<input type="hidden" name="currency_code" value="USD">
-														<input type="hidden" name="return" value=" ">
-														<input type="hidden" name="cancel_return" value=" ">
-														<input type="submit" name="submit" value="Add to cart" class="button">
-													</fieldset>
-												</form>
-											</div>
-										</div>
-									</figure>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 top_brand_left">
-						<div class="hover14 column">
-							<div class="agile_top_brand_left_grid">
-								<div class="agile_top_brand_left_grid_pos">
-									<img src="images/offer.png" alt=" " class="img-responsive">
-								</div>
-								<div class="agile_top_brand_left_grid_pos">
-									<img src="images/offer.png" alt=" " class="img-responsive">
-								</div>
-								<div class="agile_top_brand_left_grid1">
-									<figure>
-										<div class="snipcart-item block">
-											<div class="snipcart-thumb">
-												<a href="single.php"><img src="images/gu6.png" alt=" " class="img-responsive"></a>
-												<p>Chocolate Bar</p>
-												<h4>$80.99 <span>$105.00</span></h4>
-											</div>
-											<div class="snipcart-details top_brand_home_details">
-												<form action="#" method="post">
-													<fieldset>
-														<input type="hidden" name="cmd" value="_cart">
-														<input type="hidden" name="add" value="1">
-														<input type="hidden" name="business" value=" ">
-														<input type="hidden" name="item_name" value="Pepsi soft drink">
-														<input type="hidden" name="amount" value="80.00">
-														<input type="hidden" name="discount_amount" value="1.00">
-														<input type="hidden" name="currency_code" value="USD">
-														<input type="hidden" name="return" value=" ">
-														<input type="hidden" name="cancel_return" value=" ">
-														<input type="submit" name="submit" value="Add to cart" class="button">
-													</fieldset>
-												</form>
-											</div>
-										</div>
-									</figure>
-								</div>
-							</div>
-						</div>
-					</div>
-						<div class="clearfix"> </div>
-				</div>
-				<div class="agile_top_brands_grids">
-					<div class="col-md-3 top_brand_left">
-						<div class="hover14 column">
-							<div class="agile_top_brand_left_grid">
-								<div class="agile_top_brand_left_grid_pos">
-									<img src="images/offer.png" alt=" " class="img-responsive">
-								</div>
-								<div class="agile_top_brand_left_grid1">
-									<figure>
-										<div class="snipcart-item block">
-											<div class="snipcart-thumb">
-												<a href="single.php"><img title=" " alt=" " src="images/gu7.png"></a>
-												<p>Poultry Rub</p>
-												<h4>$35.99 <span>$55.00</span></h4>
-											</div>
-											<div class="snipcart-details top_brand_home_details">
-												<form action="#" method="post">
-													<fieldset>
-														<input type="hidden" name="cmd" value="_cart">
-														<input type="hidden" name="add" value="1">
-														<input type="hidden" name="business" value=" ">
-														<input type="hidden" name="item_name" value="Fortune Sunflower Oil">
-														<input type="hidden" name="amount" value="35.99">
-														<input type="hidden" name="discount_amount" value="1.00">
-														<input type="hidden" name="currency_code" value="USD">
-														<input type="hidden" name="return" value=" ">
-														<input type="hidden" name="cancel_return" value=" ">
-														<input type="submit" name="submit" value="Add to cart" class="button">
-													</fieldset>
-												</form>
-											</div>
-										</div>
-									</figure>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 top_brand_left">
-						<div class="hover14 column">
-							<div class="agile_top_brand_left_grid">
-								<div class="agile_top_brand_left_grid_pos">
-									<img src="images/offer.png" alt=" " class="img-responsive">
-								</div>
-								<div class="agile_top_brand_left_grid1">
-									<figure>
-										<div class="snipcart-item block">
-											<div class="snipcart-thumb">
-												<a href="single.php"><img title=" " alt=" " src="images/gu8.png"></a>
-												<p>Sandwich</p>
-												<h4>$30.99 <span>$45.00</span></h4>
-											</div>
-											<div class="snipcart-details top_brand_home_details">
-												<form action="#" method="post">
-													<fieldset>
-														<input type="hidden" name="cmd" value="_cart">
-														<input type="hidden" name="add" value="1">
-														<input type="hidden" name="business" value=" ">
-														<input type="hidden" name="item_name" value="basmati rise">
-														<input type="hidden" name="amount" value="30.99">
-														<input type="hidden" name="discount_amount" value="1.00">
-														<input type="hidden" name="currency_code" value="USD">
-														<input type="hidden" name="return" value=" ">
-														<input type="hidden" name="cancel_return" value=" ">
-														<input type="submit" name="submit" value="Add to cart" class="button">
-													</fieldset>
-												</form>
-											</div>
-										</div>
-									</figure>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 top_brand_left">
-						<div class="hover14 column">
-							<div class="agile_top_brand_left_grid">
-								<div class="agile_top_brand_left_grid_pos">
-									<img src="images/offer.png" alt=" " class="img-responsive">
-								</div>
-								<div class="agile_top_brand_left_grid_pos">
-									<img src="images/offer.png" alt=" " class="img-responsive">
-								</div>
-								<div class="agile_top_brand_left_grid1">
-									<figure>
-										<div class="snipcart-item block">
-											<div class="snipcart-thumb">
-												<a href="single.php"><img src="images/gu9.png" alt=" " class="img-responsive"></a>
-												<p>Fruit Nut</p>
-												<h4>$80.99 <span>$105.00</span></h4>
-											</div>
-											<div class="snipcart-details top_brand_home_details">
-												<form action="#" method="post">
-													<fieldset>
-														<input type="hidden" name="cmd" value="_cart">
-														<input type="hidden" name="add" value="1">
-														<input type="hidden" name="business" value=" ">
-														<input type="hidden" name="item_name" value="Pepsi soft drink">
-														<input type="hidden" name="amount" value="80.00">
-														<input type="hidden" name="discount_amount" value="1.00">
-														<input type="hidden" name="currency_code" value="USD">
-														<input type="hidden" name="return" value=" ">
-														<input type="hidden" name="cancel_return" value=" ">
-														<input type="submit" name="submit" value="Add to cart" class="button">
-													</fieldset>
-												</form>
-											</div>
-										</div>
-									</figure>
-								</div>
-							</div>
-						</div>
-					</div>
-                    <div class="col-md-3 top_brand_left">
-						<div class="hover14 column">
-							<div class="agile_top_brand_left_grid">
-								<div class="agile_top_brand_left_grid_pos">
-									<img src="images/offer.png" alt=" " class="img-responsive">
-								</div>
-								<div class="agile_top_brand_left_grid_pos">
-									<img src="images/offer.png" alt=" " class="img-responsive">
-								</div>
-								<div class="agile_top_brand_left_grid1">
-									<figure>
-										<div class="snipcart-item block">
-											<div class="snipcart-thumb">
-												<a href="single.php"><img src="images/gu9.png" alt=" " class="img-responsive"></a>
-												<p>Fruit Nut</p>
-												<h4>$80.99 <span>$105.00</span></h4>
-											</div>
-											<div class="snipcart-details top_brand_home_details">
-												<form action="#" method="post">
-													<fieldset>
-														<input type="hidden" name="cmd" value="_cart">
-														<input type="hidden" name="add" value="1">
-														<input type="hidden" name="business" value=" ">
-														<input type="hidden" name="item_name" value="Pepsi soft drink">
-														<input type="hidden" name="amount" value="80.00">
-														<input type="hidden" name="discount_amount" value="1.00">
-														<input type="hidden" name="currency_code" value="USD">
-														<input type="hidden" name="return" value=" ">
-														<input type="hidden" name="cancel_return" value=" ">
-														<input type="submit" name="submit" value="Add to cart" class="button">
-													</fieldset>
-												</form>
-											</div>
-										</div>
-									</figure>
-								</div>
-							</div>
-						</div>
-					</div>
-						<div class="clearfix"> </div>
+				
+				
+				<div class="clearfix"> </div>
 				</div>
 				<nav class="numbering">
 					<ul class="pagination paging">
@@ -657,6 +313,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="clearfix"> </div>
 		</div>
 	</div>
+
 <!--- gourmet --->
 <!-- //footer -->
 <div class="footer">
@@ -682,11 +339,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="col-md-3 w3_footer_grid">
 					<h3>Category</h3>
 					<ul class="info">
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="gourmet.php">Category 1</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="gourmet.php">Category 2</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="gourmet.php">Category 3</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="gourmet.php">Category 4</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="gourmet.php">Category 5</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="products.php">Category 1</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="products.php">Category 2</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="products.php">Category 3</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="products.php">Category 4</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="products.php">Category 5</a></li>
 					</ul>
 				</div>
 				<div class="col-md-3 w3_footer_grid">
@@ -710,6 +367,41 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	</div>
 	
+	
+
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+   <!-- login -->
+	<div class="login">
+		<div class="container">
+			<h2>Login Form</h2>
+
+			<div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
+				<form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="loginform">
+					<input type="email" placeholder="Email Address" required=" " name="email" >
+					<input type="password" placeholder="Password" required=" " name="password" >
+					<div class="forgot">
+						<a href="#">Forgot Password?</a>
+					</div>
+					<input type="submit" value="Login" name="login">
+				</form>
+				<span class="text-danger"><?php if (isset($errormsg)) { echo $errormsg; } ?></span>
+			</div>
+			<h4>For New People</h4>
+			<p><a href="registered.php">Register Here</a> (Or) go back to <a href="index.php">Home<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></p>
+		</div>
+	</div>
+<!-- //login -->
+  </div>
+
+</div>
+	
+	
 <!-- //footer -->
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
@@ -731,17 +423,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			});
 	</script>
 <!-- //here ends scrolling icon -->
-<script src="js/minicart.min.js"></script>
-<script>
-	// Mini Cart
-	paypal.minicart.render({
-		action: '#'
-	});
+<script src="js/jquery-1.11.1.min.js"></script>
 
-	if (~window.location.search.indexOf('reset=true')) {
-		paypal.minicart.reset();
-	}
-</script>
 <!-- main slider-banner -->
 <script src="js/skdslider.min.js"></script>
 <link href="css/skdslider.css" rel="stylesheet">
@@ -756,6 +439,56 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 </script>
 <!-- //main slider-banner -->
+<script>
+	function SubmitFormData() {
+    var name = $("#name").val();
+    var email = $("#email").val();
+    var phone = $("#phone").val();
+    var gender = $("input[type=radio]:checked").val();
+    $.post("submit.php", { name: name, email: email, phone: phone, gender: gender },
+    function(data) {
+	 $('#results').html(data);
+	 $('#myForm')[0].reset();
+    });
+}
+</script>	
+	
+	
+<script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>	
+	
+
+
+	
+	
+	
+	
+	
 
 </body>
 </html>

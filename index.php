@@ -121,23 +121,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<div class="multi-gd-img">
 													<ul class="multi-column-dropdown">
 														<h6>All Category</h6>
-														<li><a href="gourmet.php">Category 2</a></li>
-														<li><a href="gourmet.php">Category 3</a></li>
-														<li><a href="gourmet.php">Category 4</a></li>
-														<li><a href="gourmet.php">Category 5</a></li>
-														<li><a href="gourmet.php">Category 6</a></li>
+														<li><a href="products.php">Category 2</a></li>
+														<li><a href="products.php">Category 3</a></li>
+														<li><a href="products.php">Category 4</a></li>
+														<li><a href="products.php">Category 5</a></li>
+														<li><a href="products.php">Category 6</a></li>
 													</ul>
 												</div>
 
 											</div>
 										</ul>
 									</li>
-									<li><a href="gourmet.php">Category 7</a></li>
-									<li><a href="gourmet.php">Category 8</a></li>
-									<li><a href="gourmet.php">Category 9</a></li>
-									<li><a href="gourmet.php">Category 10</a></li>
-									<li><a href="gourmet.php">Category 11</a></li>
-                  <li><a href="gourmet.php">Category 12</a></li>
+									<li><a href="products.php">Category 7</a></li>
+									<li><a href="products.php">Category 8</a></li>
+									<li><a href="products.php">Category 9</a></li>
+									<li><a href="products.php">Category 10</a></li>
+									<li><a href="products.php">Category 11</a></li>
+                  <li><a href="products.php">Category 12</a></li>
 									<li><a href="contact.php">Contact</a></li>
 								</ul>
 							</div>
@@ -200,7 +200,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<figure>
 													<div class="snipcart-item block" >
 														<div class="snipcart-thumb">
-															<a href="gourmet.php"><img style="height:150px" title=" " alt=" " src="'.$row['image'].'" /></a>
+															<a href="products.php"><img style="height:150px" title=" " alt=" " src="'.$row['image'].'" /></a>
 															<p>'.$row['name'].'</p>
 															<h4>Rs-'.$row['price'].'</h4>
 														</div>
@@ -210,10 +210,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 																	<input type="hidden" name="cmd" value="_cart" />
 																	<input type="hidden" name="add" value="1" />
 																	<input type="hidden" name="business" value=" " />
-																	<input type="hidden" name="item_name" value="Fortune Sunflower Oil" />
-																	<input type="hidden" name="amount" value="20.99" />
-																	<input type="hidden" name="discount_amount" value="1.00" />
-																	<input type="hidden" name="currency_code" value="USD" />
+																	<input type="hidden" name="item_name" value="'.$row['name'].'" />
+																	<input type="hidden" name="amount" value="'.$row['price'].'" />
+																	<input type="hidden" name="discount_amount" value="0.00" />
+																	<input type="hidden" name="currency_code" value="INR" />
 																	<input type="hidden" name="return" value=" " />
 																	<input type="hidden" name="cancel_return" value=" " />
 																	<input type="submit" name="submit" value="Add to cart" class="button" />
@@ -266,7 +266,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<figure>
 													<div class="snipcart-item block" >
 														<div class="snipcart-thumb">
-															<a href="gourmet.php"><img style="height:150px" title=" " alt=" " src="'.$row['image'].'" /></a>
+															<a href="products.php"><img style="height:150px" title=" " alt=" " src="'.$row['image'].'" /></a>
 															<p>'.$row['name'].'</p>
 															<h4>Rs-'.$row['price'].'</h4>
 														</div>
@@ -476,7 +476,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<figure>
 										<div class="snipcart-item block">
 											<div class="snipcart-thumb">
-												<a href="gourmet.php"><img title=" " alt=" " src="images/14.png"></a>
+												<a href="products.php"><img title=" " alt=" " src="images/14.png"></a>
 												<p>Fried-gram</p>
 												<div class="stars">
 													<i class="fa fa-star blue-star" aria-hidden="true"></i>
@@ -519,7 +519,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<figure>
 										<div class="snipcart-item block">
 											<div class="snipcart-thumb">
-												<a href="gourmet.php"><img title=" " alt=" " src="images/15.png"></a>
+												<a href="products.php"><img title=" " alt=" " src="images/15.png"></a>
 												<p>Navaratan-dal</p>
 												<div class="stars">
 													<i class="fa fa-star blue-star" aria-hidden="true"></i>
@@ -565,7 +565,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<figure>
 										<div class="snipcart-item block">
 											<div class="snipcart-thumb">
-												<a href="gourmet.php"><img src="images/16.png" alt=" " class="img-responsive"></a>
+												<a href="products.php"><img src="images/16.png" alt=" " class="img-responsive"></a>
 												<p>White-peasmatar</p>
 												<div class="stars">
 													<i class="fa fa-star blue-star" aria-hidden="true"></i>
@@ -608,7 +608,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<figure>
 										<div class="snipcart-item block">
 											<div class="snipcart-thumb">
-												<a href="gourmet.php"><img title=" " alt=" " src="images/17.png"></a>
+												<a href="products.php"><img title=" " alt=" " src="images/17.png"></a>
 												<p>Channa-dal</p>
 												<div class="stars">
 													<i class="fa fa-star blue-star" aria-hidden="true"></i>
@@ -671,11 +671,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="col-md-3 w3_footer_grid">
 					<h3>Category</h3>
 					<ul class="info">
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="gourmet.php">Category 1</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="gourmet.php">Category 2</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="gourmet.php">Category 3</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="gourmet.php">Category 4</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="gourmet.php">Category 5</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="products.php">Category 1</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="products.php">Category 2</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="products.php">Category 3</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="products.php">Category 4</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="products.php">Category 5</a></li>
 					</ul>
 				</div>
 				<div class="col-md-3 w3_footer_grid">

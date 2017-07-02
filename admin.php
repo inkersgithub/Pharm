@@ -27,7 +27,7 @@ if(isset($_POST['upload'])){
       $path = 'uploads/'.$category.'/'.$filenewname;
       if(move_uploaded_file($filetmpname,$path)){
       	if(mysqli_query($con,"INSERT INTO products(name,cname,description,price,image) VALUES('" . $name . "', '" . $category . "', '" . $description . "', '" . $price . "', '" . $path . "')")){
-					echo "Product added successfully";
+					$pmsg = "Product added successfully";
 				}
       }
     }
@@ -38,6 +38,15 @@ if(isset($_POST['upload'])){
   else {
   	$errormsg = "Error uploading file.Inconvenience regretted.";
   }
+}
+
+if (isset($_POST['addcategory'])) {
+	$catname = mysqli_real_escape_string($con, $_POST['catname']);
+	if(mysqli_query($con, "INSERT INTO category(cname) VALUES('" . $catname . "')")){
+		$cmsg = "Category Created";
+	}else{
+		$cmsg = "Already Exist";
+	}
 }
 
 ?>
@@ -94,8 +103,8 @@ input[type=submit]:hover {
 </style>
 
 </head>
-<!--<body background="images/admin.jpg">-->
-<bod>
+<body background="images/admin.jpg">
+
 <div class="logo_products">
 		<div class="container">
 		<div class="w3ls_logo_products_left" style="text-align: center;">
@@ -105,21 +114,25 @@ input[type=submit]:hover {
 </div>
 <div style="margin-top:10px">
 <div class="bs-example">
+	<div style="background-color: rgb(242, 242, 242);margin-left: 25px;min-height: 44px;margin-right: 25px;" >
     <ul class="nav nav-tabs" style="margin-left: 25px;margin-right:27px;border-bottom: snow">
         <li class="active"><a style="border-radius: 10px 10px 10px 10px;" data-toggle="tab" href="#sectionA">Products</a></li>
-        <li><a style="border-radius: 10px 10px 10px 10px;" data-toggle="tab" href="#sectionB">Orders</a></li>
+        <li><a  style="border-radius: 10px 10px 10px 10px;color:" data-toggle="tab" href="#sectionB">Orders</a></li>
     </ul>
-    <div style="margin-top: 42px;margin-left: 25px;margin-right: 25px;background-color: white;min-height: 700px;" class="tab-content">
+	</div>
+    <div style="margin-top: 42px;margin-left: 25px;margin-right: 25px;background-color: white;min-height: 820px;" class="tab-content">
         <div id="sectionA" class="tab-pane fade in active">
-           <div style="min-height: 700px;background-color: antiquewhite;" class="col-md-6 top_brand_left">
+           <div style="min-height: 820px;background-color: antiquewhite;" class="col-md-6 top_brand_left">
 			   <div class="containerr">
   					<form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="requeststatus" enctype="multipart/form-data">
 						<h2 style="text-align:center;">ADD PRODUCT</h2>
 						<label for="name">Product Name</label>
-    					<input type="text" id="name" name="name" placeholder="Product Name.." required>
+						<input type="text" id="name" name="name" placeholder="Product Name.." required>
 						<label for="price">Product Price</label>
-	    				<input type="number" id="price" name="price" placeholder="Product Price.." required>
-						<label for="cat">Category</label>
+						<br>
+	    				<input style="padding: 8px;border-radius: 4px;margin-top: 7px;" type="number" id="price" name="price" placeholder="Product Price.." required>
+						<br>
+						<label style="    margin-top: 15px;" for="cat">Category</label>
     					<select id="cat" name="category">
 							<option value="default">Default</option>
 							<option value="category2">Category2</option>
@@ -131,13 +144,29 @@ input[type=submit]:hover {
 						<input style="margin-bottom: 25px;" id="pic" type="file" name="pic" accept="image/*" required>
 						<input type="submit" value="Submit" name="upload">
   					</form>
+				   <span><?php if (isset($pmsg)) { echo $pmsg; } ?></span>
 			   	</div>
+		   </div>
+		   <div style="min-height: 820px;background-color: antiquewhite;" class="col-md-6 top_brand_left">
+			   <div class="containerr">
+			   	   <div class="row">
+					   <form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="addCategory">
+						<h2 style="text-align:center;">ADD CATEGORY</h2>
+						<label style="margin-left: 15px;" for="name">Category NAme</label>
+						<input style="width: 95%;margin-left: 14px;" type="text" id="name" name="catname" placeholder="Category Name.." required>
+						<input style="margin-left: 14px;" type="submit" value="Submit" name="addcategory">
+  					</form>
+					<span style="margin-left:15px"><?php if (isset($cmsg)) { echo $cmsg; } ?></span>
+				   </div>
+				   <div class="row">
+					   
+				   </div>
+			   </div>
 		   </div>
         </div>
         <div id="sectionB" class="tab-pane fade">
             <h3>Section B</h3>
             <p>Vestibulum nec erat eu nulla rhoncus fringilla ut non neque. Vivamus nibh urna, ornare id gravida ut, mollis a magna. Aliquam porttitor condimentum nisi, eu viverra ipsum porta ut. Nam hendrerit bibendum turpis, sed molestie mi fermentum id. Aenean volutpat velit sem. Sed consequat ante in rutrum convallis. Nunc facilisis leo at faucibus adipiscing.</p>
-        </div>
         </div>
         <div id="dropdown1" class="tab-pane fade">
             <h3>Dropdown 1</h3>
@@ -150,7 +179,5 @@ input[type=submit]:hover {
     </div>
 </div>
 </div>
-
-
 </body>
 </html>

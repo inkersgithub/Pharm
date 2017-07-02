@@ -120,23 +120,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<div class="multi-gd-img">
 													<ul class="multi-column-dropdown">
 														<h6>All Category</h6>
-														<li><a href="gourmet.php">Category 2</a></li>
-														<li><a href="gourmet.php">Category 3</a></li>
-														<li><a href="gourmet.php">Category 4</a></li>
-														<li><a href="gourmet.php">Category 5</a></li>
-														<li><a href="gourmet.php">Category 6</a></li>
+														<li><a href="products.php">Category 2</a></li>
+														<li><a href="products.php">Category 3</a></li>
+														<li><a href="products.php">Category 4</a></li>
+														<li><a href="products.php">Category 5</a></li>
+														<li><a href="products.php">Category 6</a></li>
 													</ul>
 												</div>
 
 											</div>
 										</ul>
 									</li>
-									<li><a href="gourmet.php">Category 7</a></li>
-									<li><a href="gourmet.php">Category 8</a></li>
-									<li><a href="gourmet.php">Category 9</a></li>
-									<li><a href="gourmet.php">Category 10</a></li>
-									<li><a href="gourmet.php">Category 11</a></li>
-                  <li><a href="gourmet.php">Category 12</a></li>
+									<li><a href="products.php">Category 7</a></li>
+									<li><a href="products.php">Category 8</a></li>
+									<li><a href="products.php">Category 9</a></li>
+									<li><a href="products.php">Category 10</a></li>
+									<li><a href="products.php">Category 11</a></li>
+                  <li><a href="products.php">Category 12</a></li>
 									<li><a href="contact.php">Contact</a></li>
 								</ul>
 							</div>
@@ -407,11 +407,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="col-md-3 w3_footer_grid">
 					<h3>Category</h3>
 					<ul class="info">
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="gourmet.php">Category 1</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="gourmet.php">Category 2</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="gourmet.php">Category 3</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="gourmet.php">Category 4</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="gourmet.php">Category 5</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="products.php">Category 1</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="products.php">Category 2</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="products.php">Category 3</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="products.php">Category 4</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="products.php">Category 5</a></li>
 					</ul>
 				</div>
 				<div class="col-md-3 w3_footer_grid">

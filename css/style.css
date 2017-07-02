@@ -71,6 +71,7 @@ input[type="submit"],#PPMiniCart .minicart-submit,.w3ls_vegetables ul li a,input
 	-o-transition: .5s ease-in;
 	-ms-transition: .5s ease-in;
 }
+
 .agileits_header {
     background: #333333;
     padding: 4.7px 0;
@@ -2995,6 +2996,7 @@ p.w3l-ad {
 }
 .sorting {
     width: 44%;
+	margin-left: 16px
 }
 .sorting-left {
     width: 42%;
