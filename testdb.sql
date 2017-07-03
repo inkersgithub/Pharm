@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 01, 2017 at 03:52 PM
+-- Generation Time: Jul 03, 2017 at 04:18 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -23,6 +23,18 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `id` int(11) NOT NULL,
+  `userid` varchar(10) NOT NULL,
+  `productid` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `category`
 --
 
@@ -36,7 +48,10 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id`, `cname`) VALUES
-(1, 'Category2');
+(1, 'Category2'),
+(2, 'Category3'),
+(4, 'Category4'),
+(6, 'Category5');
 
 -- --------------------------------------------------------
 
@@ -73,7 +88,9 @@ INSERT INTO `products` (`id`, `name`, `cname`, `description`, `price`, `image`, 
 (13, 'Med 11', 'category2', 'This is a sample text for testing my site,this site is created and designed by inkers, This is a sample text for testing my site,this site is created and designed by inkers ,This is a sample text for testing my site,this site is created and designed by inkers.', 510, 'uploads/category2/595698f5e90894.36477063.jp', 0, 6),
 (14, 'Med 12', 'category2', 'This is a sample text for testing my site,this site is created and designed by inkers, This is a sample text for testing my site,this site is created and designed by inkers ,This is a sample text for testing my site,this site is created and designed by inkers.', 260, 'uploads/category2/5956990a124e35.24243406.jpg', 0, 0),
 (15, 'Med 13', 'category2', 'This is a sample text for testing my site,this site is created and designed by inkers, This is a sample text for testing my site,this site is created and designed by inkers ,This is a sample text for testing my site,this site is created and designed by inkers.', 460, 'uploads/category2/59569920546139.20392221.jpg', 0, 9),
-(16, 'Med 14', 'category2', 'This is a sample text for testing my site,this site is created and designed by inkers, This is a sample text for testing my site,this site is created and designed by inkers ,This is a sample text for testing my site,this site is created and designed by inkers.', 320, 'uploads/category2/595699337d7912.92455085.jpg', 0, 0);
+(16, 'Med 14', 'category2', 'This is a sample text for testing my site,this site is created and designed by inkers, This is a sample text for testing my site,this site is created and designed by inkers ,This is a sample text for testing my site,this site is created and designed by inkers.', 320, 'uploads/category2/595699337d7912.92455085.jpg', 0, 0),
+(19, 'Med 16', 'category3', 'This is a sample text for testing my site,this site is created and designed by inkers, This is a sample text for testing my site,this site is created and designed by inkers ,This is a sample text for testing my site,this site is created and designed by inkers.', 550, 'uploads/category3/5957b0d83d5237.48328481.jpg', 0, 0),
+(26, 'Med 17', 'category3', 'This is a sample text for testing my site,this site is created and designed by inkers, This is a sample text for testing my site,this site is created and designed by inkers ,This is a sample text for testing my site,this site is created and designed by inkers.', 350, 'uploads/category3/5957cac0748dd5.79735880.jpg', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -99,15 +116,17 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `address1`, `address2`, `city`, `state`, `pincode`, `mobile`, `email`, `password`) VALUES
-(15, 'Anoop P', 'Panthalil House', 'Manisseri Post', 'Palakkad', 'kerala', '679521', '9746364612', 'anoopkrishna157@gmail.com', '21232f297a57a5a743894a0e4a801fc3'),
-(16, 'Anoop P', 'Panthalil House', 'Manisseri Post', 'OTTAPPALAM', 'kerala', '679521', '9746364612', 'navaneetha.sree@gmail.com', '21232f297a57a5a743894a0e4a801fc3'),
-(17, 'Zade', 'abcd', 'abcd', 'Palakkad', 'Kerala', '679503', '9567474709', 'mubaraknet123789@gmail.com', 'e19d5cd5af0378da05f63f891c7467af'),
-(18, 'Muhammad Mubarak K', 'Koorikkattil house', 'Veeramangalam post', 'Palakkad', 'Kerala', '679503', '9567474709', 'zade@inkers.in', 'c93ccd78b2076528346216b3b2f701e6'),
-(19, 'Muhammad Mubarak K', 'Koorikkattil house', 'Veeramangalam post', 'Palakkad', 'Kerala', '679503', '9567474709', 'mubarak@inkers.in', 'c93ccd78b2076528346216b3b2f701e6');
+(20, 'Anoop P', 'Panthalil House', 'Manisseri Post', 'Palakkad', 'kerala', '679521', '9746364612', 'anoop@gmail.com', 'c93ccd78b2076528346216b3b2f701e6');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `category`
@@ -138,20 +157,25 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- Constraints for dumped tables
 --

@@ -206,7 +206,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 															<h4>Rs-'.$row['price'].'</h4>
 														</div>
 														<div class="snipcart-details top_brand_home_details">
-															<form action"#"  method="post">
+													<form action"#"  method="post">
 													<fieldset>
 																	<input type="hidden" name="cmd" value="_cart" />
 																	<input type="hidden" name="add" value="1" />
@@ -219,8 +219,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 																	<input type="hidden" name="cancel_return" value=" " />
 																	<input type="submit" name="addtocart1'. $row['id'] .'" value="Add tocart" class="button" /> ' ;  ?>
 													
-														<?php			if(isset($_POST["addtocart1".$id])){
+														<?php			if(isset($_POST["addtocart1".$id]) and ($_SESSION['usr_id']=="")){
 																		header('Location: login.php');
+            														}
+																	if(isset($_POST["addtocart1".$id]) and ($_SESSION['usr_id']!="")){
+																		header('Location: contact.php');
             														}
 														?>
 																	
