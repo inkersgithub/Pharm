@@ -6,6 +6,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 
 <?php
+ob_start();
 session_start();
 include_once 'dbconnect.php';
 ?>
@@ -192,7 +193,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				$i=1;				
 				$res = mysqli_query($con,"SELECT * FROM products ORDER BY ocount DESC LIMIT 6");				
 				while ($row = mysqli_fetch_array($res)) {				
-								
+							$id = $row['id'];		
 							echo '<div class="col-md-4 top_brand_left">
 									<div class="hover14 column">
 										<div class="agile_top_brand_left_grid">
@@ -205,19 +206,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 															<h4>Rs-'.$row['price'].'</h4>
 														</div>
 														<div class="snipcart-details top_brand_home_details">
-															<form action="#" method="post">
-																<fieldset>
+															<form action"#"  method="post">
+													<fieldset>
 																	<input type="hidden" name="cmd" value="_cart" />
 																	<input type="hidden" name="add" value="1" />
 																	<input type="hidden" name="business" value=" " />
-																	<input type="hidden" name="item_name" value="'.$row['name'].'" />
-																	<input type="hidden" name="amount" value="'.$row['price'].'" />
-																	<input type="hidden" name="discount_amount" value="0.00" />
-																	<input type="hidden" name="currency_code" value="INR" />
+																	<input type="hidden" name="item_name" value="Fortune Sunflower Oil" />
+																	<input type="hidden" name="amount" value="20.99" />
+																	<input type="hidden" name="discount_amount" value="1.00" />
+																	<input type="hidden" name="currency_code" value="USD" />
 																	<input type="hidden" name="return" value=" " />
 																	<input type="hidden" name="cancel_return" value=" " />
-																	<input type="submit" name="submit" value="Add to cart" class="button" />
-																</fieldset>
+																	<input type="submit" name="addtocart1'. $row['id'] .'" value="Add tocart" class="button" /> ' ;  ?>
+													
+														<?php			if(isset($_POST["addtocart1".$id])){
+																		header('Location: login.php');
+            														}
+														?>
+																	
+													<?php	echo'</fieldset>
 															</form>
 														</div>
 													</div>
@@ -258,7 +265,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				$i=1;				
 				$res = mysqli_query($con,"SELECT * FROM products ORDER BY ocount DESC LIMIT 6");				
 				while ($row = mysqli_fetch_array($res)) {				
-								
+							$id = $row['id'];	
 							echo '<div class="col-md-4 top_brand_left">
 									<div class="hover14 column">
 										<div class="agile_top_brand_left_grid">
@@ -270,9 +277,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 															<p>'.$row['name'].'</p>
 															<h4>Rs-'.$row['price'].'</h4>
 														</div>
-														<div class="snipcart-details top_brand_home_details">
-															<form action="#" method="post">
-																<fieldset>
+														<div class="snipcart-details top_brand_home_details"> 
+														<form action"#"  method="post">
+													<fieldset>
 																	<input type="hidden" name="cmd" value="_cart" />
 																	<input type="hidden" name="add" value="1" />
 																	<input type="hidden" name="business" value=" " />
@@ -282,8 +289,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 																	<input type="hidden" name="currency_code" value="USD" />
 																	<input type="hidden" name="return" value=" " />
 																	<input type="hidden" name="cancel_return" value=" " />
-																	<input type="submit" name="submit" value="Add to cart" class="button" />
-																</fieldset>
+																	<input type="submit" name="addtocart2'. $row['id'] .'" value="Add tocart" class="button" /> ' ;  ?>
+													
+														<?php			if(isset($_POST["addtocart2".$id]) && ($_SESSION['usr_id']!="")){
+																		header('Location: login.php');
+            														}
+														?>
+																	
+													<?php	echo'</fieldset>
 															</form>
 														</div>
 													</div>
