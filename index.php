@@ -201,7 +201,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<figure>
 													<div class="snipcart-item block" >
 														<div class="snipcart-thumb">
-															<a href="products.php"><img style="height:150px" title=" " alt=" " src="'.$row['image'].'" /></a>
+															<a href="single.php?link=' .$id .'"><img style="height:150px" title=" " alt=" " src="'.$row['image'].'" /></a>
 															<p>'.$row['name'].'</p>
 															<h4>Rs-'.$row['price'].'</h4>
 														</div>
@@ -291,8 +291,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 																	<input type="hidden" name="cancel_return" value=" " />
 																	<input type="submit" name="addtocart2'. $row['id'] .'" value="Add tocart" class="button" /> ' ;  ?>
 													
-														<?php			if(isset($_POST["addtocart2".$id]) && ($_SESSION['usr_id']!="")){
+														<?php			if(isset($_POST["addtocart2".$id]) and ($_SESSION['usr_id']=="")){
 																		header('Location: login.php');
+            														}
+																	if(isset($_POST["addtocart2".$id]) and ($_SESSION['usr_id']!="")){
+																		header('Location: contact.php');
             														}
 														?>
 																	

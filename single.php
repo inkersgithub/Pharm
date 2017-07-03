@@ -8,6 +8,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <?php
 session_start();
 include_once 'dbconnect.php';
+
+$id = $_GET['link'];
+$res = mysqli_query($con,"SELECT * FROM products WHERE id =$id");			
+$row = mysqli_fetch_array($res);		
 ?>
 
 <!DOCTYPE html>
@@ -155,22 +159,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 <!-- //breadcrumbs -->
-	<div class="products">
+<?php	
+	
+echo  '<div class="products">
 		<div class="container">
 			<div class="agileinfo_single">
 
 				<div class="col-md-4 agileinfo_single_left">
-					<img style="height:300px;width:280px" id="example" src="images/gu2.jpg" alt=" " class="img-responsive">
+					<img style="height:300px;width:280px" id="example" src="'.$row['image'].'" alt=" " class="img-responsive">
 				</div>
 				<div class="col-md-8 agileinfo_single_right">
-				<h2>KHARAMORRA Khakra - Hariyali</h2>
+				<h2>'.$row['name'].'</h2>
 
 					<div class="w3agile_description">
 						<h4>Description :</h4>
-						<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-							officia deserunt mollit anim id est laborum.Duis aute irure dolor in
-							reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-							pariatur.</p>
+						<p>'.$row['description'].'.</p>
 					</div>
 					<div class="snipcart-item block">
 						<div class="snipcart-thumb agileinfo_single_right_snipcart">
@@ -197,7 +200,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="clearfix"> </div>
 			</div>
 		</div>
-	</div>
+	</div>  ';
+?>
+	
+	
 <!-- new -->
 	<div class="newproducts-w3agile">
 		<div class="container">

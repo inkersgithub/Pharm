@@ -270,12 +270,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="products-right-grid">
 					<div class="products-right-grids">
 						<div class="sorting">
-							<select id="country" onchange="change_country(this.value)" class="frm-field required sect">
-								<option value="null"><i class="fa fa-arrow-right" aria-hidden="true"></i>Default sorting</option>
-								<option value="null"><i class="fa fa-arrow-right" aria-hidden="true"></i>Sort by popularity</option>
-								<option value="null"><i class="fa fa-arrow-right" aria-hidden="true"></i>Sort by average rating</option>
-								<option value="null"><i class="fa fa-arrow-right" aria-hidden="true"></i>Sort by price</option>
-              </select>
+							<select id="country" name="category" class="frm-field required sect">
+								
+								<?php
+
+									$sql = mysqli_query($con, "SELECT * FROM category");
+									$row = mysqli_num_rows($sql);
+									while ($row = mysqli_fetch_array($sql)){
+									echo 	'<option value="'.$row['id'].'"><i class="fa fa-arrow-right" aria-hidden="true"></i>'.$row['cname'].'</option>';
+            						}
+            					?>
+              				</select>
 						</div>
 
 						<div class="clearfix"> </div>
@@ -289,7 +294,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				$i=1;				
 				$res = mysqli_query($con,"SELECT * FROM products");				
 				while ($row = mysqli_fetch_array($res)) {		
-					
+					$id = $row['id'];
 				echo	'<div class="col-md-3 top_brand_left">
 						<div class="hover14 column">
 							<div class="agile_top_brand_left_grid">
@@ -298,7 +303,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<figure>
 										<div class="snipcart-item block" >
 														<div class="snipcart-thumb">
-															<a href="single.php"><img style="height:150px" title=" " alt=" " src="'.$row['image'].'" /></a>
+															<a href="single.php?link=' .$id .'"><img style="height:150px" title=" " alt=" " src="'.$row['image'].'" /></a>
 															<p>'.$row['name'].'</p>
 															<h4>Rs-'.$row['price'].'</h4>
 														</div>
