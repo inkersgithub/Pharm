@@ -12,6 +12,14 @@ include_once 'dbconnect.php';
 $id = $_GET['link'];
 $res = mysqli_query($con,"SELECT * FROM products WHERE id =$id");			
 $row = mysqli_fetch_array($res);		
+
+if (empty($_GET)) {
+    // no data passed by get
+	header("Location: index.php");
+}
+
+
+
 ?>
 
 <!DOCTYPE html>
