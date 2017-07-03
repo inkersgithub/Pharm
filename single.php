@@ -185,7 +185,7 @@ echo  '<div class="products">
 					</div>
 					<div class="snipcart-item block">
 						<div class="snipcart-thumb agileinfo_single_right_snipcart">
-							<h4 class="m-sing">$21.00</h4>
+							<h4 class="m-sing">'.$row['price'].'</h4>
 						</div>
 						<div class="snipcart-details agileinfo_single_right_details">
 							<form action="#" method="post">
