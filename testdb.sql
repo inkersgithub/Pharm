@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 03, 2017 at 04:58 PM
+-- Generation Time: Jul 04, 2017 at 12:09 PM
 -- Server version: 10.1.22-MariaDB
 -- PHP Version: 7.1.4
 
@@ -33,6 +33,15 @@ CREATE TABLE `cart` (
   `userid` int(8) NOT NULL,
   `productid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`id`, `userid`, `productid`) VALUES
+(22, 20, 5),
+(2, 20, 10),
+(1, 20, 15);
 
 -- --------------------------------------------------------
 
@@ -129,8 +138,8 @@ INSERT INTO `users` (`id`, `name`, `address1`, `address2`, `city`, `state`, `pin
 --
 ALTER TABLE `cart`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `userproduct` (`userid`,`productid`),
   ADD KEY `userid` (`userid`,`productid`),
-  ADD KEY `userid_2` (`userid`,`productid`),
   ADD KEY `productid` (`productid`);
 
 --
@@ -165,7 +174,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `category`
 --
