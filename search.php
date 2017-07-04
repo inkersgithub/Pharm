@@ -182,7 +182,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="agile_top_brands_grids">
 	<?php
 				$i=1;
-				$res = mysqli_query($con,"SELECT * FROM products WHERE name LIKE '%$text%'");
+        if(strlen($text<3)){
+          $res = mysqli_query($con,"SELECT * FROM products WHERE name LIKE '$text%'");
+        }
+        else{
+				  $res = mysqli_query($con,"SELECT * FROM products WHERE name LIKE '%$text%'");
+        }
+
+        if(mysqli_num_rows($res) == 0){
+          echo " <h2 align='center'>Your search doesn't match any product</h2> ";
+        }
 				while ($row = mysqli_fetch_array($res)) {
 
 				echo	'<div class="col-md-3 top_brand_left">
