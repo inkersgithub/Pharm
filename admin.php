@@ -134,9 +134,14 @@ input[type=submit]:hover {
 						<br>
 						<label style="    margin-top: 15px;" for="cat">Category</label>
     					<select id="cat" name="category">
-							<option value="default">Default</option>
-							<option value="category2">Category2</option>
-      						<option value="category3">Category3</option>
+								<?php
+
+									$sql = mysqli_query($con, "SELECT * FROM category");
+									$row = mysqli_num_rows($sql);
+									while ($row = mysqli_fetch_array($sql)){
+									echo 	'<option value="'.$row['id'].'"><i class="fa fa-arrow-right" aria-hidden="true"></i>'.$row['cname'].'</option>';
+												}
+								?>
     					</select>
 						<label for="subject">Description</label>
 						<textarea id="subject" name="description" placeholder="Write something.." style="height:200px" required></textarea>
@@ -159,7 +164,7 @@ input[type=submit]:hover {
 					<span style="margin-left:15px"><?php if (isset($cmsg)) { echo $cmsg; } ?></span>
 				   </div>
 				   <div class="row">
-					   
+
 				   </div>
 			   </div>
 		   </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 04, 2017 at 12:09 PM
+-- Generation Time: Jul 04, 2017 at 08:49 PM
 -- Server version: 10.1.22-MariaDB
 -- PHP Version: 7.1.4
 
@@ -101,7 +101,9 @@ INSERT INTO `products` (`id`, `name`, `cname`, `description`, `price`, `image`, 
 (15, 'Med 13', 'category2', 'This is a sample text for testing my site,this site is created and designed by inkers, This is a sample text for testing my site,this site is created and designed by inkers ,This is a sample text for testing my site,this site is created and designed by inkers.', 460, 'uploads/category2/59569920546139.20392221.jpg', 0, 9),
 (16, 'Med 14', 'category2', 'This is a sample text for testing my site,this site is created and designed by inkers, This is a sample text for testing my site,this site is created and designed by inkers ,This is a sample text for testing my site,this site is created and designed by inkers.', 320, 'uploads/category2/595699337d7912.92455085.jpg', 0, 0),
 (19, 'Med 16', 'category3', 'This is a sample text for testing my site,this site is created and designed by inkers, This is a sample text for testing my site,this site is created and designed by inkers ,This is a sample text for testing my site,this site is created and designed by inkers.', 550, 'uploads/category3/5957b0d83d5237.48328481.jpg', 0, 0),
-(26, 'Med 17', 'category3', 'This is a sample text for testing my site,this site is created and designed by inkers, This is a sample text for testing my site,this site is created and designed by inkers ,This is a sample text for testing my site,this site is created and designed by inkers.', 350, 'uploads/category3/5957cac0748dd5.79735880.jpg', 0, 0);
+(26, 'Med 17', 'category3', 'This is a sample text for testing my site,this site is created and designed by inkers, This is a sample text for testing my site,this site is created and designed by inkers ,This is a sample text for testing my site,this site is created and designed by inkers.', 350, 'uploads/category3/5957cac0748dd5.79735880.jpg', 0, 0),
+(27, 'Med 17', 'category3', 'This is a descripton', 201, 'uploads/category3/595bd797f21828.30972592.jpg', 0, 0),
+(28, 'Med 18', 'category2', 'This is a descripton', 205, 'uploads/category2/595bd7b18a62b6.21387345.jpg', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -184,7 +186,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT for table `users`
 --
