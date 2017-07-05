@@ -3,8 +3,24 @@ session_start();
 include_once 'dbconnect.php';
 
 if ( !empty($_POST['searchtext'])){
-    $text = $_POST['searchtext'];
+  $text = $_POST['searchtext'];
+  $_SESSION['searchtext'] = $text;
 }
+else{
+  $text = $_SESSION['searchtext'];
+}
+
+
+
+if(isset($_GET["page"])){
+	 $page  = $_GET["page"];
+}
+else{
+	$page=1;
+}
+$res = mysqli_query($con,"SELECT COUNT(*) AS total FROM products");
+$row = mysqli_fetch_array($res);
+$total_pages = ceil($row["total"] / 16);
 
 ?>
 
@@ -64,7 +80,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</ul>
 			</div>
 			<div class="product_list_header">
-					<form action="#" method="post" class="last">
+					<form action="checkout.php" method="post" class="last">
 						<input type="hidden" name="cmd" value="_cart">
 						<input type="hidden" name="display" value="1">
 						<button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
@@ -83,9 +99,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<h1><a href="index.php">MYSITELOGO</a></h1>
 			</div>
 		<div class="w3l_search">
-			<form action="#" method="post">
-				<input type="search" name="Search" placeholder="Search for a Product..." required="">
-				<button type="submit" class="btn btn-default search" aria-label="Left Align">
+      <form action="search.php" method="post">
+        <?php $searchtext = NULL; ?>
+        <input type="search" name="searchtext" id="searchtext" placeholder="Search for a Product..." required="" value="<?php echo $searchtext; ?>">
+				<button type="submit" name="search" class="btn btn-default search" aria-label="Left Align">
 					<i class="fa fa-search" aria-hidden="true"> </i>
 				</button>
 				<div class="clearfix"></div>
@@ -182,58 +199,58 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="agile_top_brands_grids">
 	<?php
 				$i=1;
-        if(strlen($text<3)){
-          $res = mysqli_query($con,"SELECT * FROM products WHERE name LIKE '$text%'");
-        }
-        else{
-				  $res = mysqli_query($con,"SELECT * FROM products WHERE name LIKE '%$text%'");
-        }
+        $start = ($page-1) * 16;
+        if($text!=NULL){
+          if(strlen($text<3)){
+            $res = mysqli_query($con,"SELECT * FROM products WHERE name LIKE '$text%' LIMIT $start,16");
+          }
+          else{
+				        $res = mysqli_query($con,"SELECT * FROM products WHERE name LIKE '%$text%' LIMIT $start,16");
+          }
 
-        if(mysqli_num_rows($res) == 0){
-          echo " <h2 align='center'>Your search doesn't match any product</h2> ";
-        }
-				while ($row = mysqli_fetch_array($res)) {
+          if(mysqli_num_rows($res) == 0){
+            echo " <h2 align='center'>Your search doesn't match any product</h2> ";
+          }
+				      while ($row = mysqli_fetch_array($res)) {
 
-				echo	'<div class="col-md-3 top_brand_left">
-						<div class="hover14 column">
-							<div class="agile_top_brand_left_grid">
-
-								<div class="agile_top_brand_left_grid1">
-									<figure>
-										<div class="snipcart-item block" >
-														<div class="snipcart-thumb">
-															<a href="single.php"><img style="height:150px" title=" " alt=" " src="'.$row['image'].'" /></a>
-															<p>'.$row['name'].'</p>
-															<h4>Rs-'.$row['price'].'</h4>
-														</div>
-											<div class="snipcart-details top_brand_home_details">
-												<form action="" method="post">
-													<fieldset>
-														<input type="hidden" name="productid" value="'.$row['id'].'">
-														<input type="hidden" name="add" value="1">
-														<input type="hidden" name="business" value=" ">
-														<input type="hidden" name="item_name" value="'.$row['name'].'">
-														<input type="hidden" name="amount" value="'.$row['price'].'">
-														<input type="hidden" name="discount_amount" value="0.00">
-														<input type="hidden" name="currency_code" value="INR">
-														<input type="hidden" name="return" value=" ">
-														<input type="hidden" name="cancel_return" value=" ">';
-					if(isset($_SESSION['usr_id'])){
-												echo  '<input type="submit" name="submit" value="Add to cart" class="button">';
-					}
-											echo	'</fieldset>
-												</form>';
-					if(!isset($_SESSION['usr_id'])){
-
-											echo '<input type="submit" name="submit" value="Add to cart" class="my-button">';
-					}
-									echo	'</div>
-										</div>
-									</figure>
-								</div>
-							</div>
-						</div>
-					</div>';
+				            echo '<div class="col-md-3 top_brand_left">
+						                <div class="hover14 column">
+							                 <div class="agile_top_brand_left_grid">
+                                  <div class="agile_top_brand_left_grid1">
+									                   <figure>
+										                   <div class="snipcart-item block" >
+														             <div class="snipcart-thumb">
+															             <a href="single.php"><img style="height:150px" title=" " alt=" " src="'.$row['image'].'" /></a>
+														               <p>'.$row['name'].'</p>
+															             <h4>₹'.$row['price'].'</h4>
+														             </div>
+											                   <div class="snipcart-details top_brand_home_details">
+												                   <form action="" method="post">
+													                   <fieldset>
+														                 <input type="hidden" name="productid" value="'.$row['id'].'">
+														                 <input type="hidden" name="add" value="1">
+														                 <input type="hidden" name="business" value=" ">
+														                 <input type="hidden" name="item_name" value="'.$row['name'].'">
+														                 <input type="hidden" name="amount" value="'.$row['price'].'">
+												                     <input type="hidden" name="discount_amount" value="0.00">
+														                 <input type="hidden" name="currency_code" value="INR">
+														                 <input type="hidden" name="return" value=" ">
+														                 <input type="hidden" name="cancel_return" value=" ">';
+					                                   if(isset($_SESSION['usr_id'])){
+												                       echo  '<input type="submit" name="submit" value="Add to cart" class="button">';
+					                                   }
+											                       echo	'</fieldset>
+												                  </form>';
+					                                if(!isset($_SESSION['usr_id'])){
+                                            echo '<input type="submit" name="submit" value="Add to cart" class="button">';
+					                                }
+									                echo	'</div>
+										                   </div>
+									                    </figure>
+								                    </div>
+							                    </div>
+						                    </div>
+					                    </div>';
 
 					if($i%4==0){
 					echo   '<div class="clearfix"> </div>
@@ -243,6 +260,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					}
 					$i++;
 			}
+    }
+    else {
+      echo " <h2 align='center'>Your have not entered any keyword to search</h2> ";
+    }
 		?>
 
 
@@ -256,7 +277,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				<nav class="numbering">
 					<ul class="pagination paging">
-						<li>
+						<!-- <li>
 							<a href="#" aria-label="Previous">
 								<span aria-hidden="true">&laquo;</span>
 							</a>
@@ -269,7 +290,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li>
 							<a href="#" aria-label="Next">
 							<span aria-hidden="true">&raquo;</span>
-							</a>
+							</a> -->
+
+              <?php
+              if(mysqli_num_rows($res) != 0)
+							for ($i=1; $i<=$total_pages; $i++) {  // print links for all pages
+								if($i==$page){
+									echo " <li class='active'><a href='search.php?page=".$i."'>".$i."<span class='sr-only'>(current)</span></a></li> ";
+								}
+								else{
+									echo "<li><a href='search.php?page=".$i."'";
+									echo ">".$i."</a></li> ";
+								}
+							};
+							?>
+
 						</li>
 					</ul>
 				</nav>

@@ -10,8 +10,8 @@ session_start();
 include_once 'dbconnect.php';
 
 $id = $_GET['link'];
-$res = mysqli_query($con,"SELECT * FROM products WHERE id =$id");			
-$row = mysqli_fetch_array($res);		
+$res = mysqli_query($con,"SELECT * FROM products WHERE id =$id");
+$row = mysqli_fetch_array($res);
 
 if (empty($_GET)) {
     // no data passed by get
@@ -76,7 +76,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</ul>
 			</div>
 			<div class="product_list_header">
-					<form action="#" method="post" class="last">
+					<form action="checkout.php" method="post" class="last">
 						<input type="hidden" name="cmd" value="_cart">
 						<input type="hidden" name="display" value="1">
 						<button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
@@ -95,9 +95,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<h1><a href="index.php">MySiteLogo</a></h1>
 			</div>
 		<div class="w3l_search">
-			<form action="#" method="post">
-				<input type="search" name="Search" placeholder="Search for a Product..." required="">
-				<button type="submit" class="btn btn-default search" aria-label="Left Align">
+			<form action="search.php" method="post">
+        <?php $searchtext = NULL; ?>
+        <input type="search" name="searchtext" id="searchtext" placeholder="Search for a Product..." required="" value="<?php echo $searchtext; ?>">
+				<button type="submit" name="search" class="btn btn-default search" aria-label="Left Align">
 					<i class="fa fa-search" aria-hidden="true"> </i>
 				</button>
 				<div class="clearfix"></div>
@@ -167,8 +168,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 <!-- //breadcrumbs -->
-<?php	
-	
+<?php
+
 echo  '<div class="products">
 		<div class="container">
 			<div class="agileinfo_single">
@@ -185,7 +186,7 @@ echo  '<div class="products">
 					</div>
 					<div class="snipcart-item block">
 						<div class="snipcart-thumb agileinfo_single_right_snipcart">
-							<h4 class="m-sing">'.$row['price'].'</h4>
+							<h4 class="m-sing">'.'₹'.$row['price'].'</h4>
 						</div>
 						<div class="snipcart-details agileinfo_single_right_details">
 							<form action="#" method="post">
@@ -210,8 +211,8 @@ echo  '<div class="products">
 		</div>
 	</div>  ';
 ?>
-	
-	
+
+
 <!-- new -->
 	<div class="newproducts-w3agile">
 		<div class="container">
@@ -448,7 +449,7 @@ echo  '<div class="products">
 		</div>
 
 	</div>
-	
+
 <!-- //footer -->
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>

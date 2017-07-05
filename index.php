@@ -9,6 +9,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 ob_start();
 session_start();
 include_once 'dbconnect.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -66,7 +67,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</ul>
 			</div>
 			<div class="product_list_header">
-					<form action="#" method="post" class="last">
+					<form action="checkout.php" method="post" class="last">
 						<input type="hidden" name="cmd" value="_cart">
 						<input type="hidden" name="display" value="1">
 						<button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
@@ -85,9 +86,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<h1><a href="index.php">MySiteLogo</a></h1>
 			</div>
 		<div class="w3l_search">
-			<form action="#" method="post">
-				<input type="search" name="Search" placeholder="Search for a Product..." required="">
-				<button type="submit" class="btn btn-default search" aria-label="Left Align">
+			<form action="search.php" method="post">
+        <?php $searchtext = NULL; ?>
+        <input type="search" name="searchtext" id="searchtext" placeholder="Search for a Product..." required="" value="<?php echo $searchtext; ?>">
+				<button type="submit" name="search" class="btn btn-default search" aria-label="Left Align">
 					<i class="fa fa-search" aria-hidden="true"> </i>
 				</button>
 				<div class="clearfix"></div>
@@ -174,9 +176,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- //top-header and slider -->
 	<!-- top-brands -->
 	<div class="top-brands">
-		<div class="container" style="margin-top: -50px;">
+		<div class="container" style="margin-top: -100px;">
 <!--		<h2>Top selling offers</h2>-->
 			<div class="grid_3 grid_5">
+
+
+
+
 				<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
 					<ul id="myTab" class="nav nav-tabs" role="tablist">
 						<li role="presentation" class="active"><a href="#expeditions" id="expeditions-tab" role="tab" data-toggle="tab" aria-controls="expeditions" aria-expanded="true">Top Selling</a></li>
@@ -189,11 +195,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<p class="w3l-ad">We've pulled together all our advertised offers into one place, so you won't miss out on a great deal.</p>
 							</div>
 							<div class="agile_top_brands_grids">
-		<?php
-				$i=1;				
-				$res = mysqli_query($con,"SELECT * FROM products ORDER BY ocount DESC LIMIT 6");				
-				while ($row = mysqli_fetch_array($res)) {				
-							$id = $row['id'];		
+
+
+
+
+
+						<?php	if(isset($_SESSION['usr_id'])){
+								echo '<input type="hidden" id="userid" name="userid" value="'. $_SESSION['usr_id'] .'" />    ';
+								}
+						?>
+			<?php
+				$i=1;
+				$res = mysqli_query($con,"SELECT * FROM products ORDER BY ocount DESC LIMIT 6");
+				while ($row = mysqli_fetch_array($res)) {
+							$id = $row['id'];
 							echo '<div class="col-md-4 top_brand_left">
 									<div class="hover14 column">
 										<div class="agile_top_brand_left_grid">
@@ -203,7 +218,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 														<div class="snipcart-thumb">
 															<a href="single.php?link=' .$id .'"><img style="height:150px" title=" " alt=" " src="'.$row['image'].'" /></a>
 															<p>'.$row['name'].'</p>
-															<h4>Rs-'.$row['price'].'</h4>
+															<h4>₹'.$row['price'].'</h4>
 														</div>
 														<div class="snipcart-details top_brand_home_details">
 													<form action"#"  method="post">
@@ -216,19 +231,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 																	<input type="hidden" name="discount_amount" value="1.00" />
 																	<input type="hidden" name="currency_code" value="USD" />
 																	<input type="hidden" name="return" value=" " />
-																	<input type="hidden" name="cancel_return" value=" " />
-																	<input type="submit" name="addtocart1'. $row['id'] .'" value="Add tocart" class="button" /> ' ;  ?>
-													
+																	<input type="hidden" id="name" name="id" value="ADD TO CART" />    ';   ?>
+																<?php
+																		if(isset($_SESSION['usr_id'])){
+
+																	echo  '	<input type="button" class="button" id="'. $row['id'] .'" onclick="SubmitFormData(this);" value="ADD TO CART" />' ; } ?>
+
+
+
+															<?php
+																		if(!isset($_SESSION['usr_id'])){
+
+																	echo  '	<input type="submit" name="addtocart1'. $row['id'] .'" value="Add tocart" class="button" /> ' ; } ?>
+
 														<?php			if(isset($_POST["addtocart1".$id]) and ($_SESSION['usr_id']=="")){
 																		header('Location: login.php');
             														}
-																	if(isset($_POST["addtocart1".$id]) and ($_SESSION['usr_id']!="")){
-																		header('Location: contact.php');
-            														}
 														?>
-																	
+
 													<?php	echo'</fieldset>
 															</form>
+															<div id="result'. $row['id'] .'">
+   												<!-- All data will display here  -->
+   														</div>
+
 														</div>
 													</div>
 												</figure>
@@ -236,24 +262,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										</div>
 									</div>
 								</div> '      ;
-		
+
 					if($i==3){
 						echo '<div class="clearfix"> </div>
 							</div>
 							<div class="agile_top_brands_grids">';
-					}	
+					}
 					$i++;
-								
+
 				}
-								
-								
+
+
 		?>
-								
-								
-								
-								
-								
-								
+
+
+
+
+
+
 				 		<div class="clearfix"> </div>
 					</div>
 				</div>
@@ -263,12 +289,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<p class="w3l-ad">We've pulled together all our advertised offers into one place, so you won't miss out on a great deal.</p>
 							</div>
 							<div class="agile_top_brands_grids">
-								
+
 								<?php
-				$i=1;				
-				$res = mysqli_query($con,"SELECT * FROM products ORDER BY ocount DESC LIMIT 6");				
-				while ($row = mysqli_fetch_array($res)) {				
-							$id = $row['id'];	
+				$i=1;
+				$res = mysqli_query($con,"SELECT * FROM products ORDER BY ocount DESC LIMIT 6");
+				while ($row = mysqli_fetch_array($res)) {
+							$id = $row['id'];
 							echo '<div class="col-md-4 top_brand_left">
 									<div class="hover14 column">
 										<div class="agile_top_brand_left_grid">
@@ -276,12 +302,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<figure>
 													<div class="snipcart-item block" >
 														<div class="snipcart-thumb">
-															<a href="products.php"><img style="height:150px" title=" " alt=" " src="'.$row['image'].'" /></a>
+															<a href="single.php?link=' .$id .'"><img style="height:150px" title=" " alt=" " src="'.$row['image'].'" /></a>
 															<p>'.$row['name'].'</p>
-															<h4>Rs-'.$row['price'].'</h4>
+															<h4>₹'.$row['price'].'</h4>
 														</div>
-														<div class="snipcart-details top_brand_home_details"> 
-														<form action"#"  method="post">
+														<div class="snipcart-details top_brand_home_details">
+													<form action"#"  method="post">
 													<fieldset>
 																	<input type="hidden" name="cmd" value="_cart" />
 																	<input type="hidden" name="add" value="1" />
@@ -291,19 +317,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 																	<input type="hidden" name="discount_amount" value="1.00" />
 																	<input type="hidden" name="currency_code" value="USD" />
 																	<input type="hidden" name="return" value=" " />
-																	<input type="hidden" name="cancel_return" value=" " />
-																	<input type="submit" name="addtocart2'. $row['id'] .'" value="Add tocart" class="button" /> ' ;  ?>
-													
+																	<input type="hidden" id="name" name="id" value="ADD TO CART" />    ';   ?>
+																<?php
+																		if(isset($_SESSION['usr_id'])){
+
+																	echo  '	<input type="button" class="button" id="'. $row['id'] .'" onclick="SubmitFormData(this);" value="ADD To CART" />' ; } ?>
+
+
+
+															<?php
+																		if(!isset($_SESSION['usr_id'])){
+
+																	echo  '	<input type="submit" name="addtocart2'. $row['id'] .'" value="ADD TO CART" class="button" /> ' ; } ?>
+
 														<?php			if(isset($_POST["addtocart2".$id]) and ($_SESSION['usr_id']=="")){
 																		header('Location: login.php');
             														}
-																	if(isset($_POST["addtocart2".$id]) and ($_SESSION['usr_id']!="")){
-																		header('Location: contact.php');
-            														}
 														?>
-																	
+
 													<?php	echo'</fieldset>
 															</form>
+															<div id="results'. $row['id'] .'">
+   <!-- All data will display here  -->
+   </div>
+
 														</div>
 													</div>
 												</figure>
@@ -311,19 +348,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										</div>
 									</div>
 								</div> '      ;
-		
+
 					if($i==3){
 						echo '<div class="clearfix"> </div>
 							</div>
 							<div class="agile_top_brands_grids">';
-					}	
+					}
 					$i++;
-								
+
 				}
-								
-								
+
+
 		?>
-								
+
 								<div class="clearfix"> </div>
 							</div>
 						</div>
@@ -333,7 +370,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 <!-- //top-brands -->
- 
+
 <!--banner-bottom-->
 				<div class="ban-bottom-w3l">
 					<div class="container">
@@ -717,7 +754,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 
 	</div>
-	
+
 <!-- //footer -->
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
@@ -741,16 +778,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</script>
 <!-- //here ends scrolling icon -->
 <script src="js/minicart.min.js"></script>
-<script>
-	// Mini Cart
-	paypal.minicart.render({
-		action: '#'
-	});
 
-	if (~window.location.search.indexOf('reset=true')) {
-		paypal.minicart.reset();
-	}
-</script>
 <!-- main slider-banner -->
 <script src="js/skdslider.min.js"></script>
 <link href="css/skdslider.css" rel="stylesheet">
@@ -764,6 +792,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 		});
 </script>
+
+
+<script>
+	function SubmitFormData(elem) {
+    var name = elem.id;
+	var email = $("#userid").val();
+    $.post("submit.php", { name: name, email: email },
+    function(data) {
+	 $("#result"+name).html(data);
+	 $("#results"+name).html(data);
+	 $('#myForm')[0].reset();
+    });
+}
+</script>
+
+
+
+
 <!-- //main slider-banner -->
 </body>
 </html>

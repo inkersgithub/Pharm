@@ -11,6 +11,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <?php
 session_start();
 include_once 'dbconnect.php';
+
+
+if(isset($_GET["page"])){
+	 $page  = $_GET["page"];
+}
+else{
+	$page=1;
+}
+$res = mysqli_query($con,"SELECT COUNT(*) AS total FROM products");
+$row = mysqli_fetch_array($res);
+$total_pages = ceil($row["total"] / 16);
+
 ?>
 
 
@@ -19,7 +31,7 @@ include_once 'dbconnect.php';
 <!DOCTYPE html>
 <html>
 <head>
-<title>Gourmet|MySite</title>
+<title>Products|MySite</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -40,14 +52,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
-	
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
-	
-	
+
+
+
 <?php
-	
+
 	if (isset($_POST['login'])) {
 	$email = mysqli_real_escape_string($con, $_POST['email']);
 	$password = mysqli_real_escape_string($con, $_POST['password']);
@@ -69,15 +81,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 }
 
 
-	
-?>	
-	
-	
-	
 
-	
-	
-	
+?>
+
+
 <script type="text/javascript" src="js/move-top.js"></script>
 <script type="text/javascript" src="js/easing.js"></script>
 <script type="text/javascript">
@@ -86,7 +93,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			event.preventDefault();
 			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
 		});
-	});	
+	});
 </script>
 <!-- start-smoth-scrolling -->
 </head>
@@ -95,7 +102,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+    padding-top: 100px<!-- <li><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#">4</a></li>
+						<li><a href="#">5</a></li>
+						<li> -->; /* Location of the box */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -141,11 +152,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     width: 100%;
     text-transform: uppercase;
     padding: .5em 0;
-    outline: none;		
-}	
-	
-	
-</style>	
+    outline: none;
+}
+
+
+</style>
 
 <body>
 <!-- header -->
@@ -166,7 +177,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</ul>
 			</div>
 			<div class="product_list_header">
-					<form action="#" method="post" class="last">
+					<form action="checkout.php" method="post" class="last">
 						<input type="hidden" name="cmd" value="_cart">
 						<input type="hidden" name="display" value="1">
 						<button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
@@ -190,9 +201,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<h1><a href="index.php">MySiteLogo</a></h1>
 			</div>
 		<div class="w3l_search">
-			<form action="#" method="post">
-				<input type="search" name="Search" placeholder="Search for a Product..." required="">
-				<button type="submit" class="btn btn-default search" aria-label="Left Align">
+			<form action="search.php" method="post">
+        <?php $searchtext = NULL; ?>
+        <input type="search" name="searchtext" id="searchtext" placeholder="Search for a Product..." required="" value="<?php echo $searchtext; ?>">
+				<button type="submit" name="search" class="btn btn-default search" aria-label="Left Align">
 					<i class="fa fa-search" aria-hidden="true"> </i>
 				</button>
 				<div class="clearfix"></div>
@@ -257,7 +269,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
 				<li><a href="index.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-				<li class="active">Gourmet</li>
+				<li class="active">Products</li>
 			</ol>
 		</div>
 	</div>
@@ -271,7 +283,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="products-right-grids">
 						<div class="sorting">
 							<select id="country" name="category" class="frm-field required sect">
-								
+
 								<?php
 
 									$sql = mysqli_query($con, "SELECT * FROM category");
@@ -287,25 +299,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 				</div>
             </div>
-				
-			
+
+
 				<div class="agile_top_brands_grids">
 	<?php
-				$i=1;				
-				$res = mysqli_query($con,"SELECT * FROM products");				
-				while ($row = mysqli_fetch_array($res)) {		
+				$i=1;
+				$start = ($page-1) * 16;
+				$res = mysqli_query($con,"SELECT * FROM products LIMIT $start,16");
+				while ($row = mysqli_fetch_array($res)) {
 					$id = $row['id'];
 				echo	'<div class="col-md-3 top_brand_left">
 						<div class="hover14 column">
 							<div class="agile_top_brand_left_grid">
-								
+
 								<div class="agile_top_brand_left_grid1">
 									<figure>
 										<div class="snipcart-item block" >
 														<div class="snipcart-thumb">
 															<a href="single.php?link=' .$id .'"><img style="height:150px" title=" " alt=" " src="'.$row['image'].'" /></a>
 															<p>'.$row['name'].'</p>
-															<h4>Rs-'.$row['price'].'</h4>
+															<h4>₹'.$row['price'].'</h4>
 														</div>
 											<div class="snipcart-details top_brand_home_details">
 												<form action="" method="post">
@@ -324,8 +337,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					}
 											echo	'</fieldset>
 												</form>';
-					if(!isset($_SESSION['usr_id'])){   
-						
+					if(!isset($_SESSION['usr_id'])){
+
 											echo '<button type="button" Style="font-size: 14px;color: #fff;background: #3399cc;text-decoration: none;position: relative;border: none; border-radius: 0;width: 100%;text-transform: uppercase;padding: .5em 0;outline: none;	" data-toggle="modal" data-target="#myModal">ADD TO CART</button>';
 					}
 									echo	'</div>
@@ -335,42 +348,43 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 						</div>
 					</div>';
-					
+
 					if($i%4==0){
 					echo   '<div class="clearfix"> </div>
 							</div>
 							<div class="agile_top_brands_grids">';
-			
-					}		
+
+					}
 					$i++;
 			}
-		?>	
-			
-			
-			
-			
-			
+		?>
+
+
+
+
+
 				<div class="agile_top_brands_grids">
-				
-				
+
+
 				<div class="clearfix"> </div>
 				</div>
 				<nav class="numbering">
 					<ul class="pagination paging">
-						<li>
-							<a href="#" aria-label="Previous">
-								<span aria-hidden="true">&laquo;</span>
-							</a>
-						</li>
-						<li class="active"><a href="#">1<span class="sr-only">(current)</span></a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-						<li>
-							<a href="#" aria-label="Next">
-							<span aria-hidden="true">&raquo;</span>
-							</a>
+
+
+							<?php
+							for ($i=1; $i<=$total_pages; $i++) {  // print links for all pages
+								if($i==$page){
+									echo " <li class='active'><a href='products.php?page=".$i."'>".$i."<span class='sr-only'>(current)</span></a></li> ";
+								}
+								else{
+									echo "<li><a href='products.php?page=".$i."'";
+									echo ">".$i."</a></li> ";
+								}
+							};
+							?>
+
+
 						</li>
 					</ul>
 				</nav>
@@ -432,13 +446,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	</div>
 
-	
-	
+
+
 <div id="myModal" class="modal">
 
   <!-- Modal content -->
   <div class="modal-content">
-    
+
 	  <button type="button" class="close" data-dismiss="modal">&times;</button>
     <div style="padding: 1em 0;" class="login">
 		<div class="container">
@@ -461,21 +475,4 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
   </div>
 
-</div>	
-	
-	
-
-	
-
-	  
-
-
-
-	
-	
-	
-	
-	
-
-</body>
-</html>
+</div>
