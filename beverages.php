@@ -180,12 +180,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				
 				
 				
-				 
-				
-				
-				
-				
-				
 				
 				<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
 					<ul id="myTab" class="nav nav-tabs" role="tablist">
@@ -199,7 +193,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<p class="w3l-ad">We've pulled together all our advertised offers into one place, so you won't miss out on a great deal.</p>
 							</div>
 							<div class="agile_top_brands_grids">
-		<?php
+								
+							
+		
+								
+								
+						<?php	if(isset($_SESSION['usr_id'])){
+								echo '<input type="hidden" id="userid" name="userid" value="'. $_SESSION['usr_id'] .'" />    ';
+								}
+						?>								
+			<?php
 				$i=1;				
 				$res = mysqli_query($con,"SELECT * FROM products ORDER BY ocount DESC LIMIT 6");				
 				while ($row = mysqli_fetch_array($res)) {				
@@ -226,16 +229,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 																	<input type="hidden" name="discount_amount" value="1.00" />
 																	<input type="hidden" name="currency_code" value="USD" />
 																	<input type="hidden" name="return" value=" " />
-																	<input type="hidden" id="name" name="id" value="'. $row['id'] .'" />    ';   ?>
+																	<input type="hidden" id="name" name="id" value="ADD TO CART" />    ';   ?>
 																<?php
-																		if(($_SESSION['usr_id']!="")){
+																		if(isset($_SESSION['usr_id'])){
 									
-																	echo  '	<input type="button" id="'. $row['id'] .'" onclick="SubmitFormData(this);" value="'. $row['id'] .'" />' ; } ?>
+																	echo  '	<input type="button" class="button" id="'. $row['id'] .'" onclick="SubmitFormData(this);" value="ADD TO CART" />' ; } ?>
 								
 								
 								
 															<?php
-																		if(($_SESSION['usr_id']=="")){
+																		if(!isset($_SESSION['usr_id'])){
 									
 																	echo  '	<input type="submit" name="addtocart1'. $row['id'] .'" value="Add tocart" class="button" /> ' ; } ?>
 													
@@ -247,8 +250,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 													<?php	echo'</fieldset>
 															</form>
 															<div id="result'. $row['id'] .'">
-   <!-- All data will display here  -->
-   </div>
+   												<!-- All data will display here  -->
+   														</div>
 									
 														</div>
 													</div>
@@ -297,12 +300,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<figure>
 													<div class="snipcart-item block" >
 														<div class="snipcart-thumb">
-															<a href="products.php"><img style="height:150px" title=" " alt=" " src="'.$row['image'].'" /></a>
+															<a href="single.php?link=' .$id .'"><img style="height:150px" title=" " alt=" " src="'.$row['image'].'" /></a>
 															<p>'.$row['name'].'</p>
 															<h4>Rs-'.$row['price'].'</h4>
 														</div>
-														<div class="snipcart-details top_brand_home_details"> 
-														<form action"#"  method="post">
+														<div class="snipcart-details top_brand_home_details">
+													<form action"#"  method="post">
 													<fieldset>
 																	<input type="hidden" name="cmd" value="_cart" />
 																	<input type="hidden" name="add" value="1" />
@@ -312,19 +315,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 																	<input type="hidden" name="discount_amount" value="1.00" />
 																	<input type="hidden" name="currency_code" value="USD" />
 																	<input type="hidden" name="return" value=" " />
-																	<input type="hidden" name="cancel_return" value=" " />
-																	<input type="submit" name="addtocart2'. $row['id'] .'" value="Add tocart" class="button" /> ' ;  ?>
+																	<input type="hidden" id="name" name="id" value="ADD TO CART" />    ';   ?>
+																<?php
+																		if(isset($_SESSION['usr_id'])){
+									
+																	echo  '	<input type="button" class="button" id="'. $row['id'] .'" onclick="SubmitFormData(this);" value="ADD To CART" />' ; } ?>
+								
+								
+								
+															<?php
+																		if(!isset($_SESSION['usr_id'])){
+									
+																	echo  '	<input type="submit" name="addtocart2'. $row['id'] .'" value="ADD TO CART" class="button" /> ' ; } ?>
 													
 														<?php			if(isset($_POST["addtocart2".$id]) and ($_SESSION['usr_id']=="")){
 																		header('Location: login.php');
-            														}
-																	if(isset($_POST["addtocart2".$id]) and ($_SESSION['usr_id']!="")){
-																		header('Location: contact.php');
             														}
 														?>
 																	
 													<?php	echo'</fieldset>
 															</form>
+															<div id="results'. $row['id'] .'">
+   <!-- All data will display here  -->
+   </div>
+									
 														</div>
 													</div>
 												</figure>
@@ -781,10 +795,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script>
 	function SubmitFormData(elem) {
     var name = elem.id;
-	var results = elem.value;
-    $.post("submit.php", { name: name },
-    function(data) {
+	var email = $("#userid").val();
+    $.post("submit.php", { name: name, email: email },
+    function(data) {	
 	 $("#result"+name).html(data);
+	 $("#results"+name).html(data);
 	 $('#myForm')[0].reset();
     });
 }

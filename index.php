@@ -174,7 +174,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- //top-header and slider -->
 	<!-- top-brands -->
 	<div class="top-brands">
-		<div class="container" style="margin-top: -100px;">
+		<div class="container" style="margin-top: -50px;">
 <!--		<h2>Top selling offers</h2>-->
 			<div class="grid_3 grid_5">
 				<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">

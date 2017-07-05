@@ -173,123 +173,101 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<th>Remove</th>
 						</tr>
 					</thead>
-					<tr class="rem1">
-						<td class="invert">1</td>
-						<td class="invert-image"><a href="single.html"><img src="images/1.png" alt=" " class="img-responsive" /></a></td>
+					<?php
+					$sql = mysqli_query($con, "SELECT productid FROM cart");
+					$row = mysqli_num_rows($sql);
+					while ($row = mysqli_fetch_array($sql)){
+					$sn=0;
+					$sn=$sn+1;
+					$pid=$row['productid'];	
+					
+					
+					$sql2 = mysqli_query($con, "SELECT * FROM products where id = '" . $pid. "'") or die(mysql_error());	
+					$result = mysqli_num_rows($sql2);
+					$result = mysqli_fetch_array($sql2);
+									
+						
+			echo    '<tr id="rem'.$row['productid'].'" class="rem1">
+						<td class="invert">'.$row['productid'].'</td>
+						<td class="invert-image"><a href="single.html"><img src="'.$result['image'].'" alt=" " class="img-responsive" /></a></td>
 						<td class="invert">
 							 <div class="quantity">
 								<div class="quantity-select">
-									<div class="entry value-minus">&nbsp;</div>
+									<button id="minus'.$row['productid'].'" value="plus'.$row['productid'].'" >-</button>
 									<div class="entry value"><span>1</span></div>
-									<div class="entry value-plus active">&nbsp;</div>
+									<button id="plus'.$row['productid'].'" value="minus'.$row['productid'].'" >+</button>
 								</div>
 							</div>
 						</td>
-						<td class="invert">Tata Salt</td>
-
-						<td class="invert">$290.00</td>
+						<td class="invert">'.$result['name'].'</td>
+						<p id="demo'.$row['productid'].'"></p>
+						<td class="invert">'.$result['price'].'</td>
 						<td class="invert">
 							<div class="rem">
-								<div class="close1"> </div>
-							</div>
-							<script>$(document).ready(function(c) {
-								$('.close1').on('click', function(c){
-									$('.rem1').fadeOut('slow', function(c){
-										$('.rem1').remove();
-									});
-									});
-								});
-						   </script>
-						</td>
-					</tr>
-					<tr class="rem2">
-						<td class="invert">2</td>
-						<td class="invert-image"><a href="single.html"><img src="images/2.png" alt=" " class="img-responsive" /></a></td>
-						<td class="invert">
-							 <div class="quantity">
-								<div class="quantity-select">
-									<div class="entry value-minus">&nbsp;</div>
-									<div class="entry value"><span>1</span></div>
-									<div class="entry value-plus active">&nbsp;</div>
-								</div>
-							</div>
-						</td>
-						<td class="invert">Fortune oil</td>
-
-						<td class="invert">$250.00</td>
-						<td class="invert">
-							<div class="rem">
-								<div class="close2"> </div>
-							</div>
-							<script>$(document).ready(function(c) {
-								$('.close2').on('click', function(c){
-									$('.rem2').fadeOut('slow', function(c){
-										$('.rem2').remove();
-									});
+								<button id="button'.$row['productid'].'" value="button'.$row['productid'].'" >X</button>
+								<script>
+								$("#button'.$row['productid'].'").on("click", function() {	
+										var pid = document.getElementById("button'.$row['productid'].'").value;
+										
+										$("#rem'.$row['productid'].'").fadeOut("slow", function(c){
+										$("#rem'.$row['productid'].'").remove();
+										$("#rem2'.$row['productid'].'").remove();
+										$.post("cartremove.php", { pid: pid },
+										function(data){
+										$("#demo'.$row['productid'].'").html(data);
+										});
 									});
 								});
-						   </script>
-						</td>
-					</tr>
-					<tr class="rem3">
-						<td class="invert">3</td>
-						<td class="invert-image"><a href="single.html"><img src="images/3.png" alt=" " class="img-responsive" /></a></td>
-						<td class="invert">
-							 <div class="quantity">
-								<div class="quantity-select">
-									<div class="entry value-minus">&nbsp;</div>
-									<div class="entry value"><span>1</span></div>
-									<div class="entry value-plus active">&nbsp;</div>
-								</div>
+								</script>
 							</div>
 						</td>
-						<td class="invert">Aashirvaad atta</td>
+					</tr>';
+					
+					$sn+1;
+					
+					}
+					?>
+					
 
-						<td class="invert">$15.00</td>
-						<td class="invert">
-							<div class="rem">
-								<div class="close3"> </div>
-							</div>
-							<script>$(document).ready(function(c) {
-								$('.close3').on('click', function(c){
-									$('.rem3').fadeOut('slow', function(c){
-										$('.rem3').remove();
-									});
-									});
-								});
-						   </script>
-						</td>
-					</tr>
-								<!--quantity-->
-									<script>
-									$('.value-plus').on('click', function(){
-										var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10)+1;
-										divUpd.text(newVal);
-									});
 
-									$('.value-minus').on('click', function(){
-										var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10)-1;
-										if(newVal>=1) divUpd.text(newVal);
-									});
-									</script>
-								<!--quantity-->
+					
+
 				</table>
 			</div>
 			<div class="checkout-left">
 				<div class="checkout-left-basket">
 					<h4>Continue to basket</h4>
 					<ul>
-						<li>Product1 <i>-</i> <span>$15.00 </span></li>
-						<li>Product2 <i>-</i> <span>$25.00 </span></li>
-						<li>Product3 <i>-</i> <span>$29.00 </span></li>
-						<li>Total Service Charges <i>-</i> <span>$15.00</span></li>
-						<li>Total <i>-</i> <span>$84.00</span></li>
+						
+						
+						<?php
+						
+						$sql = mysqli_query($con, "SELECT productid FROM cart");
+						$row = mysqli_num_rows($sql);
+						while ($row = mysqli_fetch_array($sql)){
+						$pid=$row['productid'];
+						$sql2 = mysqli_query($con, "SELECT * FROM products where id = '" . $pid. "'") or die(mysql_error());	
+						$result = mysqli_num_rows($sql2);
+						$result = mysqli_fetch_array($sql2);	
+						
+						
+					    echo	'<li id="rem2'.$row['productid'].'">'.$result['name'].'<i>-</i> <span>Rs -'.$result['price'].'</span></li>';
+							
+						}   ?>
+						
+						<li id="" class="checkout-total" style="font-size: 1em;color: #212121;">Total <i>-</i> <span>$84.00</span></li>
 					</ul>
 				</div>
-				<div class="checkout-right-basket">
+				
+				<div class="clearfix"> </div>
+			</div>
+			<div>
+				<div style="float:left" class="checkout-right-basket">
 					<a href="single.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Continue Shopping</a>
 				</div>
-				<div class="clearfix"> </div>
+				<div class="checkout-right-basket">
+					<a href="single.html"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>Confirm & Check Out</a>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -367,17 +345,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			});
 	</script>
 <!-- //here ends scrolling icon -->
-<script src="js/minicart.min.js"></script>
-<script>
-	// Mini Cart
-	paypal.minicart.render({
-		action: '#'
-	});
 
-	if (~window.location.search.indexOf('reset=true')) {
-		paypal.minicart.reset();
-	}
-</script>
+
 <!-- main slider-banner -->
 <script src="js/skdslider.min.js"></script>
 <link href="css/skdslider.css" rel="stylesheet">
