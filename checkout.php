@@ -176,19 +176,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<?php
 					$sql = mysqli_query($con, "SELECT productid FROM cart");
 					$row = mysqli_num_rows($sql);
-					while ($row = mysqli_fetch_array($sql)){
 					$sn=0;
+					while ($row = mysqli_fetch_array($sql)){
 					$sn=$sn+1;
-					$pid=$row['productid'];	
-					
-					
-					$sql2 = mysqli_query($con, "SELECT * FROM products where id = '" . $pid. "'") or die(mysql_error());	
+					$pid=$row['productid'];
+
+
+					$sql2 = mysqli_query($con, "SELECT * FROM products where id = '" . $pid. "'") or die(mysql_error());
 					$result = mysqli_num_rows($sql2);
 					$result = mysqli_fetch_array($sql2);
-									
-						
+
+
 			echo    '<tr id="rem'.$row['productid'].'" class="rem1">
-						<td class="invert">'.$row['productid'].'</td>
+						<td class="invert">'.$sn.'</td>
 						<td class="invert-image"><a href="single.html"><img src="'.$result['image'].'" alt=" " class="img-responsive" /></a></td>
 						<td class="invert">
 							 <div class="quantity">
@@ -217,9 +217,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<div class="rem">
 								<button id="button'.$row['productid'].'" value="button'.$row['productid'].'" >X</button>
 								<script>
-								$("#button'.$row['productid'].'").on("click", function() {	
+								$("#button'.$row['productid'].'").on("click", function() {
 										var pid = document.getElementById("button'.$row['productid'].'").value;
-										
+
 										$("#rem'.$row['productid'].'").fadeOut("slow", function(c){
 										$("#rem'.$row['productid'].'").remove();
 										$("#rem2'.$row['productid'].'").remove();
@@ -233,15 +233,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 						</td>
 					</tr>';
-					
+
 					$sn+1;
-					
+
 					}
 					?>
-					
 
 
-					
+
+
 
 				</table>
 			</div>
@@ -249,27 +249,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="checkout-left-basket">
 					<h4>Continue to basket</h4>
 					<ul>
-						
-						
+
+
 						<?php
-						
+
 						$sql = mysqli_query($con, "SELECT productid FROM cart");
 						$row = mysqli_num_rows($sql);
 						while ($row = mysqli_fetch_array($sql)){
 						$pid=$row['productid'];
-						$sql2 = mysqli_query($con, "SELECT * FROM products where id = '" . $pid. "'") or die(mysql_error());	
+						$sql2 = mysqli_query($con, "SELECT * FROM products where id = '" . $pid. "'") or die(mysql_error());
 						$result = mysqli_num_rows($sql2);
-						$result = mysqli_fetch_array($sql2);	
-						
-						
+						$result = mysqli_fetch_array($sql2);
+
+
 					    echo	'<li id="rem2'.$row['productid'].'">'.$result['name'].'<i>-</i> <span>Rs -'.$result['price'].'</span></li>';
-							
+
 						}   ?>
-						
+
 						<li id="" class="checkout-total" style="font-size: 1em;color: #212121;">Total <i>-</i> <span>$84.00</span></li>
 					</ul>
 				</div>
-				
+
 				<div class="clearfix"> </div>
 			</div>
 			<div>
@@ -334,7 +334,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 
 	</div>
-	
+
 <!-- //footer -->
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
