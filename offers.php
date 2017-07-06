@@ -246,23 +246,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<td class="invert" id="miniprice'.$result['price'].'" >'.$result['price'].'</td>
 						<td class="invert">
 							<div class="rem">
-								<button class="anoop" id="button'.$row['productid'].'" value="button'.$row['productid'].'" >X</button>
-								<script>
-								$("#button'.$row['productid'].'").on("click", function() {
-										var pid = document.getElementById("button'.$row['productid'].'").value;
-
-										$("#rem'.$row['productid'].'").fadeOut("slow", function(c){
-										$("#rem'.$row['productid'].'").remove();
-										$("#rem2'.$row['productid'].'").remove();
-										$.post("cartremove.php", { pid: pid },
-										function(data){
-										$("#demo'.$row['productid'].'").html(data);
-										window.location.reload(true);
-										});
-									});
-								});
-								</script>
-								<script>
+							
+								
+								
+								
+								<form action="offers.php" method="post" class="last">
+								<input type="hidden" name="cmd" value="_cart">
+								<input type="hidden" name="display" value="1">
+								<button type="submit" name='.$row['productid'].' value="'.$row['productid'].'"><i></i></button>
+								</form>'; ?>
+					
+					<?php
+								if(isset($_POST[$row['productid']])){
+									mysqli_query($con, "DELETE FROM cart WHERE productid='".$row['productid']."'");
+									header('Location: offer.php');
+								}
+							?>	
+							
+							
+						<?php	
+							
+								
+						echo		'<script>
 									function myFunction'.$sn.'() {
     								var x = document.getElementById("mySelect'.$sn.'").value;
 									var y = '.$result['price'].';
