@@ -6,6 +6,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 
 <?php
+ob_start();
 session_start();
 include_once 'dbconnect.php';
 ?>
@@ -64,7 +65,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		 myFunction8();
 		 myFunction9();
 		 myFunction10();	
-		 
+		 myFunction11();
+		 myFunction12();	
+		 myFunction13();
+		 myFunction14();
+		 myFunction15();	
 			 
    };	
 </script>
@@ -91,7 +96,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</ul>
 			</div>
 			<div class="product_list_header">
-					<form action="#" method="post" class="last">
+					<form action="checkout.php" method="post" class="last">
 						<input type="hidden" name="cmd" value="_cart">
 						<input type="hidden" name="display" value="1">
 						<button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
@@ -250,16 +255,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								
 								
 								
-								<form action="offers.php" method="post" class="last">
+								<form action="" method="post" class="last">
 								<input type="hidden" name="cmd" value="_cart">
 								<input type="hidden" name="display" value="1">
-								<button type="submit" name='.$row['productid'].' value="'.$row['productid'].'"><i></i></button>
+								<button type="submit" name='.$row['productid'].' value="X"><i>X</i></button>
 								</form>'; ?>
 					
 					<?php
 								if(isset($_POST[$row['productid']])){
 									mysqli_query($con, "DELETE FROM cart WHERE productid='".$row['productid']."'");
-									header('Location: offer.php');
+									header('Location: offers.php');
 								}
 							?>	
 							
@@ -342,7 +347,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						}   ?>
 
 						
-						<li id="" class="checkout-total" style="font-size: 1em;color: #212121;">Total <i></i><span id="total">20</span ></li>
+						<li id="" class="checkout-total" style="font-size: 1em;color: #212121;">Total <i></i><span id="total"></span ></li>
 						
 					</ul>
 				</div>

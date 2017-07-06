@@ -6,6 +6,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 
 <?php
+ob_start();
 session_start();
 include_once 'dbconnect.php';
 ?>
@@ -64,7 +65,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		 myFunction8();
 		 myFunction9();
 		 myFunction10();	
-		 
+		 myFunction11();
+		 myFunction12();	
+		 myFunction13();
+		 myFunction14();
+		 myFunction15();	
 			 
    };	
 </script>
@@ -91,7 +96,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</ul>
 			</div>
 			<div class="product_list_header">
-					<form action="#" method="post" class="last">
+					<form action="checkout.php" method="post" class="last">
 						<input type="hidden" name="cmd" value="_cart">
 						<input type="hidden" name="display" value="1">
 						<button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
@@ -246,23 +251,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<td class="invert" id="miniprice'.$result['price'].'" >'.$result['price'].'</td>
 						<td class="invert">
 							<div class="rem">
-								<button class="anoop" id="button'.$row['productid'].'" value="button'.$row['productid'].'" >X</button>
-								<script>
-								$("#button'.$row['productid'].'").on("click", function() {
-										var pid = document.getElementById("button'.$row['productid'].'").value;
-
-										$("#rem'.$row['productid'].'").fadeOut("slow", function(c){
-										$("#rem'.$row['productid'].'").remove();
-										$("#rem2'.$row['productid'].'").remove();
-										$.post("cartremove.php", { pid: pid },
-										function(data){
-										$("#demo'.$row['productid'].'").html(data);
-										window.location.reload(true);
-										});
-									});
-								});
-								</script>
-								<script>
+							
+								
+								
+								
+								<form action="" method="post" class="last">
+								<input type="hidden" name="cmd" value="_cart">
+								<input type="hidden" name="display" value="1">
+								<button type="submit" name='.$row['productid'].' value="X"><i>X</i></button>
+								</form>'; ?>
+					
+					<?php
+								if(isset($_POST[$row['productid']])){
+									mysqli_query($con, "DELETE FROM cart WHERE productid='".$row['productid']."'");
+									header('Location: offers.php');
+								}
+							?>	
+							
+							
+						<?php	
+							
+								
+						echo		'<script>
 									function myFunction'.$sn.'() {
     								var x = document.getElementById("mySelect'.$sn.'").value;
 									var y = '.$result['price'].';
@@ -337,7 +347,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						}   ?>
 
 						
-						<li id="" class="checkout-total" style="font-size: 1em;color: #212121;">Total <i></i><span id="total">20</span ></li>
+						<li id="" class="checkout-total" style="font-size: 1em;color: #212121;">Total <i></i><span id="total"></span ></li>
 						
 					</ul>
 				</div>
