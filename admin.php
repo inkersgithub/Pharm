@@ -139,7 +139,7 @@ input[type=submit]:hover {
 									$sql = mysqli_query($con, "SELECT * FROM category");
 									$row = mysqli_num_rows($sql);
 									while ($row = mysqli_fetch_array($sql)){
-									echo 	'<option value="'.$row['id'].'"><i class="fa fa-arrow-right" aria-hidden="true"></i>'.$row['cname'].'</option>';
+									echo 	'<option value="'.$row['cname'].'"><i class="fa fa-arrow-right" aria-hidden="true"></i>'.$row['cname'].'</option>';
 												}
 								?>
     					</select>
