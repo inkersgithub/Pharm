@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 07, 2017 at 07:56 PM
+-- Generation Time: Jul 07, 2017 at 08:01 PM
 -- Server version: 10.1.22-MariaDB
 -- PHP Version: 7.1.4
 
@@ -56,7 +56,8 @@ INSERT INTO `address` (`id`, `userid`, `name`, `address1`, `address2`, `city`, `
 CREATE TABLE `cart` (
   `id` int(11) NOT NULL,
   `userid` int(8) NOT NULL,
-  `productid` int(11) NOT NULL
+  `productid` int(11) NOT NULL,
+  `quantity` int(2) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
