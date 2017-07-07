@@ -9,6 +9,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 ob_start();
 session_start();
 include_once 'dbconnect.php';
+$usr_id = $_SESSION['usr_id'];
 ?>
 
 <!DOCTYPE html>
@@ -96,11 +97,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</ul>
 			</div>
 			<div class="product_list_header">
-					<form action="checkout.php" method="post" class="last">
-						<input type="hidden" name="cmd" value="_cart">
+					<input type="hidden" name="cmd" value="_cart">
 						<input type="hidden" name="display" value="1">
-						<button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-					</form>
+						<button class="w3view-cart" type="submit" name="submit" value="" onclick="location.href='checkout.php'"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
 			</div>
 			<div class="clearfix"> </div>
 		</div>
@@ -188,12 +187,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 <!-- //breadcrumbs -->
 <!-- checkout -->
+	
+	
+	
+	
+	
+	
+	
 	<div class="checkout">
 		<div class="container">
-			<h2>Your shopping cart contains: <span>3 Products</span></h2>
-			<div class="checkout-right">
-				<table class="timetable_sub">
-					<thead>
+			<?php
+			$check = mysqli_query($con, "SELECT productid FROM cart WHERE userid = '" . $usr_id. "'");
+			$nop = mysqli_num_rows($check);		
+			if(mysqli_num_rows($check) != 0){
+						echo '<h2 style="font-size: 1.4em;">Your shopping cart contains: <span>'.$nop.' Products</span></h2>';
+					}	
+			     ?>   
+				<div class="checkout-right">
+					<table class="timetable_sub">
+				
+					<?php
+					$check = mysqli_query($con, "SELECT productid FROM cart WHERE userid = '" . $usr_id. "'");
+					if(mysqli_num_rows($check) == 0){
+						echo " <br><br><br><br><h2 align='center'>No Products in Cart</h2><br><br><br><br><br> ";
+					}else{	
+					echo '<thead>
 						<tr>
 							<th>SL No.</th>
 							<th>Product</th>
@@ -203,10 +221,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<th>Price</th>
 							<th>Remove</th>
 						</tr>
-					</thead>
-				
+					</thead>';
+					}
+					?>
 					<?php
-					$sql = mysqli_query($con, "SELECT productid FROM cart");
+					$sql = mysqli_query($con, "SELECT productid FROM cart WHERE userid = '" . $usr_id. "'");
 					$row = mysqli_num_rows($sql);
 					
 					$addid=$row+1;
@@ -263,7 +282,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					
 					<?php
 								if(isset($_POST[$row['productid']])){
-									mysqli_query($con, "DELETE FROM cart WHERE productid='".$row['productid']."'");
+									mysqli_query($con, "DELETE FROM cart WHERE productid='".$row['productid']."' AND userid='".$usr_id."'");
 									header('Location: offers.php');
 								}
 							?>	
@@ -323,13 +342,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="checkout-left">
 				<div class="checkout-left-basket">
-					<h4>Continue to basket</h4>
+					<?php
+					if(mysqli_num_rows($check) != 0){
+					 echo '<h4>Continue to basket</h4>';
+					}
+					?>
 					<ul>
 
 
 						<?php
 
-						$sql = mysqli_query($con, "SELECT productid FROM cart");
+						$sql = mysqli_query($con, "SELECT productid FROM cart WHERE userid = '" . $usr_id. "'");
 						$row = mysqli_num_rows($sql);
 						$sn=1;
 						$jn=1;
@@ -345,22 +368,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						$jn++;
 						$sn++;
 						}   ?>
-
 						
-						<li id="" class="checkout-total" style="font-size: 1em;color: #212121;">Total <i></i><span id="total"></span ></li>
+						<?php
+							if(mysqli_num_rows($check) != 0){
+					 		echo '<li id="" class="checkout-total" style="font-size: 1em;color: #212121;">Total <i></i><span id="total"></span ></li>';
+						}
+						?>
+						
+						
 						
 					</ul>
 				</div>
 
 				<div class="clearfix"> </div>
 			</div>
-			<div>
-				<div style="float:left" class="checkout-right-basket">
-					<a href="single.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Continue Shopping</a>
-				</div>
-				<div class="checkout-right-basket">
-					<a href="single.html"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>Confirm & Check Out</a>
-				</div>
+			<div style="text-align:center;">
+						<?php
+							if(mysqli_num_rows($check) != 0){
+					 		echo '<input style="margin-top: 45px;background-color: #272626;color: white;border-color: black;width: 200px;height: 35px;font-size: medium;" type="submit" name="checkout" value="Confirm & Checkout">';
+						}
+						?>
 			</div>
 		</div>
 	</div>

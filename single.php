@@ -7,6 +7,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 <?php
 session_start();
+$_SESSION['url'] = $_SERVER['REQUEST_URI'];
+$url= $_SESSION['url'];
 include_once 'dbconnect.php';
 
 $id = $_GET['link'];
@@ -22,7 +24,92 @@ if (empty($_GET)) {
 
 ?>
 
+
+<?php
+
+	if (isset($_POST['login'])) {
+	$email = mysqli_real_escape_string($con, $_POST['email']);
+	$password = mysqli_real_escape_string($con, $_POST['password']);
+	$result = mysqli_query($con, "SELECT * FROM users WHERE email = '" . $email. "' and password = '" . md5($password) . "'");
+	if ($row = mysqli_fetch_array($result)) {
+		$_SESSION['usr_id'] = $row['id'];
+		$_SESSION['usr_name'] = $row['name'];
+		$_SESSION['usr_email'] = $row['email'];
+   		header("Location:$url");
+}
+	else {
+		$errormsg = "Incorrect Email or Password!!!";
+	echo'	<script type="text/javascript">
+				$(document).ready(function(){
+				$("#myModal").modal("show");
+				});
+			</script> ';
+
+	}
+}
+?>
+
 <!DOCTYPE html>
+<style>
+/.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px<!-- <li><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#">4</a></li>
+						<li><a href="#">5</a></li>
+						<li> -->; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0px;
+    border: 1px solid #888;
+    width: 90%;
+	    margin-top: 40px;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}* The Modal (background) */
+
+.button{
+	font-size: 14px;
+    color: #fff;
+    background: #3399cc;
+    text-decoration: none;
+    position: relative;
+    border: none;
+    border-radius: 0;
+    width: 100%;
+    text-transform: uppercase;
+    padding: .5em 0;
+    outline: none;
+}
+
+
+</style>
 <html>
 <head>
 <title>Single|MySite</title>
@@ -57,6 +144,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 <!-- start-smoth-scrolling -->
 </head>
+	
 <body>
 <!-- header -->
 	<div class="agileits_header">
@@ -76,11 +164,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</ul>
 			</div>
 			<div class="product_list_header">
-					<form action="checkout.php" method="post" class="last">
-						<input type="hidden" name="cmd" value="_cart">
+					<input type="hidden" name="cmd" value="_cart">
 						<input type="hidden" name="display" value="1">
-						<button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-					</form>
+						<button class="w3view-cart" type="submit" name="submit" value="" onclick="location.href='checkout.php'"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
 			</div>
 			<div class="clearfix"> </div>
 		</div>
@@ -156,7 +242,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</nav>
 			</div>
 		</div>
-
+<?php	if(isset($_SESSION['usr_id'])){
+								echo '<input type="hidden" id="userid" name="userid" value="'. $_SESSION['usr_id'] .'" />    ';
+								}
+						?>
 <!-- //navigation -->
 <!-- breadcrumbs -->
 	<div class="breadcrumbs">
@@ -189,21 +278,29 @@ echo  '<div class="products">
 							<h4 class="m-sing">'.'₹'.$row['price'].'</h4>
 						</div>
 						<div class="snipcart-details agileinfo_single_right_details">
-							<form action="#" method="post">
-								<fieldset>
-									<input type="hidden" name="cmd" value="_cart">
-									<input type="hidden" name="add" value="1">
-									<input type="hidden" name="business" value=" ">
-									<input type="hidden" name="item_name" value="pulao basmati rice">
-									<input type="hidden" name="amount" value="21.00">
-									<input type="hidden" name="discount_amount" value="1.00">
-									<input type="hidden" name="currency_code" value="USD">
-									<input type="hidden" name="return" value=" ">
-									<input type="hidden" name="cancel_return" value=" ">
-									<input type="submit" name="submit" value="Add to cart" class="button">
-								</fieldset>
-							</form>
-						</div>
+						<form action="" method="post">
+												<fieldset>
+													<input type="hidden" name="productid" value="'.$row['id'].'">
+													<input type="hidden" name="add" value="1">
+													<input type="hidden" name="business" value=" ">
+													<input type="hidden" name="item_name" value="'.$row['name'].'">
+													<input type="hidden" name="amount" value="'.$row['price'].'">
+													<input type="hidden" name="discount_amount" value="0.00">
+													<input type="hidden" name="currency_code" value="INR">
+													<input type="hidden" name="return" value=" ">
+													<input type="hidden" name="cancel_return" value=" ">';
+				if(isset($_SESSION['usr_id'])){
+											echo  '<input type="button" class="button" id="'. $row['id'] .'" onclick="SubmitFormData(this);" value="ADD To CART" />';
+				}
+										echo	'</fieldset>
+											</form>
+											<div id="results'. $row['id'] .'">';
+
+											if(!isset($_SESSION['usr_id'])){
+													echo '<button type="button" Style="font-size: 14px;color: #fff;background: #3399cc;text-decoration: none;position: relative;border: none; border-radius: 0;width: 100%;text-transform: uppercase;padding: .5em 0;outline: none;	" data-toggle="modal" data-target="#myModal">ADD TO CART</button>';
+										}
+
+		echo	'	</div>
 					</div>
 				</div>
 				<div class="clearfix"> </div>
@@ -449,6 +546,41 @@ echo  '<div class="products">
 		</div>
 
 	</div>
+	
+	
+	
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+
+	  <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <div style="padding: 1em 0;" class="login">
+		<div class="container">
+			<h2>Login Form</h2>
+
+			<div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
+				<form role="form" action="<?php echo $_SESSION['url']; ?>" method="post" name="loginform">
+					<input type="email" placeholder="Email Address" required=" " name="email" >
+					<input type="password" placeholder="Password" required=" " name="password" >
+					<div class="forgot">
+						<a href="#">Forgot Password?</a>
+					</div>
+					<input type="submit" value="Login" name="login">
+				</form>
+				<span class="text-danger"><?php if (isset($errormsg)) { echo $errormsg; } ?></span>
+			</div>
+			<h4>For New People</h4>
+			<p><a href="registered.php">Register Here</a> (Or) go back to <a href="index.php">Home<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></p>
+		</div>
+	</div>
+  </div>
+
+</div>	
+	
+	
+	
+	
 
 <!-- //footer -->
 <!-- Bootstrap Core JavaScript -->
@@ -495,6 +627,20 @@ echo  '<div class="products">
 
 		});
 </script>
+
+<script>
+	function SubmitFormData(elem) {
+    var name = elem.id;
+	var email = $("#userid").val();
+    $.post("submit.php", { name: name, email: email },
+    function(data) {
+	 $("#result"+name).html(data);
+	 $("#results"+name).html(data);
+	 $('#myForm')[0].reset();
+    });
+}
+</script>	
+
 <!-- //main slider-banner -->
 
 </body>

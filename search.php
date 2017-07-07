@@ -80,11 +80,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</ul>
 			</div>
 			<div class="product_list_header">
-					<form action="checkout.php" method="post" class="last">
-						<input type="hidden" name="cmd" value="_cart">
+					<input type="hidden" name="cmd" value="_cart">
 						<input type="hidden" name="display" value="1">
-						<button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-					</form>
+						<button class="w3view-cart" type="submit"  onclick="location.href='checkout.php'"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
 			</div>
 			<div class="clearfix"> </div>
 		</div>
@@ -112,6 +110,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="clearfix"> </div>
 		</div>
 	</div>
+	<?php	if(isset($_SESSION['usr_id'])){
+								echo '<input type="hidden" id="userid" name="userid" value="'. $_SESSION['usr_id'] .'" />    ';
+								}
+						?>
 <!-- //header -->
 <!-- navigation -->
 	<div class="navigation-agileits">
@@ -212,7 +214,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             echo " <h2 align='center'>Your search doesn't match any product</h2> ";
           }
 				      while ($row = mysqli_fetch_array($res)) {
-
+						  	$id = $row['id'];
 				            echo '<div class="col-md-3 top_brand_left">
 						                <div class="hover14 column">
 							                 <div class="agile_top_brand_left_grid">
@@ -220,8 +222,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									                   <figure>
 										                   <div class="snipcart-item block" >
 														             <div class="snipcart-thumb">
-															             <a href="single.php"><img style="height:150px" title=" " alt=" " src="'.$row['image'].'" /></a>
-														               <p>'.$row['name'].'</p>
+															             <a href="single.php?link=' .$id .'"><img style="height:150px" title=" " alt=" " src="'.$row['image'].'" /></a><br>
+															<p><a href="single.php?link=' .$id .'">'.$row['name'].'</a></p>
 															             <h4>₹'.$row['price'].'</h4>
 														             </div>
 											                   <div class="snipcart-details top_brand_home_details">

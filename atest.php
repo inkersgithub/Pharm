@@ -11,12 +11,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <?php
 session_start();
 include_once 'dbconnect.php';
+$_SESSION['url'] = $_SERVER['REQUEST_URI'];
 
 if(isset($_GET["page"])){
 	 $page  = $_GET["page"];
+	 echo $_SESSION['url'];
 }
 else{
 	$page=1;
+	echo $_SESSION['url'];
 }
 $res = mysqli_query($con,"SELECT COUNT(*) AS total FROM products");
 $row = mysqli_fetch_array($res);
@@ -30,7 +33,7 @@ $total_pages = ceil($row["total"] / 16);
 <!DOCTYPE html>
 <html>
 <head>
-<title>Gourmet|MySite</title>
+<title>Products|MySite</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -67,7 +70,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		$_SESSION['usr_id'] = $row['id'];
 		$_SESSION['usr_name'] = $row['name'];
 		$_SESSION['usr_email'] = $row['email'];
-  }
+   		
+}
 	else {
 		$errormsg = "Incorrect Email or Password!!!";
 	echo'	<script type="text/javascript">
@@ -176,9 +180,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</ul>
 			</div>
 			<div class="product_list_header">
-					<input type="hidden" name="cmd" value="_cart">
+					
+						<input type="hidden" name="cmd" value="_cart">
 						<input type="hidden" name="display" value="1">
 						<button class="w3view-cart" type="submit" name="submit" value="" onclick="location.href='checkout.php'"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
+					
 			</div>
 			<div class="clearfix"> </div>
 		</div>
@@ -198,9 +204,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<h1><a href="index.php">MySiteLogo</a></h1>
 			</div>
 		<div class="w3l_search">
-			<form action="#" method="post">
-				<input type="search" name="Search" placeholder="Search for a Product..." required="">
-				<button type="submit" class="btn btn-default search" aria-label="Left Align">
+			<form action="search.php" method="post">
+        <?php $searchtext = NULL; ?>
+        <input type="search" name="searchtext" id="searchtext" placeholder="Search for a Product..." required="" value="<?php echo $searchtext; ?>">
+				<button type="submit" name="search" class="btn btn-default search" aria-label="Left Align">
 					<i class="fa fa-search" aria-hidden="true"> </i>
 				</button>
 				<div class="clearfix"></div>
@@ -265,7 +272,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
 				<li><a href="index.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-				<li class="active">Gourmet</li>
+				<li class="active">Products</li>
 			</ol>
 		</div>
 	</div>
@@ -295,7 +302,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 				</div>
             </div>
-
+			
+			
+						<?php	if(isset($_SESSION['usr_id'])){
+								echo '<input type="hidden" id="userid" name="userid" value="'. $_SESSION['usr_id'] .'" />    ';
+								}
+						?>
+			
+			
 
 				<div class="agile_top_brands_grids">
 	<?php
@@ -312,9 +326,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<figure>
 										<div class="snipcart-item block" >
 														<div class="snipcart-thumb">
-															<a href="single.php?link=' .$id .'"><img style="height:150px" title=" " alt=" " src="'.$row['image'].'" /></a>
-															<p>'.$row['name'].'</p>
-															<h4>Rs-'.$row['price'].'</h4>
+															<a href="single.php?link=' .$id .'"><img style="height:150px" title=" " alt=" " src="'.$row['image'].'" /></a><br>
+															<p><a href="single.php?link=' .$id .'">'.$row['name'].'</a></p>
+															<h4>₹'.$row['price'].'</h4>
 														</div>
 											<div class="snipcart-details top_brand_home_details">
 												<form action="" method="post">
@@ -329,10 +343,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 														<input type="hidden" name="return" value=" ">
 														<input type="hidden" name="cancel_return" value=" ">';
 					if(isset($_SESSION['usr_id'])){
-												echo  '<input type="submit" name="submit" value="Add to cart" class="button">';
+												echo  '<input type="button" class="button" id="'. $row['id'] .'" onclick="SubmitFormData(this);" value="ADD To CART" />';
 					}
 											echo	'</fieldset>
-												</form>';
+												</form>
+												<div id="results'. $row['id'] .'">';
 					if(!isset($_SESSION['usr_id'])){
 
 											echo '<button type="button" Style="font-size: 14px;color: #fff;background: #3399cc;text-decoration: none;position: relative;border: none; border-radius: 0;width: 100%;text-transform: uppercase;padding: .5em 0;outline: none;	" data-toggle="modal" data-target="#myModal">ADD TO CART</button>';
@@ -366,15 +381,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				<nav class="numbering">
 					<ul class="pagination paging">
-					
+
 
 							<?php
 							for ($i=1; $i<=$total_pages; $i++) {  // print links for all pages
 								if($i==$page){
-									echo " <li class='active'><a href='mubtest.php?page=".$i."'>".$i."<span class='sr-only'>(current)</span></a></li> ";
+									echo " <li class='active'><a href='atest.php?page=".$i."'>".$i."<span class='sr-only'>(current)</span></a></li> ";
 								}
 								else{
-									echo "<li><a href='mubtest.php?page=".$i."'";
+									echo "<li><a href='atest.php?page=".$i."'";
 									echo ">".$i."</a></li> ";
 								}
 							};
@@ -455,7 +470,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<h2>Login Form</h2>
 
 			<div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
-				<form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="loginform">
+				<form role="form" action="<?php echo $_SESSION['url']; ?>" method="post" name="loginform">
 					<input type="email" placeholder="Email Address" required=" " name="email" >
 					<input type="password" placeholder="Password" required=" " name="password" >
 					<div class="forgot">
@@ -472,3 +487,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   </div>
 
 </div>
+	
+	
+	
+<script>
+	function SubmitFormData(elem) {
+    var name = elem.id;
+	var email = $("#userid").val();
+    $.post("submit.php", { name: name, email: email },
+    function(data) {
+	 $("#result"+name).html(data);
+	 $("#results"+name).html(data);
+	 $('#myForm')[0].reset();
+    });
+}
+</script>	
+	
+	

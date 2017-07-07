@@ -8,6 +8,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <?php
 ob_start();
 session_start();
+$_SESSION['url'] = $_SERVER['REQUEST_URI'];
 include_once 'dbconnect.php';
 
 ?>
@@ -67,11 +68,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</ul>
 			</div>
 			<div class="product_list_header">
-					<form action="checkout.php" method="post" class="last">
-						<input type="hidden" name="cmd" value="_cart">
+					<input type="hidden" name="cmd" value="_cart">
 						<input type="hidden" name="display" value="1">
-						<button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-					</form>
+						<button class="w3view-cart" type="submit" name="submit" value="" onclick="location.href='checkout.php'"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
 			</div>
 			<div class="clearfix"> </div>
 		</div>
@@ -216,8 +215,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<figure>
 													<div class="snipcart-item block" >
 														<div class="snipcart-thumb">
-															<a href="single.php?link=' .$id .'"><img style="height:150px" title=" " alt=" " src="'.$row['image'].'" /></a>
-															<p>'.$row['name'].'</p>
+															<a href="single.php?link=' .$id .'"><img style="height:150px" title=" " alt=" " src="'.$row['image'].'" /></a><br>
+															<p><a href="single.php?link=' .$id .'">'.$row['name'].'</a></p>
+															
 															<h4>₹'.$row['price'].'</h4>
 														</div>
 														<div class="snipcart-details top_brand_home_details">
@@ -302,8 +302,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<figure>
 													<div class="snipcart-item block" >
 														<div class="snipcart-thumb">
-															<a href="single.php?link=' .$id .'"><img style="height:150px" title=" " alt=" " src="'.$row['image'].'" /></a>
-															<p>'.$row['name'].'</p>
+															<a href="single.php?link=' .$id .'"><img style="height:150px" title=" " alt=" " src="'.$row['image'].'" /></a><br>
+															<p><a href="single.php?link=' .$id .'">'.$row['name'].'</a></p>
 															<h4>₹'.$row['price'].'</h4>
 														</div>
 														<div class="snipcart-details top_brand_home_details">
@@ -719,7 +719,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="col-md-3 w3_footer_grid">
 					<h3>Information</h3>
 					<ul class="info">
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="about.php">About Us</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="#">About Us</a></li>
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="contact.php">Contact Us</a></li>
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="faq.php">FAQ's</a></li>
 					</ul>
