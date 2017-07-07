@@ -53,14 +53,16 @@ if (isset($_POST['register'])) {
 		$cpassword_error = "Password and Confirm Password doesn't match";
 	}
 	if (!$error) {
-		if(mysqli_query($con, "INSERT INTO users(name,address1,address2,city,state,pincode,mobile,email,password) VALUES('" . $name . "', '" . $address1 . "', '" . $address2 . "', '" . $city . "', '" . $state . "', '" . $pincode . "', '" . $mobile . "', '" . $email . "', '" . md5($password) . "')")) {
-			$successmsg = "Successfully Registered! <a href='index.php'>Click here to Login</a>";
+		if(mysqli_query($con, "INSERT INTO users(name,email,password) VALUES('" . $name . "', '" . $email . "', '" . md5($password) . "')") ) {
 			$_SESSION['usr_name'] = $name;
 			$_SESSION['usr_email'] = $email;
 			$result = mysqli_query($con, "SELECT id FROM users WHERE email = '" . $email. "'");
 			$row = mysqli_fetch_array($result);
 			$_SESSION['usr_id'] = $row['id'];
-			header("Location: index.php");
+			if(mysqli_query($con, "INSERT INTO address(userid,name,address1,address2,city,state,pincode,mobile) VALUES('" . $_SESSION['usr_id'] . "', '" . $name . "', '" . $address1 . "', '" . $address2 . "', '" . $city . "', '" . $state . "', '" . $pincode . "', '" . $mobile . "')")){
+				$successmsg = "Successfully Registered! <a href='index.php'>Click here to Login</a>";
+				header("Location: index.php");
+			}
 		} else {
 			$errormsg = "Error in registering...Please try again later!";
 		}
