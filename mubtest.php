@@ -12,15 +12,34 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 session_start();
 include_once 'dbconnect.php';
 
+if (isset($_POST['categ'])){
+	$cat = $_POST['category'];
+	header("Location:mubtest.php?cat=".$cat."");
+}
+
 if(isset($_GET["page"])){
 	 $page  = $_GET["page"];
 }
 else{
 	$page=1;
 }
-$res = mysqli_query($con,"SELECT COUNT(*) AS total FROM products");
-$row = mysqli_fetch_array($res);
-$total_pages = ceil($row["total"] / 16);
+
+
+if(isset($_GET["cat"])){
+	$cat = $_GET["cat"];
+	$res = mysqli_query($con,"SELECT COUNT(*) AS total FROM products WHERE cname='".$cat."' ");
+	$row = mysqli_fetch_array($res);
+	$total_pages = ceil($row["total"] / 16);
+	$start = ($page-1) * 16;
+	$catsel = mysqli_query($con,"SELECT * FROM products WHERE cname='".$cat."' LIMIT $start,16");
+}
+else{
+	$res = mysqli_query($con,"SELECT COUNT(*) AS total FROM products");
+	$row = mysqli_fetch_array($res);
+	$total_pages = ceil($row["total"] / 16);
+	$start = ($page-1) * 16;
+	$catsel = mysqli_query($con,"SELECT * FROM products LIMIT $start,16");
+}
 
 ?>
 
@@ -30,7 +49,7 @@ $total_pages = ceil($row["total"] / 16);
 <!DOCTYPE html>
 <html>
 <head>
-<title>Gourmet|MySite</title>
+<title>Products|MySite</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -198,9 +217,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<h1><a href="index.php">MySiteLogo</a></h1>
 			</div>
 		<div class="w3l_search">
-			<form action="#" method="post">
-				<input type="search" name="Search" placeholder="Search for a Product..." required="">
-				<button type="submit" class="btn btn-default search" aria-label="Left Align">
+			<form action="search.php" method="post">
+        <?php $searchtext = NULL; ?>
+        <input type="search" name="searchtext" id="searchtext" placeholder="Search for a Product..." required="" value="<?php echo $searchtext; ?>">
+				<button type="submit" name="search" class="btn btn-default search" aria-label="Left Align">
 					<i class="fa fa-search" aria-hidden="true"> </i>
 				</button>
 				<div class="clearfix"></div>
@@ -265,7 +285,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
 				<li><a href="index.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-				<li class="active">Gourmet</li>
+				<li class="active">Products</li>
 			</ol>
 		</div>
 	</div>
@@ -278,31 +298,36 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="products-right-grid">
 					<div class="products-right-grids">
 						<div class="sorting">
-							<select id="country" name="category" class="frm-field required sect">
+							<form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="categorydropdown">
+								<select id="country" name="category" class="frm-field required sect">
 
 								<?php
 
 									$sql = mysqli_query($con, "SELECT * FROM category");
-									$row = mysqli_num_rows($sql);
 									while ($row = mysqli_fetch_array($sql)){
-									echo 	'<option value="'.$row['id'].'"><i class="fa fa-arrow-right" aria-hidden="true"></i>'.$row['cname'].'</option>';
+									echo 	'<option value="'.$row['cname'].'"><i class="fa fa-arrow-right" aria-hidden="true"></i>'.$row['cname'].'</option>';
             						}
             					?>
-              				</select>
+              </select>
+							<input type="submit" value="Go" name="categ">
+							</form>
 						</div>
 
 						<div class="clearfix"> </div>
 					</div>
 				</div>
-            </div>
+
+
+						</div>
 
 
 				<div class="agile_top_brands_grids">
 	<?php
 				$i=1;
-				$start = ($page-1) * 16;
-				$res = mysqli_query($con,"SELECT * FROM products LIMIT $start,16");
-				while ($row = mysqli_fetch_array($res)) {
+				if(mysqli_num_rows($catsel) == 0){
+					echo " <h2 align='center'>Sorry,there is no products in this category</h2> ";
+				}
+				while ($row = mysqli_fetch_array($catsel)) {
 					$id = $row['id'];
 				echo	'<div class="col-md-3 top_brand_left">
 						<div class="hover14 column">
@@ -314,7 +339,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 														<div class="snipcart-thumb">
 															<a href="single.php?link=' .$id .'"><img style="height:150px" title=" " alt=" " src="'.$row['image'].'" /></a>
 															<p>'.$row['name'].'</p>
-															<h4>Rs-'.$row['price'].'</h4>
+															<h4>₹'.$row['price'].'</h4>
 														</div>
 											<div class="snipcart-details top_brand_home_details">
 												<form action="" method="post">
@@ -366,18 +391,33 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				<nav class="numbering">
 					<ul class="pagination paging">
-					
+
 
 							<?php
-							for ($i=1; $i<=$total_pages; $i++) {  // print links for all pages
-								if($i==$page){
-									echo " <li class='active'><a href='mubtest.php?page=".$i."'>".$i."<span class='sr-only'>(current)</span></a></li> ";
-								}
-								else{
-									echo "<li><a href='mubtest.php?page=".$i."'";
-									echo ">".$i."</a></li> ";
-								}
-							};
+							if(isset($_GET["cat"])){
+								$cat = $_GET["cat"];
+								for ($i=1; $i<=$total_pages; $i++) {  // print links for all pages
+									if($i==$page){
+										echo " <li class='active'><a href='mubtest.php?page=".$i."&cat=".$cat."'>".$i."<span class='sr-only'>(current)</span></a></li> ";
+									}
+									else{
+										echo "<li><a href='mubtest.php?page=".$i."&cat=".$cat."'";
+										echo ">".$i."</a></li> ";
+									}
+								};
+							}
+							else{
+								$cat = NULL;
+								for ($i=1; $i<=$total_pages; $i++) {  // print links for all pages
+									if($i==$page){
+										echo " <li class='active'><a href='mubtest.php?page=".$i."'>".$i."<span class='sr-only'>(current)</span></a></li> ";
+									}
+									else{
+										echo "<li><a href='mubtest.php?page=".$i."'";
+										echo ">".$i."</a></li> ";
+									}
+								};
+							}
 							?>
 
 

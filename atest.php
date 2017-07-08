@@ -13,18 +13,34 @@ session_start();
 include_once 'dbconnect.php';
 $_SESSION['url'] = $_SERVER['REQUEST_URI'];
 
+if (isset($_POST['categ'])){
+	$cat = $_POST['category'];
+	header("Location:atest.php?cat=".$cat."");
+}
+
 if(isset($_GET["page"])){
 	 $page  = $_GET["page"];
-	 echo $_SESSION['url'];
 }
 else{
 	$page=1;
-	echo $_SESSION['url'];
 }
-$res = mysqli_query($con,"SELECT COUNT(*) AS total FROM products");
-$row = mysqli_fetch_array($res);
-$total_pages = ceil($row["total"] / 16);
 
+if(isset($_GET["cat"])){
+	$cat = $_GET["cat"];
+	echo $cat;
+	$res = mysqli_query($con,"SELECT COUNT(*) AS total FROM products WHERE cname='".$cat."' ");
+	$row = mysqli_fetch_array($res);
+	$total_pages = ceil($row["total"] / 16);
+	$start = ($page-1) * 16;
+	$catsel = mysqli_query($con,"SELECT * FROM products WHERE cname='".$cat."' LIMIT $start,16");
+}
+else{
+	$res = mysqli_query($con,"SELECT COUNT(*) AS total FROM products");
+	$row = mysqli_fetch_array($res);
+	$total_pages = ceil($row["total"] / 16);
+	$start = ($page-1) * 16;
+	$catsel = mysqli_query($con,"SELECT * FROM products LIMIT $start,16");
+}
 ?>
 
 
@@ -70,7 +86,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		$_SESSION['usr_id'] = $row['id'];
 		$_SESSION['usr_name'] = $row['name'];
 		$_SESSION['usr_email'] = $row['email'];
-   		
+
 }
 	else {
 		$errormsg = "Incorrect Email or Password!!!";
@@ -180,11 +196,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</ul>
 			</div>
 			<div class="product_list_header">
-					
+
 						<input type="hidden" name="cmd" value="_cart">
 						<input type="hidden" name="display" value="1">
 						<button class="w3view-cart" type="submit" name="submit" value="" onclick="location.href='checkout.php'"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-					
+
 			</div>
 			<div class="clearfix"> </div>
 		</div>
@@ -285,38 +301,42 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="products-right-grid">
 					<div class="products-right-grids">
 						<div class="sorting">
+							<form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="categorydropdown">
 							<select id="country" name="category" class="frm-field required sect">
 
 								<?php
 
 									$sql = mysqli_query($con, "SELECT * FROM category");
-									$row = mysqli_num_rows($sql);
 									while ($row = mysqli_fetch_array($sql)){
-									echo 	'<option value="'.$row['id'].'"><i class="fa fa-arrow-right" aria-hidden="true"></i>'.$row['cname'].'</option>';
+									echo 	'<option value="'.$row['cname'].'"><i class="fa fa-arrow-right" aria-hidden="true"></i>'.$row['cname'].'</option>';
             						}
             					?>
-              				</select>
+              </select>
+							<input type="submit" value="Go" name="categ">
+							</form>
+
 						</div>
 
 						<div class="clearfix"> </div>
 					</div>
 				</div>
             </div>
-			
-			
+
+
 						<?php	if(isset($_SESSION['usr_id'])){
 								echo '<input type="hidden" id="userid" name="userid" value="'. $_SESSION['usr_id'] .'" />    ';
 								}
 						?>
-			
-			
+
+
 
 				<div class="agile_top_brands_grids">
 	<?php
 				$i=1;
-				$start = ($page-1) * 16;
-				$res = mysqli_query($con,"SELECT * FROM products LIMIT $start,16");
-				while ($row = mysqli_fetch_array($res)) {
+				if(mysqli_num_rows($catsel) == 0){
+					echo " <h2 align='center'>Sorry,there is no products in this category</h2> ";
+				}
+				while ($row = mysqli_fetch_array($catsel)) {
 					$id = $row['id'];
 				echo	'<div class="col-md-3 top_brand_left">
 						<div class="hover14 column">
@@ -384,15 +404,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 							<?php
-							for ($i=1; $i<=$total_pages; $i++) {  // print links for all pages
-								if($i==$page){
-									echo " <li class='active'><a href='atest.php?page=".$i."'>".$i."<span class='sr-only'>(current)</span></a></li> ";
-								}
-								else{
-									echo "<li><a href='atest.php?page=".$i."'";
-									echo ">".$i."</a></li> ";
-								}
-							};
+							if(isset($_GET["cat"])){
+								$cat = $_GET["cat"];
+								for ($i=1; $i<=$total_pages; $i++) {  // print links for all pages
+									if($i==$page){
+										echo " <li class='active'><a href='atest.php?page=".$i."&cat=".$cat."'>".$i."<span class='sr-only'>(current)</span></a></li> ";
+									}
+									else{
+										echo "<li><a href='atest.php?page=".$i."&cat=".$cat."'";
+										echo ">".$i."</a></li> ";
+									}
+								};
+							}
+							else{
+								$cat = NULL;
+								for ($i=1; $i<=$total_pages; $i++) {  // print links for all pages
+									if($i==$page){
+										echo " <li class='active'><a href='atest.php?page=".$i."'>".$i."<span class='sr-only'>(current)</span></a></li> ";
+									}
+									else{
+										echo "<li><a href='atest.php?page=".$i."'";
+										echo ">".$i."</a></li> ";
+									}
+								};
+							}
 							?>
 
 
@@ -487,9 +522,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   </div>
 
 </div>
-	
-	
-	
+
+
+
 <script>
 	function SubmitFormData(elem) {
     var name = elem.id;
@@ -501,6 +536,4 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	 $('#myForm')[0].reset();
     });
 }
-</script>	
-	
-	
+</script>
