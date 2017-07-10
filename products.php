@@ -316,7 +316,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             						}
             					?>
               </select>
-							<input type="submit" value="Go" name="categ">
+							<input style="    margin-top: 10px;min-width: 85px;background-color: #369acc;border-color: #3399cc;border-radius: 22px;
+" type="submit" value="Go" name="categ">
 							</form>
 
 						</div>

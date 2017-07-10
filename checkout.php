@@ -11,6 +11,7 @@ session_start();
 if(!isset($_SESSION['usr_id'])) {
 	header("Location: index.php");
 }
+$_SESSION['url'] = $_SERVER['REQUEST_URI'];
 $items =" ";
 $finaltotal = 0;
 $usr_id = $_SESSION['usr_id'];
@@ -51,60 +52,14 @@ if (isset($_POST['placeorder'])){
 	$addressid = $_POST['address'];
 	if(mysqli_query($con, "INSERT INTO orders(userid,items,addressid,total) VALUES('" . $_SESSION['usr_id'] . "', '" . $items . "', '" . $addressid . "', '" . $finaltotal . "')")){
 		mysqli_query($con,"DELETE FROM cart WHERE userid='" . $usr_id. "' ");
-		echo "Order successfully placed";
+		header("Location: sucess.php");
 	}
 }
 
 ?>
 
 <!DOCTYPE html>
-<style>
-.roundedTwo {
-  width: 28px;
-  height: 28px;
-  position: relative;
-  margin: 20px auto;
-  background: #fcfff4;
-  background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-  border-radius: 50px;
-  box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
-  label {
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    top: 4px;
-    left: 4px;
-    cursor: pointer;
-    background: linear-gradient(top, #222 0%, #45484d 100%);
-    border-radius: 50px;
-    box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,1);
-    &:after {
-      content: '';
-      width: 9px;
-      height: 5px;
-      position: absolute;
-      top: 5px;
-      left: 4px;
-      border: 3px solid #fcfff4;
-      border-top: none;
-      border-right: none;
-      background: transparent;
-      opacity: 0;
-      transform: rotate(-45deg);
-    }
-    &:hover::after {
-      opacity: 0.3;
-    }
-  }
-  input[type=checkbox] {
-    visibility: hidden;
-    &:checked + label:after {
-      opacity: 1;
-    }
-  }
-}
 
-</style>
 <html>
 <head>
 <title>Login|MySite</title>
