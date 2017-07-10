@@ -14,6 +14,12 @@ if(!isset($_SESSION['usr_id'])){
 header("Location:login.php");	
 }
 $usr_id = $_SESSION['usr_id'];
+
+
+if(isset($_SESSION['checkout'])){
+header("Location:checkout.php");	
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -250,7 +256,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 			echo    '<tr id="rem'.$row['productid'].'" class="rem1">
 						<td class="invert">'.$sn.'</td>
-						<td class="invert-image"><a href="single.html"><img src="'.$result['image'].'" alt=" " class="img-responsive" /></a></td>
+						<td class="invert-image"><a href="single.php?link=' .$row['productid'] .'"><img src="'.$result['image'].'" alt=" " class="img-responsive" /></a></td>
 						<td class="invert">
 							
 							 <div class="quantity">
@@ -399,8 +405,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div style="text-align:center;">
 						<?php
 							if(mysqli_num_rows($check) != 0){
-					 		echo '<input style="margin-top: 45px;background-color: #272626;color: white;border-color: black;width: 200px;height: 35px;font-size: medium;" type="submit" name="checkout" value="Confirm & Checkout">';
-							
+								
+					 		echo '<form action="checkout.php" method="post">
+							<input style="margin-top: 45px;background-color: #272626;color: white;border-color: black;width: 200px;height: 35px;font-size: medium;" type="submit" name="checkout" value="Confirm & Checkout">
+							</form>;';
 										}
 						?>
 			</div>

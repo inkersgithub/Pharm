@@ -6,14 +6,26 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 
 <?php
+include_once 'dbconnect.php';
 session_start();
 if(!isset($_SESSION['usr_id'])) {
 	header("Location: index.php");
 }
+$finaltotal = 0;
+$usr_id = $_SESSION['usr_id'];
+$sql = mysqli_query($con, "SELECT productid FROM cart WHERE userid = '" . $usr_id. "'");
+$row = mysqli_num_rows($sql);
+if($row==0){
+	header("Location: index.php");
+}else{
+	$sql = mysqli_query($con, "SELECT productid FROM cart WHERE userid = '" . $usr_id. "'");
+	while ($row = mysqli_fetch_array($sql)) {
+	
+		$finaltotal = $finaltotal + $row['mtotal'];
+	}
+}
 
 
-
-include_once 'dbconnect.php';
 
 if (isset($_POST['Add'])) {
 	$name = mysqli_real_escape_string($con, $_POST['name']);
@@ -251,7 +263,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="col-sm-8">
 		<div class="login-form-grids" style="width: 100%; padding: 3em; background: #F7F7F9; margin: 2em auto 0;">
 				
-				     <h3 style="text-align:center">Total amount to Pay : </h3>
+				     <h3 style="text-align:center">Total amount to Pay :<?php $finaltotal ?></h3>
 					
 					<input type="submit" id="submit" name="placeorder" value="PLACE ORDER">
 				</form>

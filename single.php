@@ -312,6 +312,7 @@ echo  '<div class="products">
 
 
 <!-- new -->
+<!--
 	<div class="newproducts-w3agile">
 		<div class="container">
 			<h3>New offers</h3>
@@ -495,6 +496,7 @@ echo  '<div class="products">
 				</div>
 		</div>
 	</div>
+-->
 <!-- //new -->
 <!-- //footer -->
 <div class="footer">
