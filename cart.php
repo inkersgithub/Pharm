@@ -11,13 +11,13 @@ session_start();
 include_once 'dbconnect.php';
 $_SESSION['url'] = $_SERVER['REQUEST_URI'];
 if(!isset($_SESSION['usr_id'])){
-header("Location:login.php");	
+header("Location:login.php");
 }
 $usr_id = $_SESSION['usr_id'];
 
 
 if(isset($_SESSION['checkout'])){
-header("Location:checkout.php");	
+header("Location:checkout.php");
 }
 
 ?>
@@ -61,9 +61,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 	<script>
 		var totalprice = 0;
-	</script>	
+	</script>
 
-	
+
 <script>
 	     window.onload = function() {
          myFunction1();
@@ -72,21 +72,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		 myFunction4();
 		 myFunction5();
 		 myFunction6();
-		 myFunction7();	
+		 myFunction7();
 		 myFunction8();
 		 myFunction9();
-		 myFunction10();	
+		 myFunction10();
 		 myFunction11();
-		 myFunction12();	
+		 myFunction12();
 		 myFunction13();
 		 myFunction14();
-		 myFunction15();	
-			 
-   };	
+		 myFunction15();
+
+   };
 </script>
 
-	
-	
+
+
 
 <body>
 <!-- header -->
@@ -191,40 +191,40 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1">
 				<li><a href="index.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-				<li class="active">Checkout Page</li>
+				<li class="active">Cart</li>
 			</ol>
 		</div>
 	</div>
 <!-- //breadcrumbs -->
 <!-- checkout -->
-	
+
 	<?php	if(isset($_SESSION['usr_id'])){
 								echo '<input type="hidden" id="userid" name="userid" value="'. $_SESSION['usr_id'] .'" />    ';
 								}
 						?>
-	
-	
-	
-	
-	
+
+
+
+
+
 	<div class="checkout">
 		<div class="container">
 			<?php
 			$check = mysqli_query($con, "SELECT productid FROM cart WHERE userid = '" . $usr_id. "'");
-			$nop = mysqli_num_rows($check);		
+			$nop = mysqli_num_rows($check);
 			if(mysqli_num_rows($check) != 0){
 						echo '<h2 style="font-size: 1.4em;">Your shopping cart contains: <span>'.$nop.' Products</span></h2>';
-					}	
-			     ?>   
-				
+					}
+			     ?>
+
 				<div class="checkout-right">
 					<table class="timetable_sub">
-				
+
 					<?php
 					$check = mysqli_query($con, "SELECT productid FROM cart WHERE userid = '" . $usr_id. "'");
 					if(mysqli_num_rows($check) == 0){
 						echo " <br><br><br><br><h2 align='center'>No Products in Cart</h2><br><br><br><br><br> ";
-					}else{	
+					}else{
 					echo '<thead>
 						<tr>
 							<th>SL No.</th>
@@ -241,11 +241,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<?php
 					$sql = mysqli_query($con, "SELECT productid FROM cart WHERE userid = '" . $usr_id. "'");
 					$row = mysqli_num_rows($sql);
-					
+
 					$addid=$row+1;
 					$sn=1;
 					while ($row = mysqli_fetch_array($sql)){
-					
+
 					$pid=$row['productid'];
 
 
@@ -258,7 +258,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<td class="invert">'.$sn.'</td>
 						<td class="invert-image"><a href="single.php?link=' .$row['productid'] .'"><img src="'.$result['image'].'" alt=" " class="img-responsive" /></a></td>
 						<td class="invert">
-							
+
 							 <div class="quantity">
 								<div class="quantity-select">
 								<input type="hidden" id="sn'.$sn.'"name="add" value="'.$result['price'].'">
@@ -284,27 +284,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<td class="invert" id="miniprice'.$result['price'].'" >₹'.$result['price'].'</td>
 						<td class="invert">
 							<div class="rem">
-							
-								
-								
-								
+
+
+
+
 								<form action="" method="post" class="last">
 								<input type="hidden" name="cmd" value="_cart">
 								<input type="hidden" name="display" value="1">
 								<button type="submit" name='.$row['productid'].' value="X"><i>X</i></button>
 								</form>'; ?>
-					
+
 					<?php
 								if(isset($_POST[$row['productid']])){
 									mysqli_query($con, "DELETE FROM cart WHERE productid='".$row['productid']."' AND userid='".$usr_id."'");
 									header('Location: cart.php');
 								}
-							?>	
-							
-							
-						<?php	
-							
-								
+							?>
+
+
+						<?php
+
+
 						echo		'<script>
 									function myFunction'.$sn.'() {
     								var x = document.getElementById("mySelect'.$sn.'").value;
@@ -324,49 +324,45 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 						</td>
 					</tr>';
-							
+
 					$sn++;
 
 					}
 					?>
-					
-					
+
+
 					<?php
-					   		
-					
+
+
 			           echo 	'<script>
 									function add(){
 									totalprice = 0;
 								    for(i=1;i<'.$addid.';i++){
-									var x = document.getElementById("anoop"+i).innerHTML;	
+									var x = document.getElementById("anoop"+i).innerHTML;
 									var value = parseInt(x,10);
 									totalprice = totalprice+ value;
 					   				document.getElementById("total").innerHTML = totalprice;
-					   						
+
 					   				   }
-									   
+
 									}
 								</script>';
-				
-				
+
+
 					?>
-					
-					
-					
-					
-					
-					
-					
-					
+
+
+
+
+
+
+
+
 				</table>
 			</div>
 			<div class="checkout-left">
 				<div class="checkout-left-basket">
-					<?php
-					if(mysqli_num_rows($check) != 0){
-					 echo '<h4>Continue to basket</h4>';
-					}
-					?>
+
 					<ul>
 
 
@@ -388,15 +384,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						$jn++;
 						$sn++;
 						}   ?>
-						
+
 						<?php
 							if(mysqli_num_rows($check) != 0){
 					 		echo '<li id="" class="checkout-total" style="font-size: 1em;color: #212121;">Total <i></i><span id="total"></span ></li>';
 						}
 						?>
-						
-						
-						
+
+
+
 					</ul>
 				</div>
 
@@ -405,21 +401,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div style="text-align:center;">
 						<?php
 							if(mysqli_num_rows($check) != 0){
-								
+
 					 		echo '<form action="checkout.php" method="post">
 							<input style="margin-top: 45px;background-color: #272626;color: white;border-color: black;width: 200px;height: 35px;font-size: medium;" type="submit" name="checkout" value="Confirm & Checkout">
-							</form>;';
+							</form>';
 										}
 						?>
 			</div>
 		</div>
 	</div>
 <!-- //checkout -->
-	
 
-	
+
+
 <!-- //footer -->
-	
+
 <div class="footer">
 		<div class="container">
 			<div class="w3_footer_grids">
@@ -488,7 +484,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			*/
 
 			$().UItoTop({ easingType: 'easeOutQuart' });
- 
+
 			});
 	</script>
 <!-- //here ends scrolling icon -->

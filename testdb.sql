@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 10, 2017 at 08:48 AM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- Generation Time: Jul 10, 2017 at 12:14 PM
+-- Server version: 10.1.22-MariaDB
+-- PHP Version: 7.1.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -45,7 +47,8 @@ CREATE TABLE `address` (
 INSERT INTO `address` (`id`, `userid`, `name`, `address1`, `address2`, `city`, `state`, `pincode`, `mobile`) VALUES
 (8, 30, 'Anoop P', 'Mubarak House', 'Adakaputhur', 'Palakkad', 'kerala', '679521', '9746364612'),
 (9, 31, 'Aiswarya', 'Panthalil House', 'Manisseri Post', 'Palakkad', 'kerala', '679521', '9746364612'),
-(10, 31, 'Aiswarya Anoop', 'Panthalil House', 'Manisseri Post', 'Palakkad', 'kerala', '679521', '9746364612');
+(10, 31, 'Aiswarya Anoop', 'Panthalil House', 'Manisseri Post', 'Palakkad', 'kerala', '679521', '9746364612'),
+(11, 30, 'Muhammad Mubarak K', 'Koorikkattil house', 'Veeramangalam post', 'Palakkad', 'Kerala', '679503', '9567474709');
 
 -- --------------------------------------------------------
 
@@ -97,10 +100,17 @@ CREATE TABLE `orders` (
   `id` int(12) NOT NULL,
   `userid` int(8) NOT NULL,
   `items` text NOT NULL,
-  `adressid` int(12) NOT NULL,
+  `addressid` int(12) NOT NULL,
   `total` int(6) NOT NULL,
   `status` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `userid`, `items`, `addressid`, `total`, `status`) VALUES
+(4, 30, ' 1x Med 4(4)-Rs.400  2x Med 6(6)-Rs.100  ', 8, 600, 0);
 
 -- --------------------------------------------------------
 
@@ -174,7 +184,6 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`) VALUES
-(29, 'Anoop P', 'anoop@gmail.com', 'c93ccd78b2076528346216b3b2f701e6'),
 (30, 'Anoop P', 'mubarak@gmail.com', 'c93ccd78b2076528346216b3b2f701e6'),
 (31, 'Aiswarya', 'ashi@gmail.com', 'c93ccd78b2076528346216b3b2f701e6');
 
@@ -210,8 +219,8 @@ ALTER TABLE `category`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `userid` (`userid`,`adressid`),
-  ADD KEY `adressid` (`adressid`);
+  ADD KEY `userid` (`userid`,`addressid`),
+  ADD KEY `adressid` (`addressid`);
 
 --
 -- Indexes for table `products`
@@ -238,12 +247,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `address`
 --
 ALTER TABLE `address`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `category`
 --
@@ -253,7 +262,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `products`
 --
@@ -286,13 +295,14 @@ ALTER TABLE `cart`
 --
 ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`adressid`) REFERENCES `address` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`addressid`) REFERENCES `address` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `products`
 --
 ALTER TABLE `products`
   ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`cname`) REFERENCES `category` (`cname`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
