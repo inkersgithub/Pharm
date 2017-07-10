@@ -9,6 +9,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 ob_start();
 session_start();
 include_once 'dbconnect.php';
+$_SESSION['url'] = $_SERVER['REQUEST_URI'];
+if(!isset($_SESSION['usr_id'])){
+header("Location:login.php");	
+}
 $usr_id = $_SESSION['usr_id'];
 ?>
 
@@ -99,7 +103,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="product_list_header">
 					<input type="hidden" name="cmd" value="_cart">
 						<input type="hidden" name="display" value="1">
-						<button class="w3view-cart" type="submit" name="submit" value="" onclick="location.href='checkout.php'"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
+						<button class="w3view-cart" type="submit" name="submit" value="" onclick="location.href='cart.php'"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
 			</div>
 			<div class="clearfix"> </div>
 		</div>
@@ -188,7 +192,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- //breadcrumbs -->
 <!-- checkout -->
 	
-	
+	<?php	if(isset($_SESSION['usr_id'])){
+								echo '<input type="hidden" id="userid" name="userid" value="'. $_SESSION['usr_id'] .'" />    ';
+								}
+						?>
 	
 	
 	
@@ -203,6 +210,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						echo '<h2 style="font-size: 1.4em;">Your shopping cart contains: <span>'.$nop.' Products</span></h2>';
 					}	
 			     ?>   
+				
 				<div class="checkout-right">
 					<table class="timetable_sub">
 				
@@ -267,7 +275,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</td>
 						<td class="invert">'.$result['name'].'</td>
 						<p id="demo'.$row['productid'].'"></p>
-						<td class="invert" id="miniprice'.$result['price'].'" >'.$result['price'].'</td>
+						<td class="invert" id="miniprice'.$result['price'].'" >₹'.$result['price'].'</td>
 						<td class="invert">
 							<div class="rem">
 							
@@ -283,7 +291,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<?php
 								if(isset($_POST[$row['productid']])){
 									mysqli_query($con, "DELETE FROM cart WHERE productid='".$row['productid']."' AND userid='".$usr_id."'");
-									header('Location: offers.php');
+									header('Location: cart.php');
 								}
 							?>	
 							
@@ -295,10 +303,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									function myFunction'.$sn.'() {
     								var x = document.getElementById("mySelect'.$sn.'").value;
 									var y = '.$result['price'].';
+									var proid = '.$row['productid'].';
+									var email = $("#userid").val();
 									var z = x * y;
 									document.getElementById("print'.$sn.'").innerHTML = z;
 									document.getElementById("anoop'.$sn.'").innerHTML = z;
 									add();
+									$.post("quantityadd.php", { x: x, email: email, proid: proid, z: z },
+									function(data) {
+	 								$("#results").html(data);
+	 								});
 							}
 							</script>
 							</div>
@@ -386,13 +400,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<?php
 							if(mysqli_num_rows($check) != 0){
 					 		echo '<input style="margin-top: 45px;background-color: #272626;color: white;border-color: black;width: 200px;height: 35px;font-size: medium;" type="submit" name="checkout" value="Confirm & Checkout">';
-						}
+							
+										}
 						?>
 			</div>
 		</div>
 	</div>
 <!-- //checkout -->
+	
+
+	
 <!-- //footer -->
+	
 <div class="footer">
 		<div class="container">
 			<div class="w3_footer_grids">
@@ -426,7 +445,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="col-md-3 w3_footer_grid">
 					<h3>Profile</h3>
 					<ul class="info">
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="checkout.php">My Cart</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="cart.php">My Cart</a></li>
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="login.php">Login</a></li>
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="registered.php">Create Account</a></li>
 					</ul>
@@ -468,8 +487,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 <!-- main slider-banner -->
-<script src="js/skdslider.min.js"></script>
-<link href="css/skdslider.css" rel="stylesheet">
+
+
 <script type="text/javascript">
 		jQuery(document).ready(function(){
 			jQuery('#demo1').skdslider({'delay':5000, 'animationSpeed': 2000,'showNextPrev':true,'showPlayButton':true,'autoSlide':true,'animationType':'fading'});

@@ -19,6 +19,7 @@ if(isset($_POST['submit'])){
 ?>
 
 <!DOCTYPE html>
+<html>
 <head>
 <title>Form submission</title>
 </head>

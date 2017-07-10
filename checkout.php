@@ -6,18 +6,83 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 
 <?php
-ob_start();
 session_start();
-include_once 'dbconnect.php';
-if(!isset($_SESSION['usr_id'])){
-header("Location:login.php");
+if(!isset($_SESSION['usr_id'])) {
+	header("Location: index.php");
 }
+
+
+
+include_once 'dbconnect.php';
+
+if (isset($_POST['Add'])) {
+	$name = mysqli_real_escape_string($con, $_POST['name']);
+	$address1 = mysqli_real_escape_string($con, $_POST['address1']);
+	$address2 = mysqli_real_escape_string($con, $_POST['address2']);
+	$city = mysqli_real_escape_string($con, $_POST['city']);
+	$state = mysqli_real_escape_string($con, $_POST['state']);
+	$pincode = mysqli_real_escape_string($con, $_POST['pincode']);
+	$mobile = mysqli_real_escape_string($con, $_POST['mobile']);
+
+	
+	mysqli_query($con, "INSERT INTO address(userid,name,address1,address2,city,state,pincode,mobile) VALUES('" . $_SESSION['usr_id'] . "', '" . $name . "', '" . $address1 . "', '" . $address2 . "', '" . $city . "', '" . $state . "', '" . $pincode . "', '" . $mobile . "')");
+	
+	
+}
+ 
 ?>
 
 <!DOCTYPE html>
+<style>
+.roundedTwo {
+  width: 28px;
+  height: 28px;
+  position: relative;
+  margin: 20px auto;
+  background: #fcfff4;
+  background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+  border-radius: 50px;
+  box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+  label {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    cursor: pointer;
+    background: linear-gradient(top, #222 0%, #45484d 100%);
+    border-radius: 50px;
+    box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,1);
+    &:after {
+      content: '';
+      width: 9px;
+      height: 5px;
+      position: absolute;
+      top: 5px;
+      left: 4px;
+      border: 3px solid #fcfff4;
+      border-top: none;
+      border-right: none;
+      background: transparent;
+      opacity: 0;
+      transform: rotate(-45deg);
+    }
+    &:hover::after {
+      opacity: 0.3;
+    }
+  }
+  input[type=checkbox] {
+    visibility: hidden;
+    &:checked + label:after {
+      opacity: 1;
+    } 
+  }   
+}
+
+</style>
 <html>
 <head>
-<title>My Cart|MySite</title>
+<title>Login|MySite</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -38,9 +103,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
 <!-- start-smoth-scrolling -->
 <script type="text/javascript" src="js/move-top.js"></script>
-<script type="text/javascript" src="js/easing.js">
-
-</script>
+<script type="text/javascript" src="js/easing.js"></script>
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
 		$(".scroll").click(function(event){
@@ -51,58 +114,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 <!-- start-smoth-scrolling -->
 </head>
-	<script>
-		var totalprice = 0;
-	</script>	
-
-	
-<script>
-	     window.onload = function() {
-         myFunction1();
-		 myFunction2();
-		 myFunction3();
-		 myFunction4();
-		 myFunction5();
-		 myFunction6();
-		 myFunction7();	
-		 myFunction8();
-		 myFunction9();
-		 myFunction10();	
-		 myFunction11();
-		 myFunction12();	
-		 myFunction13();
-		 myFunction14();
-		 myFunction15();	
-			 
-   };	
-</script>
-
-	
-	
 
 <body>
 <!-- header -->
 	<div class="agileits_header">
 		<div class="container">
-
 			<div class="agile-login">
 				<ul>
-
-					<?php if (isset($_SESSION['usr_name'])) { ?>
-					<li><p style="font-weight:bold; color:white">Signed in as <?php echo $_SESSION['usr_name']; ?></p></li>
-					<li><a href="logout.php">Log out</a></li>
-					<?php } else { ?>
-					<li><a href="login.php">Login</a></li>
-					<li><a href="registered.php">Create Account</a></li>
-					<?php } ?>
+					<li><a href="registered.php"> Create Account </a></li>
 
 				</ul>
 			</div>
-			<div class="product_list_header">
-					<input type="hidden" name="cmd" value="_cart">
-						<input type="hidden" name="display" value="1">
-						<button class="w3view-cart" type="submit" name="submit" value="" onclick="location.href='checkout.php'"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-			</div>
+
 			<div class="clearfix"> </div>
 		</div>
 	</div>
@@ -113,12 +136,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 			</div>
 			<div class="w3ls_logo_products_left">
-				<h1><a href="index.php">MySiteLogo</a></h1>
+				<h1><a href="index.php">MYSITELOGO</a></h1>
 			</div>
 		<div class="w3l_search">
-			<form action="#" method="post">
-				<input type="search" name="Search" placeholder="Search for a Product..." required="">
-				<button type="submit" class="btn btn-default search" aria-label="Left Align">
+			<form action="search.php" method="post">
+        <?php $searchtext = NULL; ?>
+        <input type="search" name="searchtext" id="searchtext" placeholder="Search for a Product..." required="" value="<?php echo $searchtext; ?>">
+				<button type="submit" name="search" class="btn btn-default search" aria-label="Left Align">
 					<i class="fa fa-search" aria-hidden="true"> </i>
 				</button>
 				<div class="clearfix"></div>
@@ -181,219 +205,80 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- breadcrumbs -->
 	<div class="breadcrumbs">
 		<div class="container">
-			<ol class="breadcrumb breadcrumb1">
+			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
 				<li><a href="index.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-				<li class="active">Checkout Page</li>
+				<li class="active">Place Order</li>
 			</ol>
 		</div>
 	</div>
 <!-- //breadcrumbs -->
-<!-- checkout -->
-	
-	
-	
-	
-	
-	
-	
-	<div class="checkout">
-		<div class="container">
-			<?php
-			$check = mysqli_query($con, "SELECT productid FROM cart WHERE userid = '" . $usr_id. "'");
-			$nop = mysqli_num_rows($check);		
-			if(mysqli_num_rows($check) != 0){
-						echo '<h2 style="font-size: 1.4em;">Your shopping cart contains: <span>'.$nop.' Products</span></h2>';
-					}	
-			     ?>   
-				<div class="checkout-right">
-					<table class="timetable_sub">
+
+<div class="container" style="min-height:880px">
+  <div class="row">
+    <div class="col-sm-4">
+     <div >
+		 <form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="placeorder">
+	  <div class="login-form-grids" style="width: 100%; padding: 3em; background: #F7F7F9; margin: 2em auto 0;">
+				<h5 style="text-align:center">Select address</h5>
+		  	<?php	
+		$sql = mysqli_query($con, "SELECT * FROM address where userid ='".$_SESSION['usr_id']."' ");
+		  $i=1;
+		while ($row = mysqli_fetch_array($sql)){
+	  echo '<div>
+			<b>'.$row['name'].' </b><br>
+			'.$row['address1'].' <br>
+			'.$row['address2'].' <br>
+			'.$row['city'].' <br>
+			'.$row['state'].' <br>
+			'.$row['pincode'].' <br>
+			Mob -'.$row['mobile'].' <br>
+			<div style="padding-top: 10px;">';
+		    if($i==1){
+			echo '<input type="radio" name="address" value="'.$row['id'].'" checked><span style="color: #3999cc;">-Select Address</span>';
+			}else{
+			echo '<input type="radio" name="address" value="'.$row['id'].'"><span style="color: #3999cc;">-Select Address</span>';
+			}
+		echo '</div>
+		   </div>
+		   <p style="padding-bottom: 30px";></p>';
+			$i++;
+		}
+   ?>
 				
-					<?php
-					$check = mysqli_query($con, "SELECT productid FROM cart WHERE userid = '" . $usr_id. "'");
-					if(mysqli_num_rows($check) == 0){
-						echo " <br><br><br><br><h2 align='center'>No Products in Cart</h2><br><br><br><br><br> ";
-					}else{	
-					echo '<thead>
-						<tr>
-							<th>SL No.</th>
-							<th>Product</th>
-							<th>Quality</th>
-							<th>Product Name</th>
-
-							<th>Price</th>
-							<th>Remove</th>
-						</tr>
-					</thead>';
-					}
-					?>
-					<?php
-					$sql = mysqli_query($con, "SELECT productid FROM cart WHERE userid = '" . $usr_id. "'");
-					$row = mysqli_num_rows($sql);
-					
-					$addid=$row+1;
-					$sn=1;
-					while ($row = mysqli_fetch_array($sql)){
-					
-					$pid=$row['productid'];
-
-
-					$sql2 = mysqli_query($con, "SELECT * FROM products where id = '" . $pid. "'") or die(mysql_error());
-					$result = mysqli_num_rows($sql2);
-					$result = mysqli_fetch_array($sql2);
-
-
-			echo    '<tr id="rem'.$row['productid'].'" class="rem1">
-						<td class="invert">'.$sn.'</td>
-						<td class="invert-image"><a href="single.php?link='.$row['productid'].'"><img src="'.$result['image'].'" alt=" " class="img-responsive" /></a></td>
-						<td class="invert">
-							
-							 <div class="quantity">
-								<div class="quantity-select">
-								<input type="hidden" id="sn'.$sn.'"name="add" value="'.$result['price'].'">
-									<select id="mySelect'.$sn.'" onchange="myFunction'.$sn.'()">
-										<option value="1">1</option>
-  										<option value="2">2</option>
-  										<option value="3">3</option>
-  										<option value="4">4</option>
-										<option value="5">5</option>
-  										<option value="6">6</option>
-  										<option value="7">7</option>
-  										<option value="8">8</option>
-										<option value="9">9</option>
-  										<option value="10">10</option>
-  										<option value="11">11</option>
-  										<option value="12">12</option>
-									</select>
-								</div>
-							</div>
-						</td>
-						<td class="invert">'.$result['name'].'</td>
-						<p id="demo'.$row['productid'].'"></p>
-						<td class="invert" id="miniprice'.$result['price'].'" >'.$result['price'].'</td>
-						<td class="invert">
-							<div class="rem">
-							
-								
-								
-								
-								<form action="" method="post" class="last">
-								<input type="hidden" name="cmd" value="_cart">
-								<input type="hidden" name="display" value="1">
-								<button type="submit" name='.$row['productid'].' value="X"><i>X</i></button>
-								</form>'; ?>
-					
-					<?php
-								if(isset($_POST[$row['productid']])){
-									mysqli_query($con, "DELETE FROM cart WHERE productid='".$row['productid']."' AND userid='".$usr_id."'");
-									header('Location: offers.php');
-								}
-							?>	
-							
-							
-						<?php	
-							
-								
-						echo		'<script>
-									function myFunction'.$sn.'() {
-    								var x = document.getElementById("mySelect'.$sn.'").value;
-									var y = '.$result['price'].';
-									var z = x * y;
-									document.getElementById("print'.$sn.'").innerHTML = z;
-									document.getElementById("anoop'.$sn.'").innerHTML = z;
-									add();
-							}
-							</script>
-							</div>
-						</td>
-					</tr>';
-							
-					$sn++;
-
-					}
-					?>
-					
-					
-					<?php
-					   		
-					
-			           echo 	'<script>
-									function add(){
-									totalprice = 0;
-								    for(i=1;i<'.$addid.';i++){
-									var x = document.getElementById("anoop"+i).innerHTML;	
-									var value = parseInt(x,10);
-									totalprice = totalprice+ value;
-					   				document.getElementById("total").innerHTML = totalprice;
-					   						
-					   				   }
-									   
-									}
-								</script>';
+			</div>
+	  </div>
+	 </div>
+    <div class="col-sm-8">
+		<div class="login-form-grids" style="width: 100%; padding: 3em; background: #F7F7F9; margin: 2em auto 0;">
 				
-				
-					?>
+				     <h3 style="text-align:center">Total amount to Pay : </h3>
 					
-					
-					
-					
-					
-					
-					
-					
-				</table>
+					<input type="submit" id="submit" name="placeorder" value="PLACE ORDER">
+				</form>
 			</div>
-			<div class="checkout-left">
-				<div class="checkout-left-basket">
-					<?php
-					if(mysqli_num_rows($check) != 0){
-					 echo '<h4>Continue to basket</h4>';
-					}
-					?>
-					<ul>
-
-
-						<?php
-
-						$sql = mysqli_query($con, "SELECT productid FROM cart WHERE userid = '" . $usr_id. "'");
-						$row = mysqli_num_rows($sql);
-						$sn=1;
-						$jn=1;
-						while ($row = mysqli_fetch_array($sql)){
-						$pid=$row['productid'];
-						$sql2 = mysqli_query($con, "SELECT * FROM products where id = '" . $pid. "'") or die(mysql_error());
-						$result = mysqli_num_rows($sql2);
-						$result = mysqli_fetch_array($sql2);
-
-
-					    echo	'<li id="rem2'.$row['productid'].'">'.$result['name'].'<i></i> <span id="print'.$sn.'">'.$result['price'].'</span></li>
-						<p hidden id="anoop'.$jn.'"></p>';
-						$jn++;
-						$sn++;
-						}   ?>
-						
-						<?php
-							if(mysqli_num_rows($check) != 0){
-					 		echo '<li id="" class="checkout-total" style="font-size: 1em;color: #212121;">Total <i></i><span id="total"></span ></li>';
-						}
-						?>
-						
-						
-						
-					</ul>
-				</div>
-
-				<div class="clearfix"> </div>
+     
+			
+			<div class="login-form-grids" style="width: 100%; padding: 3em; background: #F7F7F9; margin: 2em auto 0;">
+				<h5 style="text-align:center">add address</h5>
+				<form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="signupform">
+					<input name="name" type="text" placeholder="First Name..." required=" " >
+					<input name="address1" style="margin-top: 15px;" type="text" placeholder="Address Line 1..." required=" " >
+					<input name="address2" style="margin-top: 15px;" type="text" placeholder="Address Line 2..." required=" " >
+					<input name="city" style="margin-top: 15px;" type="text" placeholder="City..." required=" " >
+					<input name="state" style="margin-top: 15px;" type="text" placeholder="State..." required=" " >
+					<input name="pincode" style="margin-top: 15px;" type="text" pattern="[0-9]{6}" placeholder="Pincode..." required=" " >
+					<input name="mobile" style="margin-top: 15px;" type="text" pattern="[789][0-9]{9}" placeholder="Mobile No..." required=" " >
+					
+					<input type="submit" id="submit" name="Add" value="Add">
+				</form>
 			</div>
-			<div style="text-align:center;">
-						<?php
-							if(mysqli_num_rows($check) != 0){
-					 		echo '<input style="margin-top: 45px;background-color: #272626;color: white;border-color: black;width: 200px;height: 35px;font-size: medium;" type="submit" name="checkout" value="Confirm & Checkout">';
-						}
-						?>
-			</div>
-		</div>
-	</div>
-<!-- //checkout -->
+			
+    </div>
+  </div>
+</div>	
+	
+	
+	
 <!-- //footer -->
 <div class="footer">
 		<div class="container">
@@ -402,7 +287,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<h3>Contact</h3>
 
 					<ul class="address">
-						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Anoop 1234 Inkers<span>Contact Me.</span></li>
+						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Anoop 1234 Inkers<span>Contact me.</span></li>
 						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:anoop@inkers.in">anoop@inkers.in</a></li>
 						<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+1234 567 567</li>
 					</ul>
@@ -428,7 +313,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="col-md-3 w3_footer_grid">
 					<h3>Profile</h3>
 					<ul class="info">
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="checkout.php">My Cart</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="cart.php">My Cart</a></li>
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="login.php">Login</a></li>
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="registered.php">Create Account</a></li>
 					</ul>
@@ -463,12 +348,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			*/
 
 			$().UItoTop({ easingType: 'easeOutQuart' });
- 
+
 			});
 	</script>
 <!-- //here ends scrolling icon -->
+<script src="js/minicart.min.js"></script>
+<script>
+	// Mini Cart
+	paypal.minicart.render({
+		action: '#'
+	});
 
-
+	if (~window.location.search.indexOf('reset=true')) {
+		paypal.minicart.reset();
+	}
+</script>
 <!-- main slider-banner -->
 <script src="js/skdslider.min.js"></script>
 <link href="css/skdslider.css" rel="stylesheet">
