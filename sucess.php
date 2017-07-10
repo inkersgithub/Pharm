@@ -19,7 +19,7 @@ if($url!="/Pharm/checkout.php"){
 
 <html>
 <head>
-<title>Login|MySite</title>
+<title>Thanks|MySite</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -56,8 +56,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     margin: auto;
     width: 50%;
 	margin-top: 60px;
-   
-}	
+
+}
 img {
     display: block;
     margin: auto;
@@ -75,7 +75,7 @@ img {
 			<div class="w3ls_logo_products_left">
 				<h1><a href="index.php">MYSITELOGO</a></h1>
 			</div>
-		
+
 
 			<div class="clearfix"> </div>
 		</div>
@@ -84,20 +84,20 @@ img {
 
 <!-- Bootstrap Core JavaScript -->
 
-	
+
 <div class="center">
 <img class="img" align="middle" src="images/shopping.png" alt="Shoppping" style="width:200px;height:250px;">
-</div>	
+</div>
 
 <div style="text-align:center;">
-<h1>Your Order Has Been Placed</h1>	
-</div>	
+<h1>Your Order Has Been Placed</h1>
+</div>
 <div style="text-align:center;">
-<h1>Thank You For Shopping With Us</h1>	
-</div>	
+<h1>Thank You For Shopping With Us</h1>
+</div>
 <div  style="text-align:center;margin-bottom:40px;margin-top:45px">
 					<a href="index.php"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Continue Shopping</a>
-				</div>	
+				</div>
 
 </body>
 </html>

@@ -123,11 +123,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="w3ls_logo_products_left">
 				<h1><a href="index.php">MySiteLogo</a></h1>
 			</div>
-		<div class="w3l_search">
-			<form action="#" method="post">
-				<input type="search" name="Search" placeholder="Search for a Product..." required="">
-				<button type="submit" class="btn btn-default search" aria-label="Left Align">
-					<i class="fa fa-search" aria-hidden="true"> </i>
+			<div class="w3l_search">
+				<form action="search.php" method="post">
+	        <?php $searchtext = NULL; ?>
+	        <input type="search" name="searchtext" id="searchtext" placeholder="Search for a Product..." required="" value="<?php echo $searchtext; ?>">
+					<button type="submit" name="search" class="btn btn-default search" aria-label="Left Align">
+						<i class="fa fa-search" aria-hidden="true"> </i>
 				</button>
 				<div class="clearfix"></div>
 			</form>
